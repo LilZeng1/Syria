@@ -1,0 +1,236 @@
+/* Core Settings */
+:root {
+    --bg-dark: #050505;
+    --accent-gold: #d4af37;
+    --accent-green: #1a472a;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+    border: 2px solid var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Firefox Scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #333 var(--bg-dark);
+    scroll-behavior: smooth;
+}
+
+.stroke-text {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.stroke-text:hover {
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+    color: rgba(212, 175, 55, 0.1);
+}
+
+/* Floating Orbs */
+@keyframes float-slow {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+@keyframes float-reverse {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(-30px, 50px) scale(0.9);
+    }
+
+    66% {
+        transform: translate(20px, -20px) scale(1.1);
+    }
+}
+
+.animate-float-slow {
+    animation: float-slow 20s infinite ease-in-out;
+}
+
+.animate-float-reverse {
+    animation: float-reverse 25s infinite ease-in-out;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+
+/* Audio Visualizer Bars */
+@keyframes music-bar {
+
+    0%,
+    100% {
+        height: 20%;
+    }
+
+    50% {
+        height: 100%;
+    }
+}
+
+.animate-music-1 {
+    animation: music-bar 1.2s infinite ease-in-out;
+}
+
+.animate-music-2 {
+    animation: music-bar 1.5s infinite ease-in-out 0.2s;
+}
+
+.animate-music-3 {
+    animation: music-bar 1.8s infinite ease-in-out 0.4s;
+}
+
+/* Alert Bubble Animations */
+@keyframes bubblePop {
+    0% {
+        transform: scale(0.8) translateY(-20px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05) translateY(0);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bubbleFade {
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.alert-bubble {
+    animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Role Button Hovers */
+.role-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.role-btn:hover::before {
+    left: 100%;
+}
+
+/* Bell Swing Animation */
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.group:hover .swing {
+    animation: swing 1s ease-in-out;
+}
+
+/* Glassmorphism Utilities Override */
+.glass-btn {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.super-navbar.scrolled {
+    background: rgba(5, 5, 5, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Loader Transitions */
+#loader.hidden-loader {
+    opacity: 0;
+    pointer-events: none;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+/* Selection Color */
+::selection {
+    background: var(--accent-gold);
+    color: #000;
+}
+
+body {
+    cursor: default;
+}
+
+a,
+button,
+.role-card,
+.bento-card {
+    cursor: pointer;
+}
