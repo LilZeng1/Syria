@@ -251,7 +251,8 @@ button,
     font-size: 1rem;
     font-weight: 700;
 }
- /* Hover Glows */
+
+/* Hover Glows */
 .role-btn:hover {
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
     border-color: var(--accent-gold);
