@@ -7,32 +7,30 @@ body {
     font-family: var(--apple-font);
     background-color: #050505;
     overflow-x: hidden;
+    transition: opacity 0.5s ease;
 }
 
-/* Glassmorphism Styles */
 .glass-nav {
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(20px);
 }
 
-/* Apple Buttons */
 .apple-btn-primary {
-    @apply px-10 py-4 bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] rounded-full transition-all hover:scale-105 active:scale-95;
+    @apply px-10 py-5 bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-xl;
 }
 
 .apple-btn-secondary {
-    @apply px-10 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-full transition-all hover:bg-white/10 active:scale-95;
+    @apply px-10 py-5 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
 }
 
-/* Typography Gradient */
 .gradient-text {
-    background: linear-gradient(to bottom, #fff 0%, #666 100%);
+    background: linear-gradient(to bottom, #fff 30%, #444 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -41,19 +39,16 @@ body {
     font-family: 'Playfair Display', serif;
 }
 
-/* Image Hover Effect */
 .card-img {
-    @apply absolute inset-0 w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110;
+    @apply absolute inset-0 w-full h-full object-cover grayscale opacity-50 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100;
 }
 
-/* Role Pills */
 .role-pill {
-    @apply py-4 border border-white/10 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-white hover:text-black hover:border-white;
+    @apply py-4 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,7 +56,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: #222;
     border-radius: 10px;
 }
 
@@ -69,14 +64,12 @@ body {
     background: var(--levant-gold);
 }
 
-/* Vertical Text */
-.vertical-text {
-    writing-mode: vertical-rl;
-}
-
-/* Loader Transition */
 .hidden-loader {
     opacity: 0;
     pointer-events: none;
-    transform: scale(1.1);
+    transform: translateY(-20px);
+}
+
+[dir="rtl"] {
+    font-family: 'Inter', sans-serif;
 }
