@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SYRIA | The Levant Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Kufi+Arabic:wght@400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="matte-cup">🧉</div>
+            <h2>Brewing the Vibes...</h2>
+        </div>
+    </div>
+
+    <div class="noise-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div id="alert-container"></div>
+
+    <nav class="super-navbar">
+        <div class="nav-left">
+            <a href="#" class="logo">SYRIA<span class="dot">.</span></a>
+        </div>
+        <div class="nav-center">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#culture" class="nav-link">Levant</a>
+            <a href="#community" class="nav-link">Community</a>
+            <a href="#roles" class="nav-link highlight">Get Roles</a>
+        </div>
+        <div class="nav-right">
+            <div class="flags-container">
+                <span class="flag" title="Syria">🇸🇾</span>
+                <span class="flag" title="Lebanon">🇱🇧</span>
+                <span class="flag" title="Palestine">🇵🇸</span>
+                <span class="flag" title="Jordan">🇯🇴</span>
+            </div>
+            <button id="lang-toggle" class="glass-btn">عربي / EN</button>
+        </div>
+        <div class="mobile-menu-btn">
+            <i class='bx bx-menu-alt-right'></i>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="badge-pill">
+                    <span class="pulse"></span> 
+                    <span data-key="online">Now Online & Yapping</span>
+                </div>
+                <h1 class="mega-title">
+                    <span class="line-1">THE HEART OF</span>
+                    <span class="line-2 gradient-text">THE LEVANT.</span>
+                </h1>
+                <p class="hero-desc" data-key="heroSubtitle">
+                    More than a server. It's a digital Damascene house. 
+                    Where Fairuz plays at 7 AM and Gaming starts at 7 PM.
+                </p>
+                <div class="cta-group">
+                    <a href="#roles" class="btn-primary">
+                        Join the Vibe <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                    <a href="https://discord.gg/YOURINVITE" target="_blank" class="btn-secondary">
+                        <i class='bx bxl-discord-alt'></i> Discord
+                    </a>
+                </div>
+            </div>
+            
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS •</span>
+                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS •</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="culture" class="culture-section">
+            <div class="section-header">
+                <h2 class="section-title">Culture & <span class="serif">Heritage</span></h2>
+                <p>Modern vibes, traditional roots.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card large fairuz-card">
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Morning Rituals</h3>
+                        <p>Fairuz & Coffee. Need we say more?</p>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card food-card">
+                    <div class="emoji-float">🥙</div>
+                    <h3>Gastronomy</h3>
+                    <p>Shawarma, Falafel, Tabouleh.</p>
+                </div>
+
+                <div class="bento-card history-card">
+                    <div class="icon-box"><i class='bx bxs-landmark'></i></div>
+                    <h3>Ancient Roots</h3>
+                    <p>Cradle of Civilization.</p>
+                </div>
+
+                <div class="bento-card medium matte-card">
+                    <div class="matte-icon-big">🧉</div>
+                    <h3>The Matte Circle</h3>
+                    <p>Pass the straw, share the story.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="roles-section">
+            <div class="glass-panel">
+                <div class="panel-header">
+                    <h2>Identity & <span class="highlight-text">Notifications</span></h2>
+                    <p>Connect your Discord, claim your spot.</p>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <i class='bx bxs-user-circle'></i>
+                        <input type="text" id="discord-id" placeholder="Enter Discord User ID (Required)" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="roles-showcase">
+                    
+                    <div class="role-group">
+                        <h4>Ping Roles</h4>
+                        <div class="roles-row">
+                            <button class="role-btn" onclick="assignRole('among-us')">
+                                <span class="role-icon">🚀</span>
+                                <span class="role-name">Among Us</span>
+                            </button>
+                            <button class="role-btn" onclick="assignRole('general-ping')">
+                                <span class="role-icon">🔔</span>
+                                <span class="role-name">News</span>
+                            </button>
+                            <button class="role-btn" onclick="assignRole('vc-ping')">
+                                <span class="role-icon">🎙️</span>
+                                <span class="role-name">Voice Chat</span>
+                            </button>
+                            <button class="role-btn" onclick="assignRole('gaming-ping')">
+                                <span class="role-icon">🎮</span>
+                                <span class="role-name">Gaming</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="role-group">
+                        <h4>Origin</h4>
+                        <div class="roles-row">
+                            <button class="role-btn special syrian" onclick="assignRole('syrian')">
+                                <span class="role-icon">🇸🇾</span>
+                                <span class="role-name">Syrian</span>
+                                <span class="role-tag">Native</span>
+                            </button>
+                            <button class="role-btn special guest" onclick="assignRole('non-syrian')">
+                                <span class="role-icon">🌍</span>
+                                <span class="role-name">Non-Syrian</span>
+                                <span class="role-tag">Guest</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mega-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>SYRIA</h2>
+                <p>Since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Rules</a>
+                <a href="#">Staff</a>
+            </div>
+            <div class="footer-social">
+                <i class='bx bxl-discord'></i>
+                <i class='bx bxl-instagram'></i>
+                <i class='bx bxl-spotify'></i>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Made with 🧉 & <3 by LiLZeng1 | George Arshed.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
