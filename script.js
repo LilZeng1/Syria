@@ -78,7 +78,7 @@ const translations = {
     }
 };
 
-/* Initialization - Remove Loader */
+/* Remove Loader */
 window.addEventListener('load', () => {
     setTimeout(() => {
         loader.classList.add('hidden-loader');
