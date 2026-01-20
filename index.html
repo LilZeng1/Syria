@@ -1,176 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SYRIA | The Levant Experience</title>
+    
     <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'levant-green': '#1a472a',
+                        'levant-gold': '#d4af37',
+                        'glass-surface': 'rgba(255, 255, 255, 0.03)',
+                        'glass-border': 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Noto Kufi Arabic', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Kufi+Arabic:wght@400;700;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-[#050505] text-white overflow-x-hidden selection:bg-levant-gold selection:text-black">
 
-    <div id="loader">
-        <div class="loader-content">
-            <div class="matte-cup">🧉</div>
-            <h2>Brewing the Vibes...</h2>
+    <div id="loader" class="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="loader-content text-center">
+            <div class="matte-cup text-8xl mb-6 animate-bounce">🧉</div>
+            <h2 class="text-2xl font-light tracking-widest uppercase animate-pulse">Brewing the Vibes...</h2>
         </div>
     </div>
 
-    <div class="noise-overlay"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="noise-overlay fixed inset-0 z-0 pointer-events-none opacity-[0.03]"></div>
+    <div class="orb orb-1 fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full blur-[120px] opacity-20 bg-blue-600 animate-float-slow"></div>
+    <div class="orb orb-2 fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[120px] opacity-10 bg-levant-green animate-float-reverse"></div>
 
-    <div id="alert-container"></div>
+    <div id="alert-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[1000] flex flex-col gap-3 w-[90%] max-w-md pointer-events-none"></div>
 
-    <nav class="super-navbar">
-        <div class="nav-left">
-            <a href="#" class="logo">SYRIA<span class="dot">.</span></a>
-        </div>
-        <div class="nav-center">
-            <a href="#hero" class="nav-link active">Home</a>
-            <a href="#culture" class="nav-link">Levant</a>
-            <a href="#community" class="nav-link">Community</a>
-            <a href="#roles" class="nav-link highlight">Get Roles</a>
-        </div>
-        <div class="nav-right">
-            <div class="flags-container">
-                <span class="flag" title="Syria">🇸🇾</span>
-                <span class="flag" title="Lebanon">🇱🇧</span>
-                <span class="flag" title="Palestine">🇵🇸</span>
-                <span class="flag" title="Jordan">🇯🇴</span>
+    <nav class="super-navbar fixed top-0 w-full z-[100] border-b border-glass-border backdrop-blur-xl bg-black/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="nav-left">
+                <a href="#" class="text-2xl font-black tracking-tighter hover:text-levant-gold transition-colors">SYRIA<span class="text-levant-gold text-4xl">.</span></a>
             </div>
-            <button id="lang-toggle" class="glass-btn">عربي / EN</button>
-        </div>
-        <div class="mobile-menu-btn">
-            <i class='bx bx-menu-alt-right'></i>
+            
+            <div class="nav-center hidden md:flex gap-8 bg-glass-surface px-8 py-3 rounded-full border border-glass-border">
+                <a href="#hero" class="nav-link text-sm font-medium hover:text-levant-gold transition-all relative group">Home <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-levant-gold transition-all group-hover:w-full"></span></a>
+                <a href="#culture" class="nav-link text-sm font-medium hover:text-levant-gold transition-all relative group">Levant <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-levant-gold transition-all group-hover:w-full"></span></a>
+                <a href="#roles" class="nav-link text-sm font-medium hover:text-levant-gold transition-all relative group">Get Roles <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-levant-gold transition-all group-hover:w-full"></span></a>
+            </div>
+
+            <div class="nav-right flex items-center gap-4">
+                <div class="flags-container hidden sm:flex gap-3 grayscale hover:grayscale-0 transition-all duration-500 cursor-default">
+                    <span class="text-xl hover:scale-125 transition-transform" title="Syria">🇸🇾</span>
+                    <span class="text-xl hover:scale-125 transition-transform" title="Lebanon">🇱🇧</span>
+                    <span class="text-xl hover:scale-125 transition-transform" title="Palestine">🇵🇸</span>
+                    <span class="text-xl hover:scale-125 transition-transform" title="Jordan">🇯🇴</span>
+                </div>
+                <button id="lang-toggle" class="glass-btn px-5 py-2 rounded-full border border-glass-border bg-glass-surface hover:bg-white/10 hover:border-levant-gold transition-all text-xs font-bold tracking-wider active:scale-95">
+                    عربي / EN
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <div class="badge-pill">
-                    <span class="pulse"></span> 
-                    <span data-key="online">Now Online & Yapping</span>
+    <main class="relative z-10 pt-32">
+        <section id="hero" class="hero-section min-h-[80vh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+            <div class="hero-content max-w-4xl mx-auto z-20">
+                <div class="badge-pill inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md hover:scale-105 transition-transform cursor-pointer">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 
+                    <span data-key="online" class="text-xs font-bold uppercase tracking-wider text-gray-300">Now Online & Yapping</span>
                 </div>
-                <h1 class="mega-title">
-                    <span class="line-1">THE HEART OF</span>
-                    <span class="line-2 gradient-text">THE LEVANT.</span>
+                
+                <h1 class="mega-title text-6xl md:text-8xl lg:text-9xl font-black leading-none tracking-tighter mb-8">
+                    <span class="block hover:translate-x-4 transition-transform duration-500">THE HEART OF</span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600 hover:-translate-x-4 transition-transform duration-500">THE LEVANT.</span>
                 </h1>
-                <p class="hero-desc" data-key="heroSubtitle">
+                
+                <p class="hero-desc text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed" data-key="heroSubtitle">
                     More than a server. It's a digital Damascene house. 
                     Where Fairuz plays at 7 AM and Gaming starts at 7 PM.
                 </p>
-                <div class="cta-group">
-                    <a href="#roles" class="btn-primary">
-                        Join the Vibe <i class='bx bx-right-arrow-alt'></i>
+                
+                <div class="cta-group flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#roles" class="btn-primary px-8 py-4 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] flex items-center gap-2 group">
+                        Join the Vibe <i class='bx bx-right-arrow-alt group-hover:translate-x-1 transition-transform'></i>
                     </a>
-                    <a href="https://discord.gg/YOURINVITE" target="_blank" class="btn-secondary">
-                        <i class='bx bxl-discord-alt'></i> Discord
+                    <a href="https://discord.gg/T6CadMhUgK" target="_blank" class="btn-secondary px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center gap-2 backdrop-blur-sm">
+                        <i class='bx bxl-discord-alt text-xl'></i> Discord
                     </a>
                 </div>
             </div>
             
-            <div class="marquee-wrapper">
-                <div class="marquee">
-                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS •</span>
-                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS •</span>
+            <div class="marquee-wrapper absolute bottom-10 left-0 w-full overflow-hidden opacity-30 select-none pointer-events-none rotate-[-2deg] scale-110">
+                <div class="marquee whitespace-nowrap text-6xl font-black text-transparent stroke-text animate-marquee">
+                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS • </span>
+                    <span>DAMASCUS • BEIRUT • AMMAN • JERUSALEM • LATAKIA • ALEPPO • HOMS • </span>
                 </div>
             </div>
         </section>
 
-        <section id="culture" class="culture-section">
-            <div class="section-header">
-                <h2 class="section-title">Culture & <span class="serif">Heritage</span></h2>
-                <p>Modern vibes, traditional roots.</p>
-            </div>
+        <section id="culture" class="culture-section py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="section-header mb-16 pl-4 border-l-4 border-levant-gold">
+                    <h2 class="text-4xl font-bold mb-2">Culture & <span class="font-serif italic text-levant-gold">Heritage</span></h2>
+                    <p class="text-gray-400">Modern vibes, traditional roots.</p>
+                </div>
 
-            <div class="bento-grid">
-                <div class="bento-card large fairuz-card">
-                    <div class="card-overlay"></div>
-                    <div class="card-content">
-                        <h3>Morning Rituals</h3>
-                        <p>Fairuz & Coffee. Need we say more?</p>
-                        <div class="audio-visualizer">
-                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bento-grid grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+                    
+                    <div class="bento-card md:col-span-2 relative group overflow-hidden rounded-3xl bg-[#111] border border-white/5 hover:border-white/20 transition-all duration-500">
+                        <img src="https://i.pinimg.com/564x/44/14/b8/4414b87514808381273919e931441864.jpg" alt="Fairuz" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="card-content absolute bottom-8 left-8">
+                            <h3 class="text-2xl font-bold mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Morning Rituals</h3>
+                            <p class="text-gray-300 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Fairuz & Coffee. Need we say more?</p>
+                            <div class="audio-visualizer flex gap-1 h-6 items-end">
+                                <div class="bar w-1 bg-levant-gold h-full animate-music-1"></div>
+                                <div class="bar w-1 bg-levant-gold h-1/2 animate-music-2"></div>
+                                <div class="bar w-1 bg-levant-gold h-3/4 animate-music-3"></div>
+                                <div class="bar w-1 bg-levant-gold h-full animate-music-1"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="bento-card food-card">
-                    <div class="emoji-float">🥙</div>
-                    <h3>Gastronomy</h3>
-                    <p>Shawarma, Falafel, Tabouleh.</p>
-                </div>
+                    <div class="bento-card relative group overflow-hidden rounded-3xl bg-[#151515] border border-white/5 p-8 flex flex-col justify-center items-center text-center hover:bg-[#1a1a1a] transition-colors">
+                        <div class="emoji-float text-6xl mb-6 group-hover:rotate-12 transition-transform duration-300">🥙</div>
+                        <h3 class="text-xl font-bold mb-2">Gastronomy</h3>
+                        <p class="text-gray-400 text-sm">Shawarma, Falafel, Tabouleh. Pure love.</p>
+                    </div>
 
-                <div class="bento-card history-card">
-                    <div class="icon-box"><i class='bx bxs-landmark'></i></div>
-                    <h3>Ancient Roots</h3>
-                    <p>Cradle of Civilization.</p>
-                </div>
+                    <div class="bento-card relative group overflow-hidden rounded-3xl bg-[#0a2f1c] border border-white/5 p-8 flex flex-col justify-between hover:border-green-500/30 transition-colors">
+                        <div class="absolute top-0 right-0 p-32 bg-green-500/20 blur-[80px] rounded-full"></div>
+                        <div class="matte-icon-big text-5xl">🧉</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-green-100">The Matte Circle</h3>
+                            <p class="text-green-300/60 text-sm mt-2">Pass the straw, share the story.</p>
+                        </div>
+                    </div>
 
-                <div class="bento-card medium matte-card">
-                    <div class="matte-icon-big">🧉</div>
-                    <h3>The Matte Circle</h3>
-                    <p>Pass the straw, share the story.</p>
+                    <div class="bento-card md:col-span-2 relative group overflow-hidden rounded-3xl bg-[#111] border border-white/5 p-10 flex items-center justify-between">
+                        <div class="z-10">
+                            <h3 class="text-2xl font-bold mb-2">Ancient Roots</h3>
+                            <p class="text-gray-400 max-w-xs">From the oldest inhabited cities to the newest memes.</p>
+                        </div>
+                        <i class='bx bxs-landmark text-8xl text-white/5 group-hover:text-levant-gold/20 transition-colors rotate-[-15deg] group-hover:rotate-0 duration-500'></i>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="roles" class="roles-section">
-            <div class="glass-panel">
-                <div class="panel-header">
-                    <h2>Identity & <span class="highlight-text">Notifications</span></h2>
-                    <p>Connect your Discord, claim your spot.</p>
+        <section id="roles" class="roles-section py-20 px-4 min-h-screen flex items-center justify-center">
+            <div class="glass-panel w-full max-w-5xl bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[40px] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+
+                <div class="panel-header text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Identity & <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Notifications</span></h2>
+                    <p class="text-gray-400">Connect your Discord, claim your spot.</p>
                 </div>
 
-                <div class="input-area">
-                    <div class="input-wrapper">
-                        <i class='bx bxs-user-circle'></i>
-                        <input type="text" id="discord-id" placeholder="Enter Discord User ID (Required)" autocomplete="off">
+                <div class="input-area max-w-md mx-auto mb-16">
+                    <div class="input-wrapper relative group">
+                        <i class='bx bxs-user-circle absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-gray-500 group-hover:text-white transition-colors'></i>
+                        <input type="text" id="discord-id" placeholder="Enter Discord User ID (Required)" autocomplete="off" 
+                            class="w-full bg-black/40 border border-white/10 rounded-2xl py-4 pl-14 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-lg font-mono tracking-wider">
                     </div>
+                    <p class="text-xs text-center text-gray-600 mt-2">Dev Tip: Right click user -> Copy ID</p>
                 </div>
 
-                <div class="roles-showcase">
+                <div class="roles-showcase grid md:grid-cols-2 gap-12">
                     
                     <div class="role-group">
-                        <h4>Ping Roles</h4>
-                        <div class="roles-row">
-                            <button class="role-btn" onclick="assignRole('among-us')">
-                                <span class="role-icon">🚀</span>
-                                <span class="role-name">Among Us</span>
+                        <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-6 font-bold border-b border-white/5 pb-2">Ping Roles</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="role-btn p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all active:scale-95 flex flex-col items-center gap-3 group" onclick="assignRole('among-us')">
+                                <span class="text-3xl group-hover:-translate-y-2 transition-transform duration-300">🚀</span>
+                                <span class="font-medium text-sm">Among Us</span>
                             </button>
-                            <button class="role-btn" onclick="assignRole('general-ping')">
-                                <span class="role-icon">🔔</span>
-                                <span class="role-name">News</span>
+                            <button class="role-btn p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all active:scale-95 flex flex-col items-center gap-3 group" onclick="assignRole('general-ping')">
+                                <span class="text-3xl group-hover:swing transition-transform duration-300">🔔</span>
+                                <span class="font-medium text-sm">News</span>
                             </button>
-                            <button class="role-btn" onclick="assignRole('vc-ping')">
-                                <span class="role-icon">🎙️</span>
-                                <span class="role-name">Voice Chat</span>
+                            <button class="role-btn p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all active:scale-95 flex flex-col items-center gap-3 group" onclick="assignRole('vc-ping')">
+                                <span class="text-3xl group-hover:scale-125 transition-transform duration-300">🎙️</span>
+                                <span class="font-medium text-sm">Voice Chat</span>
                             </button>
-                            <button class="role-btn" onclick="assignRole('gaming-ping')">
-                                <span class="role-icon">🎮</span>
-                                <span class="role-name">Gaming</span>
+                            <button class="role-btn p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all active:scale-95 flex flex-col items-center gap-3 group" onclick="assignRole('gaming-ping')">
+                                <span class="text-3xl group-hover:rotate-180 transition-transform duration-300">🎮</span>
+                                <span class="font-medium text-sm">Gaming</span>
                             </button>
                         </div>
                     </div>
 
                     <div class="role-group">
-                        <h4>Origin</h4>
-                        <div class="roles-row">
-                            <button class="role-btn special syrian" onclick="assignRole('syrian')">
-                                <span class="role-icon">🇸🇾</span>
-                                <span class="role-name">Syrian</span>
-                                <span class="role-tag">Native</span>
+                        <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-6 font-bold border-b border-white/5 pb-2">Origin</h4>
+                        <div class="flex flex-col gap-4">
+                            <button class="role-btn relative overflow-hidden p-6 rounded-2xl bg-gradient-to-br from-green-900/40 to-black border border-green-500/20 hover:border-green-500/50 transition-all active:scale-95 text-left group" onclick="assignRole('syrian')">
+                                <div class="flex items-center justify-between z-10 relative">
+                                    <div>
+                                        <span class="text-2xl block mb-1">🇸🇾</span>
+                                        <span class="font-bold text-lg block">Syrian</span>
+                                        <span class="text-xs text-green-400 font-mono">NATIVE</span>
+                                    </div>
+                                    <i class='bx bx-check-circle text-3xl text-green-500 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-110'></i>
+                                </div>
                             </button>
-                            <button class="role-btn special guest" onclick="assignRole('non-syrian')">
-                                <span class="role-icon">🌍</span>
-                                <span class="role-name">Non-Syrian</span>
-                                <span class="role-tag">Guest</span>
+
+                            <button class="role-btn relative overflow-hidden p-6 rounded-2xl bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/20 hover:border-blue-500/50 transition-all active:scale-95 text-left group" onclick="assignRole('non-syrian')">
+                                <div class="flex items-center justify-between z-10 relative">
+                                    <div>
+                                        <span class="text-2xl block mb-1">🌍</span>
+                                        <span class="font-bold text-lg block">Non-Syrian</span>
+                                        <span class="text-xs text-blue-400 font-mono">GUEST</span>
+                                    </div>
+                                    <i class='bx bx-check-circle text-3xl text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-110'></i>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -178,28 +232,41 @@
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="mega-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h2>SYRIA</h2>
-                <p>Since 2020.</p>
+    <footer class="mega-footer bg-black border-t border-white/5 pt-20 pb-10 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mb-16 relative z-10">
+            <div class="footer-brand max-w-sm">
+                <h2 class="text-3xl font-black mb-4">SYRIA <span class="text-levant-gold">🧉</span></h2>
+                <p class="text-gray-500 leading-relaxed mb-6">Since 2020. The official digital gathering spot for the Levant youth. No politics, just vibes, gaming, and late night talks.</p>
+                <div class="owner-tag inline-block bg-white/5 px-4 py-2 rounded-lg border border-white/5">
+                    <span class="text-xs text-gray-500 uppercase tracking-widest block mb-1">Server Owner</span>
+                    <span class="flex items-center gap-2 font-bold text-sm"><i class='bx bxs-crown text-yellow-500'></i> @eric_cartman44</span>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Rules</a>
-                <a href="#">Staff</a>
-            </div>
-            <div class="footer-social">
-                <i class='bx bxl-discord'></i>
-                <i class='bx bxl-instagram'></i>
-                <i class='bx bxl-spotify'></i>
+            
+            <div class="footer-links grid grid-cols-2 gap-8">
+                <div class="flex flex-col gap-3">
+                    <h4 class="font-bold text-white mb-2">Server</h4>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Rules</a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Staff</a>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <h4 class="font-bold text-white mb-2">Socials</h4>
+                    <a href="https://discord.gg/T6CadMhUgK" class="flex items-center gap-2 text-gray-500 hover:text-[#5865F2] transition-colors"><i class='bx bxl-discord'></i> Discord</a>
+                    <a href="#" class="flex items-center gap-2 text-gray-500 hover:text-[#E1306C] transition-colors"><i class='bx bxl-instagram'></i> Instagram</a>
+                    <a href="#" class="flex items-center gap-2 text-gray-500 hover:text-[#1DB954] transition-colors"><i class='bx bxl-spotify'></i> Spotify</a>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Made with 🧉 & <3 by LiLZeng1 | George Arshed.</p>
+        
+        <div class="footer-bottom border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 Syria Server. All Rights Reserved.</p>
+            <p class="font-mono">Developed with ❤️, 🧉 & OCD by <a href="#" class="text-blue-500 hover:underline">@lilzeng1 (George Arshed)</a></p>
         </div>
     </footer>
 
