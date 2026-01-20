@@ -1,27 +1,35 @@
-/* Core Settings */
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+/* Variables */
 :root {
     --bg-dark: #050505;
-    --accent-gold: #d4af37;
+    --accent-gold: #c5a028;
     --accent-green: #1a472a;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
+body {
+    font-family: 'Poppins', sans-serif;
     background: var(--bg-dark);
+    cursor: default;
+    color: white;
+}
+
+/* Scrollbar & Selection */
+::-webkit-scrollbar {
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #333;
-    border-radius: 4px;
-    border: 2px solid var(--bg-dark);
+    border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+::selection {
+    background: var(--accent-gold);
+    color: #000;
 }
 
 /* Firefox Scrollbar */
@@ -152,20 +160,16 @@ html {
     animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Role Button Hovers */
-.role-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transition: 0.5s;
+.role-btn {
+    position: relative;
+    isolation: isolate;
+    transition: all 0.3s ease;
 }
 
-.role-btn:hover::before {
-    left: 100%;
+.role-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    border-color: var(--accent-gold);
 }
 
 /* Bell Swing Animation */
@@ -202,9 +206,9 @@ html {
 }
 
 .super-navbar.scrolled {
-    background: rgba(5, 5, 5, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    background: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 /* Loader Transitions */
@@ -224,15 +228,24 @@ html {
     color: #000;
 }
 
-body {
-    cursor: default;
-}
-
 a,
 button,
 .role-card,
 .bento-card {
     cursor: pointer;
+}
+
+.bento-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(197, 160, 40, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Arabic Typography Polish */
@@ -252,8 +265,12 @@ button,
     font-weight: 700;
 }
 
-/* Hover Glows */
-.role-btn:hover {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-    border-color: var(--accent-gold);
+@media (max-width: 768px) {
+    .mega-title {
+        font-size: 4rem !important;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
 }
