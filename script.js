@@ -31,7 +31,7 @@ const translations = {
         navHeritage: "تراثنا",
         navDiscord: "ديسكورد",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية للسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
+        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> انضم لديسكورد",
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
@@ -83,6 +83,8 @@ function updateLanguage() {
 
     setTimeout(() => {
         document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = currentLang;
+        
         document.getElementById('lang-toggle').innerText = t.toggleBtn;
         document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
         document.getElementById('stat-text').innerText = t.statText;
@@ -93,7 +95,7 @@ function updateLanguage() {
         navLinks[2].innerText = t.navCommunity;
         navLinks[3].innerText = t.navHeritage;
 
-        const mobLinks = document.querySelectorAll('#mobile-menu a');
+        const mobLinks = document.querySelectorAll('.mobile-link');
         mobLinks[0].innerText = t.navHome;
         mobLinks[1].innerText = t.navCommunity;
         mobLinks[2].innerText = t.navHeritage;
@@ -136,7 +138,7 @@ function reveal() {
     reveals.forEach(el => {
         const windowHeight = window.innerHeight;
         const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 150;
+        const revealPoint = 100;
         if (revealTop < windowHeight - revealPoint) {
             el.classList.add('active');
         }
