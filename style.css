@@ -9,35 +9,11 @@ body {
     background-color: #050505;
     overflow-x: hidden;
     opacity: 1;
+    -webkit-font-smoothing: antialiased;
 }
 
 [dir="rtl"] body {
     font-family: var(--arabic-font);
-}
-
-.text-left {
-    text-align: left !important;
-}
-
-[dir="rtl"] .text-left {
-    text-align: left !important;
-}
-
-[dir="rtl"] .flex {
-    flex-direction: row;
-}
-
-[dir="rtl"] .md\:flex-row {
-    flex-direction: row !important;
-}
-
-h1 {
-    font-size: clamp(2.2rem, 10vw, 6.5rem) !important;
-    text-wrap: balance;
-}
-
-h2 {
-    font-size: clamp(1.8rem, 6vw, 3.5rem) !important;
 }
 
 .glass-nav {
@@ -49,12 +25,22 @@ h2 {
 .glass-card {
     background: rgba(255, 255, 255, 0.015);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    direction: ltr !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateY(-5px);
 }
 
 .apple-btn-secondary {
     @apply px-10 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gradient-text {
@@ -77,13 +63,12 @@ h2 {
     filter: grayscale(100%);
     opacity: 0.4;
     transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
-    display: block;
 }
 
 .group:hover .card-img {
     filter: grayscale(0%);
-    transform: scale(1.1) rotate(1deg);
-    opacity: 0.8;
+    transform: scale(1.08) rotate(1deg);
+    opacity: 0.7;
 }
 
 .role-pill {
@@ -93,11 +78,12 @@ h2 {
 .hidden-loader {
     opacity: 0 !important;
     visibility: hidden;
+    pointer-events: none;
 }
 
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
     transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -106,16 +92,58 @@ h2 {
     transform: translateY(0);
 }
 
-.among-ghost-fix {
-    right: 0 !important;
-    left: auto !important;
+[dir="ltr"] .glass-card,
+[dir="ltr"] .reveal,
+[dir="ltr"] section {
+    text-align: left;
+}
+
+[dir="rtl"] .glass-card,
+[dir="rtl"] .reveal,
+[dir="rtl"] section,
+[dir="rtl"] .text-center {
+    text-align: right !important;
+}
+
+[dir="rtl"] #hero .reveal,
+[dir="rtl"] #hero p,
+[dir="rtl"] footer,
+[dir="rtl"] footer .text-center {
+    text-align: center !important;
 }
 
 [dir="rtl"] .among-ghost-fix {
-    right: 0 !important;
-    left: auto !important;
+    right: auto !important;
+    left: 0 !important;
 }
 
-.glass-card * {
-    text-align: left !important;
+[dir="rtl"] .among-ghost-fix i {
+    transform: rotate(-12deg) !important;
+}
+
+[dir="rtl"] .group:hover .among-ghost-fix i {
+    transform: scale(1.1) rotate(12deg) !important;
+}
+
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 2rem !important;
+    }
+
+    h1 {
+        font-size: 2.8rem !important;
+    }
+
+    [dir="rtl"] .role-pill {
+        font-size: 10px;
+    }
+}
+
+[dir="rtl"] .nav-item,
+[dir="rtl"] .mobile-link {
+    letter-spacing: 0 !important;
+}
+
+[dir="rtl"] #stat-text {
+    letter-spacing: 0.05em !important;
 }
