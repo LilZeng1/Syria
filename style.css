@@ -8,7 +8,6 @@ body {
     font-family: var(--apple-font);
     background-color: #050505;
     overflow-x: hidden;
-    /* Opacity 0'ı kaldırdık çünkü JS bazen geç tetikleniyor */
     opacity: 1;
 }
 
