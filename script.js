@@ -36,7 +36,7 @@ const translations = {
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
         commTitle: "أمونج أس <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>بالنسخة السورية</span>",
-        commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعلا، والصداقات بتختبر. ما في رحمة للمحتالين، فوضى وبس.",
+        commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعla، والصداقات بتختبر. ما في رحمة للمحتالين، فوضى وبس.",
         gmodTitle: "غاري مود",
         gmodDesc: "عالم من الفوضى. من الرول بلاي الجدي لجنون الـ TTT. هي روح الجيمنج عنا.",
         cinemaTitle: "سهرات سينما",
@@ -55,7 +55,9 @@ let currentLang = 'en';
 
 window.addEventListener('load', () => {
     setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden-loader');
+        const loader = document.getElementById('loader');
+        loader.classList.add('hidden-loader');
+        setTimeout(() => loader.style.display = 'none', 700);
     }, 1000);
 });
 
@@ -80,7 +82,6 @@ function updateLanguage() {
         document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.getElementById('lang-toggle').innerText = t.toggleBtn;
         document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
-
         document.getElementById('stat-text').innerText = t.statText;
 
         const navLinks = document.querySelectorAll('nav a');
@@ -139,6 +140,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = "0";
     section.style.transform = "translateY(30px)";
-    section.style.transition = "all 0.8s ease-out";
+    section.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
     observer.observe(section);
 });
