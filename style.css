@@ -1,5 +1,6 @@
 :root {
     --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --arabic-font: 'Noto Sans Arabic', sans-serif;
     --levant-gold: #d4af37;
 }
 
@@ -7,7 +8,11 @@ body {
     font-family: var(--apple-font);
     background-color: #050505;
     overflow-x: hidden;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
+}
+
+[dir="rtl"] body {
+    font-family: var(--arabic-font);
 }
 
 h1 {
@@ -33,13 +38,13 @@ p {
 .glass-card {
     background: rgba(255, 255, 255, 0.015);
     backdrop-filter: blur(20px);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .glass-card:hover {
     background: rgba(255, 255, 255, 0.03);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px -12px rgba(212, 175, 55, 0.12);
 }
 
 .apple-btn-secondary {
@@ -64,19 +69,25 @@ p {
     object-fit: cover;
     object-position: center 20%;
     filter: grayscale(100%);
-    opacity: 0.5;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.4;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
     display: block;
+    will-change: transform;
 }
 
 .group:hover .card-img {
     filter: grayscale(0%);
-    transform: scale(1.05);
-    opacity: 0.9;
+    transform: scale(1.08);
+    opacity: 0.8;
 }
 
 .role-pill {
     @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
+}
+
+[dir="rtl"] .bx {
+    display: inline-block;
+    transform: scaleX(1);
 }
 
 ::-webkit-scrollbar {
@@ -99,16 +110,12 @@ p {
 .hidden-loader {
     opacity: 0;
     pointer-events: none;
-    transform: scale(1.1);
-}
-
-[dir="rtl"] {
-    font-family: 'Inter', sans-serif;
+    transform: scale(1.05);
 }
 
 @media (max-width: 400px) {
     h1 {
-        font-size: 2rem !important;
+        font-size: 2.2rem !important;
     }
 }
 
