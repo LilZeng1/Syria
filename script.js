@@ -1,3 +1,4 @@
+// Translation()
 const translations = {
     en: {
         statText: "1,800+ Members — You're the missing one!",
@@ -6,21 +7,21 @@ const translations = {
         navHeritage: "Heritage",
         navDiscord: "Join Discord",
         heroTitle: "The Heart <br> <span class='italic serif text-levant-gold'>Of The Levant.</span>",
-        heroSub: "Not just another server—it's home. From heated debates to 3 AM gaming sessions and late-night talks. Come as you are, stay for the family.",
+        heroSub: "Not just another server—it's home. From heated debates to 3 AM gaming sessions. Come as you are, stay for the family.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> Jump In Discord",
         exploreBtn: "Take a Tour",
         commTag: "Our Daily Ritual",
-        commTitle: "Among Us <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>Syrian Edition</span>",
-        commDesc: "Every single night. Lobbies fill up, voice channels explode, and friendships are tested. No mercy for the impostors, just pure chaos.",
+        commTitle: "Among Us <br> <span class='text-white/30 text-xl md:text-2xl'>Syrian Edition</span>",
+        commDesc: "Every single night. Lobbies fill up, voice channels explode, and friendships are tested. No mercy for the impostors.",
         gmodTitle: "Garry's Mod",
-        gmodDesc: "Sandbox madness. From serious roleplay to absolute TTT mayhem. It's the heart of our gaming crew.",
+        gmodDesc: "Sandbox madness. From serious roleplay to absolute TTT mayhem.",
         cinemaTitle: "Late Night Cinema",
-        cinemaDesc: "Popcorn ready? We stream movies, anime, and the classic Ramadan series in high-def voice channels.",
+        cinemaDesc: "We stream movies, anime, and classic Ramadan series in HD.",
         debateTitle: "The Arena",
-        debateDesc: "We don't dodge the big questions. Politics, religion, ideology—it's all on the table. Debate hard, but keep it family.",
+        debateDesc: "Politics, religion, ideology—it's all on the table. Debate hard, keep it family.",
         cultTitle: "The <br> Heritage",
         cultSub: "Fairuz in the morning, Wassouf for the soul.",
-        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. We’re here to share the stories that make us who we are.",
+        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. We’re here to share stories.",
         toggleBtn: "AR",
         toggleMob: "ARABIC"
     },
@@ -31,11 +32,11 @@ const translations = {
         navHeritage: "تراثنا",
         navDiscord: "ديسكورد",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
+        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> انضم لديسكورد",
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
-        commTitle: "أمونج أس <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>بالنسخة السورية</span>",
+        commTitle: "أمونج أس <br> <span class='text-white/30 text-xl md:text-2xl'>بالنسخة السورية</span>",
         commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعلى، والصداقات بتختبر. ما في رحمة للمحتالين، فوضى وبس.",
         gmodTitle: "غاري مود",
         gmodDesc: "عالم من الفوضى. من الرول بلاي الجدي لجنون الـ TTT. هي روح الجيمنج عنا.",
@@ -53,30 +54,35 @@ const translations = {
 
 let currentLang = 'en';
 
+// Loading System()
 window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
     setTimeout(() => {
-        const loader = document.getElementById('loader');
         loader.classList.add('hidden-loader');
         setTimeout(() => {
             loader.style.display = 'none';
             reveal();
         }, 700);
-    }, 1000);
+    }, 800);
 });
 
+// Mobile Menu()
 const mobileMenu = document.getElementById('mobile-menu');
 const openBtn = document.getElementById('open-menu');
 const closeBtn = document.getElementById('close-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
 function toggleMenu() {
+    const isClosed = mobileMenu.classList.contains('translate-x-full');
     mobileMenu.classList.toggle('translate-x-full');
+    document.body.style.overflow = isClosed ? 'hidden' : '';
 }
 
 openBtn.addEventListener('click', toggleMenu);
 closeBtn.addEventListener('click', toggleMenu);
 mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
+// Lang Switch Func()
 function updateLanguage() {
     const t = translations[currentLang];
     document.body.style.opacity = '0';
@@ -84,11 +90,13 @@ function updateLanguage() {
     setTimeout(() => {
         document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.lang = currentLang;
-        
+
+        // Change UI Text
         document.getElementById('lang-toggle').innerText = t.toggleBtn;
         document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
         document.getElementById('stat-text').innerText = t.statText;
 
+        // Navbar Links
         const navLinks = document.querySelectorAll('.nav-item');
         navLinks[0].innerText = t.navHome;
         navLinks[1].innerText = t.navDiscord;
@@ -101,6 +109,7 @@ function updateLanguage() {
         mobLinks[2].innerText = t.navHeritage;
         mobLinks[3].innerText = t.navDiscord;
 
+        // Hero & Content
         document.getElementById('hero-title').innerHTML = t.heroTitle;
         document.getElementById('hero-sub').innerText = t.heroSub;
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
@@ -119,9 +128,11 @@ function updateLanguage() {
         document.getElementById('cult-desc').innerText = t.cultDesc;
 
         document.body.style.opacity = '1';
+        reveal();
     }, 400);
 }
 
+// Language Toggle()
 document.getElementById('lang-toggle').addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     updateLanguage();
@@ -133,12 +144,13 @@ document.getElementById('lang-toggle-mob').addEventListener('click', () => {
     setTimeout(toggleMenu, 600);
 });
 
+// Scroll Reveal()
 function reveal() {
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(el => {
         const windowHeight = window.innerHeight;
         const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
+        const revealPoint = 80;
         if (revealTop < windowHeight - revealPoint) {
             el.classList.add('active');
         }
