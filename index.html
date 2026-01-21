@@ -30,7 +30,7 @@
         }
     </script>
 </head>
-<body class="bg-[#050505] text-white selection:bg-levant-gold/30 overflow-x-hidden">
+<body class="bg-[#050505] text-white selection:bg-levant-gold/30 overflow-x-hidden ltr-fix">
     <div id="loader"
         class="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-all duration-700">
         <div class="scale-150">
@@ -92,11 +92,11 @@
                         Members — You're the missing one!</span>
                 </div>
                 <h1 id="hero-title"
-                    class="text-4xl sm:text-6xl md:text-8xl lg:text-[100px] font-black leading-[1.1] tracking-tighter mb-6 md:mb-8 gradient-text uppercase">
+                    class="text-4xl sm:text-6xl md:text-8xl lg:text-[100px] font-black leading-[1.1] tracking-tighter mb-6 md:mb-8 gradient-text uppercase text-center">
                     The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span>
                 </h1>
                 <p id="hero-sub"
-                    class="text-gray-400 max-w-xl mx-auto text-sm md:text-lg font-light leading-relaxed mb-10 md:mb-12 px-2">
+                    class="text-gray-400 max-w-xl mx-auto text-sm md:text-lg font-light leading-relaxed mb-10 md:mb-12 px-2 text-center">
                     Not just another server—it's home. From heated debates to 3 AM gaming sessions and late-night talks.
                     Come as you are, stay for the family.
                 </p>
@@ -114,9 +114,9 @@
         <section id="community" class="py-12 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div
-                    class="md:col-span-2 glass-card rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-white/5 relative overflow-hidden group min-h-[380px] md:min-h-[400px] reveal">
+                    class="md:col-span-2 glass-card rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-white/5 relative overflow-hidden group min-h-[380px] md:min-h-[400px] reveal text-left">
                     <div
-                        class="among-ghost-fix absolute -top-10 -right-10 md:top-0 md:right-0 p-4 md:p-8 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-110 group-hover:-rotate-12 pointer-events-none">
+                        class="among-ghost-fix absolute top-0 right-0 p-4 md:p-8 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-110 group-hover:-rotate-12 pointer-events-none">
                         <i class='bx bxs-ghost text-[180px] md:text-[250px] text-among-red rotate-12'></i>
                     </div>
                     <div class="relative z-10">
@@ -141,7 +141,7 @@
                 </div>
 
                 <div
-                    class="glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 border border-white/5 flex flex-col justify-between group overflow-hidden relative reveal">
+                    class="glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 border border-white/5 flex flex-col justify-between group overflow-hidden relative reveal text-left">
                     <div
                         class="absolute -right-6 -bottom-6 opacity-10 group-hover:opacity-25 transition-all duration-1000 group-hover:scale-125 group-hover:rotate-12 pointer-events-none">
                         <i class='bx bxs-cube text-[150px]'></i>
@@ -157,7 +157,7 @@
                 </div>
 
                 <div
-                    class="glass-card rounded-[2rem] p-8 border border-white/5 flex flex-col justify-center group relative overflow-hidden reveal">
+                    class="glass-card rounded-[2rem] p-8 border border-white/5 flex flex-col justify-center group relative overflow-hidden reveal text-left">
                     <div
                         class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000">
                     </div>
@@ -168,9 +168,9 @@
                 </div>
 
                 <div
-                    class="md:col-span-2 glass-card rounded-[2rem] p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group reveal">
-                    <div class="max-w-md text-center md:text-left rtl:md:text-right">
-                        <div class="flex items-center justify-center md:justify-start gap-3 mb-3">
+                    class="md:col-span-2 glass-card rounded-[2rem] p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group reveal text-left">
+                    <div class="max-w-md w-full">
+                        <div class="flex items-center gap-3 mb-3">
                             <i class='bx bxs-microphone-alt text-3xl text-levant-gold'></i>
                             <h3 id="debate-title" class="text-2xl font-black uppercase">The Arena</h3>
                         </div>
@@ -188,7 +188,7 @@
         </section>
 
         <section id="culture" class="py-12 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
-            <div class="mb-12 reveal">
+            <div class="mb-12 reveal text-left">
                 <h2 id="cult-title" class="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">The
                     <br> Heritage</h2>
                 <p id="cult-sub" class="text-levant-gold font-serif italic text-xl mt-4">Fairuz in the morning, Wassouf
@@ -200,15 +200,14 @@
                     <img src="https://imgs.search.brave.com/Tx2daFZafV77nbqGQwSY4jCpwiZw7uz5b7EQxyJQv88/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bmV3YXJhYi5jb20v/c2l0ZXMvZGVmYXVs/dC9maWxlcy9zdHls/ZXMvaW1hZ2VfMzQ1/eDE5NS9wdWJsaWMv/MTU2NTc1NzUxMS5q/cGVnP2g9YTVmMmYy/M2EmaXRvaz1sQWx1/QnJTaA"
                         class="card-img" alt="Fairuz">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                    <div
-                        class="absolute bottom-6 left-6 md:bottom-10 md:left-10 rtl:right-6 rtl:left-auto md:rtl:right-10">
+                    <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10">
                         <span class="text-levant-gold text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Our
                             Icon</span>
                         <h3 class="text-3xl md:text-6xl font-black uppercase tracking-tighter">Fairuz</h3>
                     </div>
                 </div>
                 <div
-                    class="lg:col-span-4 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 flex flex-col justify-center reveal">
+                    class="lg:col-span-4 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 flex flex-col justify-center reveal text-left">
                     <h3 class="text-2xl md:text-3xl font-black uppercase mb-6 italic serif text-levant-gold">Bilad
                         Al-Sham</h3>
                     <p id="cult-desc" class="text-gray-400 text-sm leading-relaxed mb-8">Syria, Lebanon, Jordan,
@@ -233,13 +232,15 @@
                 <a href="https://discord.gg/ekHgfYs4eA" class="hover:text-[#5865F2] transition-colors">Discord</a>
                 <a href="#" class="hover:text-red-500 transition-colors">Rules</a>
             </div>
-            <div class="w-full pt-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                <div class="md:text-left rtl:md:text-right">
+            <div
+                class="w-full pt-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-left">
+                <div class="text-left">
                     <p class="text-[8px] text-gray-600 font-bold uppercase tracking-widest">Server Owner</p>
                     <p class="text-[10px] text-white font-black uppercase tracking-widest">eric_cartman44</p>
                 </div>
-                <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] font-bold">© 2026 SYRIA SERVER</p>
-                <div class="md:text-right rtl:md:text-left">
+                <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] font-bold text-center">© 2026 SYRIA SERVER
+                </p>
+                <div class="text-right">
                     <p class="text-[8px] text-gray-600 font-bold uppercase tracking-widest">Digital Architect</p>
                     <a href="https://instagram.com/lilzeng1" target="_blank"
                         class="text-[10px] text-white font-black uppercase tracking-widest hover:text-levant-gold transition-colors underline decoration-levant-gold underline-offset-4">GEORGE
