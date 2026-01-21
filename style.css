@@ -237,10 +237,3 @@ p {
         font-size: 2.2rem !important;
     }
 }
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
