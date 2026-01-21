@@ -27,16 +27,16 @@ const translations = {
     ar: {
         statText: "١٨٠٠+ عضو — ناقصنا واحد، وينك؟",
         navHome: "الرئيسية",
-        navCommunity: "جمعتنا",
+        navCommunity: "جوّنا",
         navHeritage: "تراثنا",
-        navDiscord: "انضم إلينا",
+        navDiscord: "ديسكورد",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "أكثر من مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية للسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
-        enterBtn: "<i class='bx bxl-discord text-xl'></i> فوت عالديسكورد",
+        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية للسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
+        enterBtn: "<i class='bx bxl-discord text-xl'></i> انضم لديسكورد",
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
         commTitle: "أمونج أس <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>بالنسخة السورية</span>",
-        commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعla، والصداقات بتختبر. ما في رحمة للمحتالين، فوضى وبس.",
+        commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعلى، والصداقات بتختبر. ما في رحمة للمحتالين، فوضى وبس.",
         gmodTitle: "غاري مود",
         gmodDesc: "عالم من الفوضى. من الرول بلاي الجدي لجنون الـ TTT. هي روح الجيمنج عنا.",
         cinemaTitle: "سهرات سينما",
@@ -140,6 +140,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = "0";
     section.style.transform = "translateY(30px)";
-    section.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+    section.style.transition = "all 1s cubic-bezier(0.2, 0.8, 0.2, 1)";
     observer.observe(section);
 });
