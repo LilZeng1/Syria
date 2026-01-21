@@ -8,7 +8,8 @@ body {
     font-family: var(--apple-font);
     background-color: #050505;
     overflow-x: hidden;
-    transition: opacity 0.6s ease;
+    /* Opacity 0'ı kaldırdık çünkü JS bazen geç tetikleniyor */
+    opacity: 1;
 }
 
 [dir="rtl"] body {
@@ -30,11 +31,6 @@ h1 {
 
 h2 {
     font-size: clamp(1.8rem, 6vw, 3.5rem) !important;
-}
-
-p {
-    max-width: 100%;
-    overflow-wrap: break-word;
 }
 
 .glass-nav {
@@ -80,7 +76,6 @@ p {
     opacity: 0.4;
     transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
     display: block;
-    will-change: transform;
 }
 
 .group:hover .card-img {
@@ -93,27 +88,9 @@ p {
     @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
 }
 
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #050505;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--levant-gold);
-}
-
 .hidden-loader {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.05);
+    opacity: 0 !important;
+    visibility: hidden;
 }
 
 .reveal {
@@ -125,28 +102,4 @@ p {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.animate-float {
-    animation: float 4s ease-in-out infinite;
-}
-
-@media (max-width: 400px) {
-    h1 {
-        font-size: 2.2rem !important;
-    }
 }
