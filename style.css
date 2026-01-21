@@ -15,6 +15,14 @@ body {
     font-family: var(--arabic-font);
 }
 
+[dir="rtl"] .md\:justify-start {
+    justify-content: flex-start !important;
+}
+
+[dir="rtl"] .md\:text-left {
+    text-align: right !important;
+}
+
 h1 {
     font-size: clamp(2.2rem, 10vw, 6.5rem) !important;
     text-wrap: balance;
@@ -43,8 +51,8 @@ p {
 
 .glass-card:hover {
     background: rgba(255, 255, 255, 0.03);
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px -12px rgba(212, 175, 55, 0.12);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 40px 80px -15px rgba(212, 175, 55, 0.15);
 }
 
 .apple-btn-secondary {
@@ -70,24 +78,19 @@ p {
     object-position: center 20%;
     filter: grayscale(100%);
     opacity: 0.4;
-    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
+    transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
     display: block;
     will-change: transform;
 }
 
 .group:hover .card-img {
     filter: grayscale(0%);
-    transform: scale(1.08);
+    transform: scale(1.1) rotate(1deg);
     opacity: 0.8;
 }
 
 .role-pill {
     @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
-}
-
-[dir="rtl"] .bx {
-    display: inline-block;
-    transform: scaleX(1);
 }
 
 ::-webkit-scrollbar {
@@ -113,123 +116,33 @@ p {
     transform: scale(1.05);
 }
 
-@media (max-width: 400px) {
-    h1 {
-        font-size: 2.2rem !important;
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
     }
-}:root {
-    --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --arabic-font: 'Noto Sans Arabic', sans-serif;
-    --levant-gold: #d4af37;
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
-body {
-    font-family: var(--apple-font);
-    background-color: #050505;
-    overflow-x: hidden;
-    transition: opacity 0.6s ease;
-}
-
-[dir="rtl"] body {
-    font-family: var(--arabic-font);
-}
-
-h1 {
-    font-size: clamp(2.2rem, 10vw, 6.5rem) !important;
-    text-wrap: balance;
-}
-
-h2 {
-    font-size: clamp(1.8rem, 6vw, 3.5rem) !important;
-}
-
-p {
-    max-width: 100%;
-    overflow-wrap: break-word;
-}
-
-.glass-nav {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(25px) saturate(200%);
-    -webkit-backdrop-filter: blur(25px) saturate(200%);
-}
-
-.glass-card {
-    background: rgba(255, 255, 255, 0.015);
-    backdrop-filter: blur(20px);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.glass-card:hover {
-    background: rgba(255, 255, 255, 0.03);
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px -12px rgba(212, 175, 55, 0.12);
-}
-
-.apple-btn-secondary {
-    @apply px-10 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
-}
-
-.gradient-text {
-    background: linear-gradient(to bottom, #fff 40%, #888 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.serif {
-    font-family: 'Playfair Display', serif;
-}
-
-.card-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    filter: grayscale(100%);
-    opacity: 0.4;
-    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
-    display: block;
-    will-change: transform;
-}
-
-.group:hover .card-img {
-    filter: grayscale(0%);
-    transform: scale(1.08);
-    opacity: 0.8;
-}
-
-.role-pill {
-    @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
-}
-
-[dir="rtl"] .bx {
-    display: inline-block;
-    transform: scaleX(1);
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #050505;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--levant-gold);
-}
-
-.hidden-loader {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.05);
+.animate-float {
+    animation: float 4s ease-in-out infinite;
 }
 
 @media (max-width: 400px) {
