@@ -11,22 +11,23 @@ body {
 }
 
 .glass-nav {
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(30px) saturate(200%);
-    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(20px);
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.apple-btn-primary {
-    @apply px-10 py-5 bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-xl;
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .apple-btn-secondary {
-    @apply px-10 py-5 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
+    @apply px-10 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
 }
 
 .gradient-text {
@@ -40,15 +41,15 @@ body {
 }
 
 .card-img {
-    @apply absolute inset-0 w-full h-full object-cover grayscale opacity-50 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100;
+    @apply absolute inset-0 w-full h-full object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100;
 }
 
 .role-pill {
-    @apply py-4 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black;
+    @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
 }
 
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -56,7 +57,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #222;
+    background: #333;
     border-radius: 10px;
 }
 
