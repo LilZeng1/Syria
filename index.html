@@ -52,7 +52,7 @@
         <a href="#culture"
             class="mobile-link text-2xl font-black uppercase tracking-widest hover:text-levant-gold">Heritage</a>
         <a href="https://discord.gg/ekHgfYs4eA"
-            class="text-2xl font-black uppercase tracking-widest text-discord-blurple">Join Discord</a>
+            class="mobile-link text-2xl font-black uppercase tracking-widest text-discord-blurple">Join Discord</a>
         <button id="lang-toggle-mob"
             class="mt-4 bg-white text-black px-8 py-3 rounded-2xl font-black hover:bg-levant-gold transition-all">ARABIC</button>
     </div>
@@ -63,13 +63,13 @@
             <a href="#" class="text-xl md:text-2xl font-black tracking-tighter italic">SYRIA<span
                     class="text-levant-gold">.</span></a>
             <div class="hidden md:flex gap-8 items-center text-[10px] font-black uppercase tracking-[0.2em]">
-                <a href="#hero" class="hover:text-levant-gold transition-colors">Home</a>
+                <a href="#hero" class="nav-item hover:text-levant-gold transition-colors">Home</a>
                 <a href="https://discord.gg/ekHgfYs4eA" target="_blank"
-                    class="text-discord-blurple hover:scale-105 transition-transform">Join Discord</a>
-                <a href="#community" class="hover:text-levant-gold transition-colors">Our Vibe</a>
-                <a href="#culture" class="hover:text-levant-gold transition-colors">Heritage</a>
+                    class="nav-item text-discord-blurple hover:scale-105 transition-transform">Join Discord</a>
+                <a href="#community" class="nav-item hover:text-levant-gold transition-colors">Our Vibe</a>
+                <a href="#culture" class="nav-item hover:text-levant-gold transition-colors">Heritage</a>
                 <button id="lang-toggle"
-                    class="bg-white text-black px-4 py-1.5 rounded-full font-black hover:bg-levant-gold transition-all min-w-[45px]">EN</button>
+                    class="bg-white text-black px-4 py-1.5 rounded-full font-black hover:bg-levant-gold transition-all min-w-[45px]">AR</button>
             </div>
             <button id="open-menu" class="md:hidden text-2xl"><i class='bx bx-menu-alt-right'></i></button>
         </div>
@@ -78,9 +78,9 @@
     <main class="overflow-x-hidden">
         <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
             <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.08)_0%,_rgba(0,0,0,0)_70%)]">
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.08)_0%,_rgba(0,0,0,0)_70%)] animate-pulse">
             </div>
-            <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
+            <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto reveal">
                 <div
                     class="inline-flex items-center gap-2 px-4 py-2 mb-6 md:mb-8 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
                     <span class="relative flex h-2 w-2">
@@ -104,7 +104,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
                     <a id="enter-btn" href="https://discord.gg/ekHgfYs4eA"
                         class="w-full sm:w-auto px-8 md:px-10 py-4 bg-[#5865F2] hover:bg-[#4752c4] text-white text-[11px] md:text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:scale-105 shadow-[0_0_30px_rgba(88,101,242,0.3)] flex items-center justify-center gap-2">
-                        <i class='bx bxl-discord text-xl'></i> Jump In Discord
+                        <i class='bx bxl-discord-alt text-xl'></i> Jump In Discord
                     </a>
                     <a id="explore-btn" href="#community" class="w-full sm:w-auto apple-btn-secondary text-center">Take
                         a Tour</a>
@@ -115,9 +115,9 @@
         <section id="community" class="py-12 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div
-                    class="md:col-span-2 glass-card rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-white/5 relative overflow-hidden group min-h-[350px] md:min-h-[400px]">
+                    class="md:col-span-2 glass-card rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 border border-white/5 relative overflow-hidden group min-h-[350px] md:min-h-[400px] reveal">
                     <div
-                        class="absolute top-0 right-0 p-4 md:p-8 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-110 group-hover:-rotate-12">
+                        class="absolute top-0 right-0 p-4 md:p-8 opacity-10 group-hover:opacity-30 transition-all duration-1000 group-hover:scale-125 group-hover:-rotate-12">
                         <i class='bx bxs-ghost text-[120px] md:text-[200px] text-among-red rotate-12'></i>
                     </div>
                     <span id="comm-tag"
@@ -139,9 +139,9 @@
                 </div>
 
                 <div
-                    class="glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 border border-white/5 flex flex-col justify-between group overflow-hidden relative">
+                    class="glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 border border-white/5 flex flex-col justify-between group overflow-hidden relative reveal">
                     <div
-                        class="absolute -right-6 -bottom-6 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-110">
+                        class="absolute -right-6 -bottom-6 opacity-10 group-hover:opacity-25 transition-all duration-1000 group-hover:scale-125 group-hover:rotate-12">
                         <i class='bx bxs-cube text-[150px]'></i>
                     </div>
                     <div>
@@ -155,7 +155,7 @@
                 </div>
 
                 <div
-                    class="glass-card rounded-[2rem] p-8 border border-white/5 flex flex-col justify-center group relative overflow-hidden">
+                    class="glass-card rounded-[2rem] p-8 border border-white/5 flex flex-col justify-center group relative overflow-hidden reveal">
                     <div
                         class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000">
                     </div>
@@ -166,9 +166,9 @@
                 </div>
 
                 <div
-                    class="md:col-span-2 glass-card rounded-[2rem] p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group">
+                    class="md:col-span-2 glass-card rounded-[2rem] p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group reveal">
                     <div class="max-w-md text-center md:text-left rtl:md:text-right">
-                        <div class="flex items-center justify-center md:justify-start rtl:md:justify-start gap-3 mb-3">
+                        <div class="flex items-center justify-center md:justify-start gap-3 mb-3">
                             <i class='bx bxs-microphone-alt text-3xl text-levant-gold'></i>
                             <h3 id="debate-title" class="text-2xl font-black uppercase">The Arena</h3>
                         </div>
@@ -177,16 +177,16 @@
                     </div>
                     <div class="flex gap-2">
                         <span
-                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10">Heated</span>
+                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">Heated</span>
                         <span
-                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10">Respect</span>
+                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">Respect</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="culture" class="py-12 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
-            <div class="mb-12">
+            <div class="mb-12 reveal">
                 <h2 id="cult-title" class="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">The
                     <br> Heritage</h2>
                 <p id="cult-sub" class="text-levant-gold font-serif italic text-xl mt-4">Fairuz in the morning, Wassouf
@@ -194,7 +194,7 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <div
-                    class="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem] bg-[#111] h-[350px] md:h-[500px] border border-white/10">
+                    class="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem] bg-[#111] h-[350px] md:h-[500px] border border-white/10 reveal">
                     <img src="https://imgs.search.brave.com/cIWEWC4SgLm-n0xh4DK-vKPc7pkmrRg2lc3AReryROo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA1/OTkxMDAyL3Bob3Rv/L2xlYmFuZXNlLWRp/dmEtZmFpcnV6LXBl/cmZvcm1zLWF0LXRo/ZS1hbm51YWwtZmVz/dGl2YWwtb2YtYmVp/dGVkZGluZS1pbi10/aGUtY2hvdWYtcmVn/aW9uLTMxLWp1bHku/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWxrSU45UjJBdmg1/MllVbEhXSmpZNVQ2/bXQ2MVNGZ3NQT2tx/ZHRLa1NLVWs9"
                         class="card-img" alt="Fairuz">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
                 <div
-                    class="lg:col-span-4 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 flex flex-col justify-center">
+                    class="lg:col-span-4 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 flex flex-col justify-center reveal">
                     <h3 class="text-2xl md:text-3xl font-black uppercase mb-6 italic serif text-levant-gold">Bilad
                         Al-Sham</h3>
                     <p id="cult-desc" class="text-gray-400 text-sm leading-relaxed mb-8">Syria, Lebanon, Jordan,
