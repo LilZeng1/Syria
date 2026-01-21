@@ -1,15 +1,22 @@
+/* Variables */
 :root {
     --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --arabic-font: 'Noto Sans Arabic', sans-serif;
     --levant-gold: #d4af37;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--apple-font);
     background-color: #050505;
     overflow-x: hidden;
-    opacity: 1;
     -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
 }
 
 [dir="rtl"] body {
@@ -18,33 +25,36 @@ body {
 
 .glass-nav {
     background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(25px) saturate(200%);
-    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.015);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+    height: 100%;
 }
 
-.glass-card:hover {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(212, 175, 55, 0.2);
-    transform: translateY(-5px);
+@media (min-width: 1024px) {
+    .glass-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(212, 175, 55, 0.3);
+        transform: translateY(-8px);
+    }
 }
 
 .apple-btn-secondary {
-    @apply px-10 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:bg-white/10 active:scale-95 backdrop-blur-md;
+    @apply px-8 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-widest rounded-2xl transition-all;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
 .gradient-text {
-    background: linear-gradient(to bottom, #fff 40%, #888 100%);
+    background: linear-gradient(to bottom, #fff 50%, #888 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -59,32 +69,30 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
     filter: grayscale(100%);
-    opacity: 0.4;
-    transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease, opacity 1.2s ease;
+    opacity: 0.3;
+    transition: transform 1s ease, filter 1s ease, opacity 1s ease;
 }
 
 .group:hover .card-img {
     filter: grayscale(0%);
-    transform: scale(1.08) rotate(1deg);
-    opacity: 0.7;
+    transform: scale(1.05);
+    opacity: 0.5;
 }
 
 .role-pill {
-    @apply py-3 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5 hover:bg-white hover:text-black cursor-default;
+    @apply py-2 border border-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all bg-white/5;
 }
 
 .hidden-loader {
     opacity: 0 !important;
     visibility: hidden;
-    pointer-events: none;
 }
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.active {
@@ -92,58 +100,32 @@ body {
     transform: translateY(0);
 }
 
-[dir="ltr"] .glass-card,
-[dir="ltr"] .reveal,
-[dir="ltr"] section {
-    text-align: left;
+/* Responsivity */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem !important;
+    }
+    
+    .glass-card {
+        padding: 1.5rem !important;
+    }
 }
 
-[dir="rtl"] .glass-card,
-[dir="rtl"] .reveal,
-[dir="rtl"] section,
-[dir="rtl"] .text-center {
-    text-align: right !important;
-}
-
-[dir="rtl"] #hero .reveal,
-[dir="rtl"] #hero p,
-[dir="rtl"] footer,
-[dir="rtl"] footer .text-center {
-    text-align: center !important;
-}
+[dir="rtl"] .text-left { text-align: right !important; }
+[dir="rtl"] .text-right { text-align: left !important; }
+[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+[dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
 
 [dir="rtl"] .among-ghost-fix {
     right: auto !important;
     left: 0 !important;
+    transform: scaleX(-1);
 }
 
-[dir="rtl"] .among-ghost-fix i {
-    transform: rotate(-12deg) !important;
+[dir="rtl"] p, [dir="rtl"] h1, [dir="rtl"] h2 {
+    line-height: 1.6 !important;
 }
 
-[dir="rtl"] .group:hover .among-ghost-fix i {
-    transform: scale(1.1) rotate(12deg) !important;
-}
-
-@media (max-width: 768px) {
-    .glass-card {
-        padding: 2rem !important;
-    }
-
-    h1 {
-        font-size: 2.8rem !important;
-    }
-
-    [dir="rtl"] .role-pill {
-        font-size: 10px;
-    }
-}
-
-[dir="rtl"] .nav-item,
-[dir="rtl"] .mobile-link {
+[dir="rtl"] .nav-item, [dir="rtl"] .mobile-link, [dir="rtl"] #stat-text {
     letter-spacing: 0 !important;
-}
-
-[dir="rtl"] #stat-text {
-    letter-spacing: 0.05em !important;
 }
