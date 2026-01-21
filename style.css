@@ -38,11 +38,75 @@ body {
     height: 100%;
 }
 
+.glass-card i {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.glass-card:hover i {
+    transform: translateY(-5px) scale(1.1);
+    filter: drop-shadow(0 0 15px currentColor);
+}
+
+.glass-card:hover .among-ghost-fix i {
+    animation: ghostFloat 2s ease-in-out infinite;
+}
+
+.glass-card:hover i.bxs-game {
+    animation: controllerShake 0.5s ease-in-out infinite;
+}
+
+.glass-card:hover i.bxs-microphone-alt {
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
 @media (min-width: 1024px) {
     .glass-card:hover {
         background: rgba(255, 255, 255, 0.04);
         border-color: rgba(212, 175, 55, 0.3);
         transform: translateY(-8px);
+    }
+}
+
+@keyframes ghostFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(12deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(15deg);
+    }
+}
+
+@keyframes controllerShake {
+
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    25% {
+        transform: rotate(-5deg) scale(1.1);
+    }
+
+    75% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+@keyframes micPulse {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
     }
 }
 
@@ -105,16 +169,29 @@ body {
     h1 {
         font-size: 3rem !important;
     }
-    
+
     .glass-card {
         padding: 1.5rem !important;
     }
 }
 
-[dir="rtl"] .text-left { text-align: right !important; }
-[dir="rtl"] .text-right { text-align: left !important; }
-[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
-[dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+    text-align: left !important;
+}
+
+[dir="rtl"] .ml-auto {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+[dir="rtl"] .mr-auto {
+    margin-left: auto;
+    margin-right: 0;
+}
 
 [dir="rtl"] .among-ghost-fix {
     right: auto !important;
@@ -122,10 +199,14 @@ body {
     transform: scaleX(-1);
 }
 
-[dir="rtl"] p, [dir="rtl"] h1, [dir="rtl"] h2 {
+[dir="rtl"] p,
+[dir="rtl"] h1,
+[dir="rtl"] h2 {
     line-height: 1.6 !important;
 }
 
-[dir="rtl"] .nav-item, [dir="rtl"] .mobile-link, [dir="rtl"] #stat-text {
+[dir="rtl"] .nav-item,
+[dir="rtl"] .mobile-link,
+[dir="rtl"] #stat-text {
     letter-spacing: 0 !important;
 }
