@@ -38,6 +38,22 @@
         </div>
     </div>
 
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8">
+        <button id="close-menu"
+            class="absolute top-8 right-8 text-4xl text-white hover:text-levant-gold transition-colors">
+            <i class='bx bx-x'></i>
+        </button>
+        <a href="#hero"
+            class="mobile-link text-2xl font-black uppercase tracking-widest hover:text-levant-gold transition-colors">Home</a>
+        <a href="#community"
+            class="mobile-link text-2xl font-black uppercase tracking-widest hover:text-levant-gold transition-colors">Community</a>
+        <a href="#culture"
+            class="mobile-link text-2xl font-black uppercase tracking-widest hover:text-levant-gold transition-colors">Heritage</a>
+        <a href="https://discord.gg/ekHgfYs4eA"
+            class="text-2xl font-black uppercase tracking-widest text-discord-blurple">Join Discord</a>
+    </div>
+
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-[100]">
         <div
             class="glass-nav rounded-2xl px-8 py-5 flex justify-between items-center border border-white/10 shadow-2xl">
@@ -46,15 +62,15 @@
 
             <div class="hidden md:flex gap-10 items-center text-[10px] font-black uppercase tracking-[0.2em]">
                 <a href="#hero" class="hover:text-levant-gold transition-colors">Home</a>
-                <a href="https://discord.gg/YOUR_INVITE_LINK" target="_blank" class="text-discord-blurple">Join
-                    Discord</a>
-                <a href="#gaming" class="hover:text-levant-gold transition-colors">Gaming</a>
-                <a href="#culture" class="hover:text-levant-gold transition-colors">Culture</a>
+                <a href="https://discord.gg/ekHgfYs4eA" target="_blank"
+                    class="text-discord-blurple hover:scale-105 transition-transform">Join Discord</a>
+                <a href="#community" class="hover:text-levant-gold transition-colors">Community</a>
+                <a href="#culture" class="hover:text-levant-gold transition-colors">Heritage</a>
                 <button id="lang-toggle"
                     class="bg-white text-black px-4 py-1.5 rounded-full font-black hover:bg-levant-gold transition-all">EN</button>
             </div>
 
-            <button class="md:hidden text-2xl"><i class='bx bx-menu-alt-right'></i></button>
+            <button id="open-menu" class="md:hidden text-3xl"><i class='bx bx-menu-alt-right'></i></button>
         </div>
     </nav>
 
@@ -66,143 +82,179 @@
 
             <div class="relative z-10 text-center px-6">
                 <div
-                    class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                    class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors cursor-default">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <span class="text-[9px] font-black tracking-[0.3em] uppercase">Server Live: 2,400+ Members</span>
+                    <span class="text-[9px] font-black tracking-[0.3em] uppercase">Active Now: 2,400+ Members</span>
                 </div>
 
                 <h1
-                    class="text-6xl md:text-[120px] font-black leading-none tracking-tighter mb-8 gradient-text uppercase">
-                    Beyond <br> <span class="italic serif">Borders.</span>
+                    class="text-5xl md:text-[100px] font-black leading-none tracking-tighter mb-8 gradient-text uppercase">
+                    The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span>
                 </h1>
 
                 <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg font-light leading-relaxed mb-12">
-                    The ultimate digital hub for the Levantine youth. From Damascus nights to Among Us marathons.
-                    A space where tradition meets the gaming generation.
+                    More than a server—it's a digital home. From intense political debates to late-night cinema and
+                    gaming marathons.
+                    Join the most active Syrian & Levantine community.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <a href="https://discord.gg/qFDQG5aDJN"
-                        class="apple-btn-primary bg-[#5865F2] !text-white border-none">Enter Discord</a>
-                    <a href="#gaming" class="apple-btn-secondary">Explore Hub</a>
+                    <a href="https://discord.gg/ekHgfYs4eA"
+                        class="px-10 py-4 bg-[#5865F2] hover:bg-[#4752c4] text-white text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(88,101,242,0.4)] flex items-center gap-2">
+                        <i class='bx bxl-discord text-xl'></i> Enter Discord
+                    </a>
+                    <a href="#community" class="apple-btn-secondary">Explore Hub</a>
                 </div>
             </div>
         </section>
 
-        <section id="gaming" class="py-32 px-6 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section id="community" class="py-20 px-4 md:px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
                 <div
-                    class="md:col-span-2 glass-card rounded-[2.5rem] p-12 border border-white/5 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-all">
-                        <i class='bx bxs-ghost text-[180px] text-among-red'></i>
+                    class="md:col-span-2 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 relative overflow-hidden group min-h-[400px]">
+                    <div
+                        class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-all duration-500">
+                        <i class='bx bxs-ghost text-[150px] md:text-[200px] text-among-red rotate-12'></i>
                     </div>
-                    <span class="text-among-red font-black tracking-[0.4em] text-[10px] uppercase">Daily Events</span>
-                    <h2 class="text-5xl font-black mt-4 mb-6 uppercase">Among Us <br> <span
-                            class="text-white/30 tracking-widest text-3xl">Syrian Edition</span></h2>
-                    <p class="text-gray-400 max-w-md font-light leading-relaxed">The most active Among Us community in
-                        the region. Join our voice channels, find your crewmates, and spot the impostor in our custom
-                        lobbies.</p>
-                    <div class="mt-10 flex gap-4">
-                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/10">
-                            <span class="block text-xl font-bold">14:00+</span>
-                            <span class="text-[8px] text-gray-500 uppercase font-black">Daily Active</span>
-                        </div>
-                        <div class="bg-white/5 px-6 py-3 rounded-2xl border border-white/10">
-                            <span class="block text-xl font-bold text-among-red">24/7</span>
-                            <span class="text-[8px] text-gray-500 uppercase font-black">Game Lobbies</span>
+                    <span
+                        class="text-among-red font-black tracking-[0.4em] text-[10px] uppercase bg-among-red/10 px-3 py-1 rounded-lg">Daily
+                        Main Event</span>
+                    <h2 class="text-4xl md:text-5xl font-black mt-4 mb-4 uppercase">Among Us <br> <span
+                            class="text-white/30 tracking-widest text-2xl md:text-3xl">Syrian Edition</span></h2>
+                    <p class="text-gray-400 max-w-md font-light leading-relaxed text-sm md:text-base">
+                        The ritual. Every single day. Voice chats open, lobbies fill up, and the chaos begins.
+                        No mercy for impostors.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <div class="bg-white/5 px-4 md:px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-sm">
+                            <span class="block text-lg md:text-xl font-bold">07:00 PM+</span>
+                            <span class="text-[8px] text-gray-500 uppercase font-black">Syria Time (UTC+3)</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-[2.5rem] p-10 border border-white/5 flex flex-col justify-between">
-                    <div>
-                        <i class='bx bxs-zap text-4xl text-levant-gold mb-6'></i>
-                        <h3 class="text-2xl font-black uppercase">Notification <br> Roles</h3>
-                        <div class="space-y-3 mt-8">
-                            <div
-                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5">
-                                <span class="text-[10px] font-bold tracking-widest uppercase">Gaming Ping</span>
-                                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
-                            </div>
-                            <div
-                                class="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 opacity-50">
-                                <span class="text-[10px] font-bold tracking-widest uppercase">General Ping</span>
-                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
-                            </div>
-                        </div>
+                <div
+                    class="glass-card rounded-[2.5rem] p-8 md:p-10 border border-white/5 flex flex-col justify-between group overflow-hidden relative">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition-all">
+                        <i class='bx bxs-cube text-[180px]'></i>
                     </div>
-                    <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-8">Auto-sync coming soon
-                        via Bot.</p>
+                    <div>
+                        <i class='bx bxs-game text-4xl text-blue-500 mb-4'></i>
+                        <h3 class="text-2xl font-black uppercase mb-2">Garry's Mod</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Sandbox chaos. Roleplay, TTT, and custom server events. A major pillar of our gaming
+                            community.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <span class="text-[9px] font-black uppercase tracking-widest text-blue-400">Heavily
+                            Played</span>
+                    </div>
                 </div>
+
+                <div
+                    class="glass-card rounded-[2.5rem] p-8 border border-white/5 flex flex-col justify-center group relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all">
+                    </div>
+                    <i class='bx bxs-movie-play text-3xl text-purple-500 mb-4 z-10'></i>
+                    <h3 class="text-xl font-black uppercase mb-2 z-10">Cinema Club</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed z-10">
+                        Movies, Anime, Ramadan Series. We watch together in high quality voice channels.
+                    </p>
+                </div>
+
+                <div
+                    class="md:col-span-2 glass-card rounded-[2.5rem] p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group">
+                    <div class="max-w-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class='bx bxs-microphone-alt text-3xl text-levant-gold'></i>
+                            <h3 class="text-2xl font-black uppercase">The Arena</h3>
+                        </div>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                            Dedicated spaces for Politics, Religion, and Ideology.
+                            We don't shy away from heavy topics. Debate respectfully, but passionately.
+                        </p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span
+                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10">Debate</span>
+                        <span
+                            class="px-4 py-2 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest border border-white/10">Voice</span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <section id="culture" class="py-32 px-6 max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <section id="culture" class="py-20 px-4 md:px-6 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
-                    <h2 class="text-5xl font-black tracking-tighter uppercase leading-none">The <br> Heritage</h2>
-                    <p class="text-levant-gold font-serif italic text-xl mt-4">Coffee, Music & Soul</p>
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none">The <br>
+                        Heritage</h2>
+                    <p class="text-levant-gold font-serif italic text-xl mt-4">Fairuz in the Morning, Wassouf at Night
+                    </p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div
-                    class="md:col-span-7 group relative overflow-hidden rounded-[2.5rem] bg-[#111] aspect-video md:aspect-auto h-[500px]">
-                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1500" class="card-img"
-                        alt="Coffee">
+                    class="md:col-span-8 group relative overflow-hidden rounded-[2.5rem] bg-[#111] aspect-[4/3] md:aspect-auto md:h-[500px]">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Fairuz_in_1950s.jpg"
+                        class="card-img object-top" alt="Fairuz">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-10 left-10">
+                    <div class="absolute bottom-8 left-8 md:bottom-10 md:left-10">
                         <span
-                            class="text-levant-gold text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Legends</span>
-                        <h3 class="text-4xl font-black uppercase">Fairuz & <br> Wassouf</h3>
+                            class="text-levant-gold text-[10px] font-black tracking-[0.4em] uppercase mb-2 block">Icon</span>
+                        <h3 class="text-3xl md:text-4xl font-black uppercase">Fairuz</h3>
                     </div>
                 </div>
 
                 <div
-                    class="md:col-span-5 glass-card rounded-[2.5rem] p-12 border border-white/5 flex flex-col justify-center">
-                    <h3 class="text-3xl font-black uppercase mb-6 italic serif">Bilad Al-Sham</h3>
+                    class="md:col-span-4 glass-card rounded-[2.5rem] p-8 md:p-12 border border-white/5 flex flex-col justify-center">
+                    <h3 class="text-2xl md:text-3xl font-black uppercase mb-6 italic serif text-levant-gold">Bilad
+                        Al-Sham</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-8">
-                        We celebrate the collective culture of Syria, Lebanon, Jordan, and Palestine. Our server is a
-                        digital Majlis where stories are shared and history is remembered.
+                        Syria, Lebanon, Jordan, Palestine. Different dialects, one soul.
+                        Our server focuses on the people—your stories, your jokes, your history.
                     </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <span class="role-pill text-center py-3">Syria</span>
-                        <span class="role-pill text-center py-3">Lebanon</span>
-                        <span class="role-pill text-center py-3">Jordan</span>
-                        <span class="role-pill text-center py-3">Palestine</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="role-pill flex-1 text-center py-3">Syria</span>
+                        <span class="role-pill flex-1 text-center py-3">Levant</span>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black pt-32 pb-12 px-6">
+    <footer class="bg-black pt-24 pb-12 px-6 border-t border-white/5">
         <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <h2 class="text-7xl font-black italic mb-4 tracking-tighter">SYRIA.</h2>
+            <h2
+                class="text-6xl md:text-7xl font-black italic mb-4 tracking-tighter hover:text-levant-gold transition-colors duration-500 cursor-default">
+                SYRIA.</h2>
             <p class="text-gray-500 text-[10px] tracking-[0.5em] uppercase font-black mb-12">The Digital Levantine Hub
             </p>
 
             <div class="flex gap-8 mb-20 text-[11px] font-black uppercase tracking-widest text-gray-400">
-                <a href="#" class="hover:text-white transition-colors">Discord</a>
-                <a href="#" class="hover:text-white transition-colors">Archive</a>
-                <a href="#" class="hover:text-white transition-colors">Guidelines</a>
+                <a href="https://discord.gg/ekHgfYs4eA" class="hover:text-[#5865F2] transition-colors">Discord</a>
+                <a href="https://discord.gg/ekHgfYs4eA" class="hover:text-red-500 transition-colors">Rules</a>
             </div>
 
             <div
                 class="w-full pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-left">
+                <div class="text-center md:text-left">
                     <p class="text-[9px] text-gray-600 font-bold uppercase tracking-widest">Server Owner</p>
                     <p class="text-[11px] text-white font-black uppercase tracking-widest">eric_cartman44</p>
                 </div>
 
-                <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em] font-bold">© 2026 SYRIA SERVER • NO RIGHTS
-                    RESERVED</p>
+                <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em] font-bold">© 2026 SYRIA SERVER</p>
 
-                <div class="text-right flex flex-col items-center md:items-end">
+                <div class="text-center md:text-right flex flex-col items-center md:items-end">
                     <p class="text-[9px] text-gray-600 font-bold uppercase tracking-widest">Digital Architect</p>
                     <a href="https://instagram.com/lilzeng1" target="_blank"
                         class="text-[11px] text-white font-black uppercase tracking-widest hover:text-levant-gold transition-colors underline decoration-levant-gold underline-offset-4">GEORGE
