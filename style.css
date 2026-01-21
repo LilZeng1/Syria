@@ -102,3 +102,13 @@ h2 {
     opacity: 1;
     transform: translateY(0);
 }
+
+[dir="rtl"] .among-ghost-fix {
+    right: auto !important;
+    left: -2.5rem !important;
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+[dir="rtl"] .group:hover .among-ghost-fix {
+    transform: scaleX(-1) scale(1.1) rotate(12deg);
+}
