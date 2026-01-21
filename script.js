@@ -7,7 +7,7 @@ const translations = {
         navDiscord: "Join Discord",
         heroTitle: "The Heart <br> <span class='italic serif text-levant-gold'>Of The Levant.</span>",
         heroSub: "Not just another server—it's home. From heated debates to 3 AM gaming sessions and late-night talks. Come as you are, stay for the family.",
-        enterBtn: "<i class='bx bxl-discord text-xl'></i> Jump In Discord",
+        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> Jump In Discord",
         exploreBtn: "Take a Tour",
         commTag: "Our Daily Ritual",
         commTitle: "Among Us <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>Syrian Edition</span>",
@@ -32,7 +32,7 @@ const translations = {
         navDiscord: "ديسكورد",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
         heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية للسهر والضحك لوش الصبح. فوت كأنك ببيتك، والعيلة بتستناك.",
-        enterBtn: "<i class='bx bxl-discord text-xl'></i> انضم لديسكورد",
+        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> انضم لديسكورد",
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
         commTitle: "أمونج أس <br> <span class='text-white/30 tracking-widest text-2xl md:text-3xl'>بالنسخة السورية</span>",
@@ -57,7 +57,10 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('loader');
         loader.classList.add('hidden-loader');
-        setTimeout(() => loader.style.display = 'none', 700);
+        setTimeout(() => {
+            loader.style.display = 'none';
+            reveal();
+        }, 700);
     }, 1000);
 });
 
@@ -84,11 +87,11 @@ function updateLanguage() {
         document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
         document.getElementById('stat-text').innerText = t.statText;
 
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks[1].innerText = t.navHome;
-        navLinks[2].innerText = t.navDiscord;
-        navLinks[3].innerText = t.navCommunity;
-        navLinks[4].innerText = t.navHeritage;
+        const navLinks = document.querySelectorAll('.nav-item');
+        navLinks[0].innerText = t.navHome;
+        navLinks[1].innerText = t.navDiscord;
+        navLinks[2].innerText = t.navCommunity;
+        navLinks[3].innerText = t.navHeritage;
 
         const mobLinks = document.querySelectorAll('#mobile-menu a');
         mobLinks[0].innerText = t.navHome;
@@ -125,21 +128,19 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 document.getElementById('lang-toggle-mob').addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     updateLanguage();
-    toggleMenu();
+    setTimeout(toggleMenu, 600);
 });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (revealTop < windowHeight - revealPoint) {
+            el.classList.add('active');
         }
     });
-}, { threshold: 0.1 });
+}
 
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "all 1s cubic-bezier(0.2, 0.8, 0.2, 1)";
-    observer.observe(section);
-});
+window.addEventListener('scroll', reveal);
