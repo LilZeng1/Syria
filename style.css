@@ -15,12 +15,20 @@ body {
     font-family: var(--arabic-font);
 }
 
-[dir="rtl"] .md\:justify-start {
-    justify-content: flex-start !important;
+.text-left {
+    text-align: left !important;
 }
 
-[dir="rtl"] .md\:text-left {
-    text-align: right !important;
+[dir="rtl"] .text-left {
+    text-align: left !important;
+}
+
+[dir="rtl"] .flex {
+    flex-direction: row;
+}
+
+[dir="rtl"] .md\:flex-row {
+    flex-direction: row !important;
 }
 
 h1 {
@@ -42,12 +50,7 @@ h2 {
     background: rgba(255, 255, 255, 0.015);
     backdrop-filter: blur(20px);
     transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.glass-card:hover {
-    background: rgba(255, 255, 255, 0.03);
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 40px 80px -15px rgba(212, 175, 55, 0.15);
+    direction: ltr !important;
 }
 
 .apple-btn-secondary {
@@ -103,12 +106,16 @@ h2 {
     transform: translateY(0);
 }
 
-[dir="rtl"] .among-ghost-fix {
-    right: auto !important;
-    left: -2.5rem !important;
-    transform: scaleX(-1) rotate(-12deg);
+.among-ghost-fix {
+    right: 0 !important;
+    left: auto !important;
 }
 
-[dir="rtl"] .group:hover .among-ghost-fix {
-    transform: scaleX(-1) scale(1.1) rotate(12deg);
+[dir="rtl"] .among-ghost-fix {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.glass-card * {
+    text-align: left !important;
 }
