@@ -20,7 +20,9 @@ const translations = {
         debateDesc: "We don't dodge the big questions. Politics, religion, ideology—it's all on the table. Debate hard, but keep it family.",
         cultTitle: "The <br> Heritage",
         cultSub: "Fairuz in the morning, Wassouf for the soul.",
-        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. We’re here to share the stories that make us who we are."
+        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. We’re here to share the stories that make us who we are.",
+        toggleBtn: "AR",
+        toggleMob: "ARABIC"
     },
     ar: {
         statText: "١٨٠٠+ عضو — ناقصنا واحد، وينك؟",
@@ -43,43 +45,56 @@ const translations = {
         debateDesc: "ما بنهرب من المواضيع التقيلة. سياسة، دين، وأفكار—كلو ع الطاولة. ناقش بقوة، بس ضل محترم.",
         cultTitle: "التراث <br> العريق",
         cultSub: "فيروز بالصبح، والـ 'أبو وديع' بالليل.",
-        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجاتنا غير بس الروح واحدة. هون عم نحكي قصصنا اللي بتعرف عنا."
+        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجاتنا غير بس الروح واحدة. هون عم نحكي قصصنا اللي بتعرف عنا.",
+        toggleBtn: "EN",
+        toggleMob: "ENGLISH"
     }
 };
+
 let currentLang = 'en';
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden-loader');
     }, 1000);
 });
+
 const mobileMenu = document.getElementById('mobile-menu');
 const openBtn = document.getElementById('open-menu');
 const closeBtn = document.getElementById('close-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
+
 function toggleMenu() {
     mobileMenu.classList.toggle('translate-x-full');
 }
+
 openBtn.addEventListener('click', toggleMenu);
 closeBtn.addEventListener('click', toggleMenu);
 mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
-document.getElementById('lang-toggle').addEventListener('click', function () {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
+
+function updateLanguage() {
     const t = translations[currentLang];
     document.body.style.opacity = '0';
+
     setTimeout(() => {
         document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        this.innerText = currentLang === 'en' ? 'AR' : 'EN';
+        document.getElementById('lang-toggle').innerText = t.toggleBtn;
+        document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
+
         document.getElementById('stat-text').innerText = t.statText;
+
         const navLinks = document.querySelectorAll('nav a');
         navLinks[1].innerText = t.navHome;
         navLinks[2].innerText = t.navDiscord;
         navLinks[3].innerText = t.navCommunity;
         navLinks[4].innerText = t.navHeritage;
+
         const mobLinks = document.querySelectorAll('#mobile-menu a');
         mobLinks[0].innerText = t.navHome;
         mobLinks[1].innerText = t.navCommunity;
         mobLinks[2].innerText = t.navHeritage;
         mobLinks[3].innerText = t.navDiscord;
+
         document.getElementById('hero-title').innerHTML = t.heroTitle;
         document.getElementById('hero-sub').innerText = t.heroSub;
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
@@ -96,9 +111,22 @@ document.getElementById('lang-toggle').addEventListener('click', function () {
         document.getElementById('cult-title').innerHTML = t.cultTitle;
         document.getElementById('cult-sub').innerText = t.cultSub;
         document.getElementById('cult-desc').innerText = t.cultDesc;
+
         document.body.style.opacity = '1';
     }, 400);
+}
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    updateLanguage();
 });
+
+document.getElementById('lang-toggle-mob').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    updateLanguage();
+    toggleMenu();
+});
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -107,6 +135,7 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.1 });
+
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = "0";
     section.style.transform = "translateY(30px)";
