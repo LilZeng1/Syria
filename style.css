@@ -164,7 +164,6 @@ body {
     transform: translateY(0);
 }
 
-/* Responsivity */
 @media (max-width: 768px) {
     h1 {
         font-size: 3rem !important;
