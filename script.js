@@ -1,179 +1,395 @@
-// Translation()
-const translations = {
-    en: {
-        statText: "1,800+ Members — You're the missing one!",
-        navHome: "Home",
-        navCommunity: "Our Vibe",
-        navReviews: "Family",
-        navHeritage: "Heritage",
-        navDiscord: "Join Discord",
-        heroTitle: "The Heart <br> <span class='italic serif text-levant-gold'>Of The Levant.</span>",
-        heroSub: "Forget regular servers. This is where the real ones hang out. From deep talks to gaming chaos, it's just home.",
-        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> Jump In Discord",
-        exploreBtn: "Take a Tour",
-        commTag: "Our Daily Ritual",
-        commTitle: "Among Us <br> <span class='text-white/30 text-xl md:text-2xl'>Syrian Edition</span>",
-        commDesc: "Every single night. Voice channels explode and friendships are tested. No mercy for the impostors, just chaos.",
-        gmodTitle: "Garry's Mod",
-        gmodDesc: "Sandbox madness. From serious roleplay to absolute TTT mayhem. The true gaming spirit.",
-        cinemaTitle: "Late Night Cinema",
-        cinemaDesc: "Popcorn ready? We're streaming movies, anime, and those classic Ramadan vibes in HD.",
-        debateTitle: "The Arena",
-        debateDesc: "Politics, religion, or why pineapple on pizza is a crime. Debate hard, keep it family.",
-        revTitle: "The Family",
-        revSupernova: "Started from 3 AM calls, now we're a whole tribe. It's more than just a server, it's a sanctuary.",
-        revAlex: "Witnessed every single glow-up. If you want a place with zero fake vibes, this is it. Welcome home.",
-        revGeorge: "I just keep the lights on with some code, but the people here are the real magic. 10/10 vibes only.",
-        revMohammad: "Moderating this chaos is a full-time job but I wouldn't trade these legends for anything else.",
-        revYosef: "Designed the pixels to match the soul. Sharp, modern, but always keeping it Levantine.",
-        cultTitle: "The <br> Heritage",
-        cultSub: "Fairuz in the morning, Wassouf for the soul.",
-        cultDesc: "Syria, Lebanon, Jordan, Palestine. Different dialects, same heart. Sharing our stories.",
-        toggleBtn: "AR",
-        toggleMob: "ARABIC"
-    },
-    ar: {
-        statText: "١٨٠٠+ عضو — ناقصنا واحد، وينك؟",
-        navHome: "الرئيسية",
-        navCommunity: "جوّنا",
-        navReviews: "العيلة",
-        navHeritage: "تراثنا",
-        navDiscord: "ديسكورد",
-        heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك.",
-        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> انضم لديسكورد",
-        exploreBtn: "خدلك جولة",
-        commTag: "طقوسنا اليومية",
-        commTitle: "أمونج أس <br> <span class='text-white/30 text-xl md:text-2xl'>بالنسخة السورية</span>",
-        commDesc: "كل يوم سهرة. الغرف بتنتلي، والأصوات بتعلى. ما في رحمة للمحتالين، فوضى وضحك وبس.",
-        gmodTitle: "غاري مود",
-        gmodDesc: "عالم من الفوضى. من الرول بلاي لجنون الـ TTT. هي روح الجيمنج عنا.",
-        cinemaTitle: "سهرات سينما",
-        cinemaDesc: "البشار جاهز؟ عم نعرض أفلام، أنمي، ومسلسلات رمضان القديمة والجديدة بوضوح عالي.",
-        debateTitle: "الساحة",
-        debateDesc: "سياسة، دين، أو ليش البيتزا بالأناناس جريمة. تناقشوا قد ما بدكن، بس خلونا عيلة وحدة.",
-        revTitle: "العيلة",
-        revSupernova: "بلشنا بمكالمات لوش الصبح، وهلق صرنا قبيلة كاملة. السيرفر مو مجرد مكان، هو ملجأ للكل.",
-        revAlex: "شفت السيرفر وهو عم يكبر خطوة بخطوة. إذا بدك مكان حقيقي بدون نفاق، فوت لهون. أهلاً فيك ببيتك.",
-        revGeorge: "أنا بس عم اهتم بالأكواد، بس الناس هون هنن السحر الحقيقي. جو رايق ١٠/١٠.",
-        revMohammad: "إدارة الفوضى هون بدها طولة بال، بس ما ببدل هالمجانين بالدنيا كلها.",
-        revYosef: "صممنا كل بكسل ليناسب روح المكان. عصري، فخم، وبنفس الوقت بحافظ على هويتنا الشامية.",
-        cultTitle: "التراث <br> الأصيل",
-        cultSub: "فيروز الصبح، والوسوف للروح.",
-        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات مختلفة، بس القلب واحد. هون بنحكي قصصنا.",
-        toggleBtn: "EN",
-        toggleMob: "ENGLISH"
-    }
-};
-
-let currentLang = 'en';
-
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden-loader');
-        reveal();
-    }, 1000);
-    fetchAvatars();
-});
-
-async function fetchAvatars() {
-    const users = [
-        { id: "1335340293838602281", name: "SuperNova" },
-        { id: "680408469064515829", name: "Alex" },
-        { id: "1447924209677373480", name: "George" },
-        { id: "832647378724192297", name: "Mohammad" },
-        { id: "551385778949849103", name: "Yosef" }
-    ];
-
-    users.forEach(async (user) => {
-        try {
-            const response = await fetch(`https://discord-lookup-api-alpha.vercel.app/api/user/${user.id}`);
-            const data = await response.json();
-            if (data.avatar_url) {
-                const imgElements = document.querySelectorAll(`img[alt="${user.name}"]`);
-                imgElements.forEach(img => img.src = data.avatar_url);
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SYRIA | The Digital Levant</title>
+    <link rel="icon" type="image/jpeg" href="https://cdn.britannica.com/50/4550-050-3D264DD7/Flag-Syria.jpg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-gray': '#1d1d1f',
+                        'levant-gold': '#d4af37',
+                        'among-red': '#ff1a1a',
+                        'discord-blurple': '#5865F2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Arabic', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
             }
-        } catch (error) {
-            console.error("Avatar fetch failed for", user.name);
         }
-    });
-}
+    </script>
+</head>
+<body class="bg-[#050505] text-white selection:bg-levant-gold/30 overflow-x-hidden transition-opacity duration-500">
+    <div id="loader"
+        class="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-all duration-700">
+        <div class="scale-110 md:scale-150">
+            <div class="w-12 h-12 border-4 border-white/10 border-t-levant-gold rounded-full animate-spin"></div>
+        </div>
+    </div>
 
-function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('translate-x-full');
-}
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 p-6 text-center">
+        <button id="close-menu" class="absolute top-8 right-8 text-4xl text-white"><i class='bx bx-x'></i></button>
+        <a href="#hero" class="mobile-link text-2xl font-black uppercase tracking-widest">Home</a>
+        <a href="#community" class="mobile-link text-2xl font-black uppercase tracking-widest">Our Vibe</a>
+        <a href="#stats" class="mobile-link text-2xl font-black uppercase tracking-widest">Growth</a>
+        <a href="#reviews" class="mobile-link text-2xl font-black uppercase tracking-widest">Family</a>
+        <a href="#culture" class="mobile-link text-2xl font-black uppercase tracking-widest">Heritage</a>
+        <a href="https://discord.gg/ekHgfYs4eA"
+            class="mobile-link text-2xl font-black uppercase tracking-widest text-discord-blurple">Join Discord</a>
+        <button id="lang-toggle-mob" class="mt-4 bg-white text-black px-10 py-4 rounded-2xl font-black">ARABIC</button>
+    </div>
 
-document.getElementById('open-menu').addEventListener('click', toggleMenu);
-document.getElementById('close-menu').addEventListener('click', toggleMenu);
+    <nav class="fixed top-4 left-0 right-0 w-full px-4 z-[100]">
+        <div
+            class="glass-nav max-w-5xl mx-auto rounded-2xl px-6 py-4 flex justify-between items-center border border-white/10 shadow-2xl">
+            <a href="#" class="text-xl md:text-2xl font-black tracking-tighter italic text-glow">SYRIA<span
+                    class="text-levant-gold">.</span></a>
+            <div class="hidden md:flex gap-8 items-center text-[10px] font-black uppercase tracking-[0.2em]">
+                <a href="#hero" class="nav-item hover:text-levant-gold transition-colors">Home</a>
+                <a href="https://discord.gg/ekHgfYs4eA" target="_blank" class="nav-item text-discord-blurple">Join
+                    Discord</a>
+                <a href="#community" class="nav-item hover:text-levant-gold transition-colors">Our Vibe</a>
+                <a href="#stats" class="nav-item hover:text-levant-gold transition-colors">Growth</a>
+                <a href="#reviews" class="nav-item hover:text-levant-gold transition-colors">Family</a>
+                <a href="#culture" class="nav-item hover:text-levant-gold transition-colors">Heritage</a>
+                <button id="lang-toggle"
+                    class="bg-white text-black px-4 py-1.5 rounded-full font-black hover:bg-levant-gold transition-all shadow-lg shadow-white/5">AR</button>
+            </div>
+            <button id="open-menu" class="md:hidden text-2xl p-2"><i class='bx bx-menu-alt-right'></i></button>
+        </div>
+    </nav>
 
-document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-        setTimeout(toggleMenu, 300);
-    });
-});
+    <main class="w-full">
+        <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.08)_0%,_rgba(0,0,0,0)_70%)]">
+            </div>
+            <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto reveal">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-inner">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span id="stat-text" class="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase">1,800+
+                        Members — You're the missing one!</span>
+                </div>
+                <h1 id="hero-title"
+                    class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-[1.1] tracking-tighter mb-8 gradient-text uppercase">
+                    The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span></h1>
+                <p id="hero-sub"
+                    class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed mb-10">Not
+                    just another server—it's home. From heated debates to 3 AM gaming sessions. Come as you are, stay
+                    for the family.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a id="enter-btn" href="https://discord.gg/ekHgfYs4eA"
+                        class="w-full sm:w-auto px-8 py-4 bg-[#5865F2] text-white text-[11px] font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-xl shadow-discord-blurple/20">
+                        <i class='bx bxl-discord-alt text-xl'></i> Jump In Discord
+                    </a>
+                    <a id="explore-btn" href="#community" class="apple-btn-secondary w-full sm:w-auto">Take a Tour</a>
+                </div>
+            </div>
+        </section>
 
-function updateLanguage() {
-    const t = translations[currentLang];
-    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-    document.body.style.opacity = '0';
+        <section id="stats" class="py-12 md:py-20 px-4 max-w-7xl mx-auto reveal">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <h3 class="text-4xl font-black text-levant-gold mb-2">1.8K+</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Active Souls</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <h3 class="text-4xl font-black text-white mb-2">24/7</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">VC Energy</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <h3 class="text-4xl font-black text-white mb-2">50+</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Daily Events</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center">
+                    <h3 class="text-4xl font-black text-levant-gold mb-2">ZERO</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Fake Vibes</p>
+                </div>
+            </div>
+        </section>
 
-    setTimeout(() => {
-        document.getElementById('stat-text').innerText = t.statText;
-        document.getElementById('hero-title').innerHTML = t.heroTitle;
-        document.getElementById('hero-sub').innerText = t.heroSub;
-        document.getElementById('enter-btn').innerHTML = t.enterBtn;
-        document.getElementById('explore-btn').innerText = t.exploreBtn;
-        document.getElementById('lang-toggle').innerText = t.toggleBtn;
-        document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
+        <section id="community" class="py-12 md:py-24 px-4 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-3 gap-4 md:gap-6">
+                <div
+                    class="md:col-span-6 lg:col-span-2 glass-card rounded-[2.5rem] p-6 md:p-12 relative overflow-hidden group min-h-fit reveal">
+                    <div class="among-ghost-fix absolute top-0 right-0 p-4 opacity-30 pointer-events-none">
+                        <i class='bx bxs-ghost text-[150px] md:text-[250px] text-among-red rotate-12'></i>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div>
+                            <span id="comm-tag"
+                                class="inline-block text-among-red font-black tracking-widest text-[9px] uppercase bg-among-red/10 px-3 py-1 rounded-md mb-4 border border-among-red/20">Our
+                                Daily Ritual</span>
+                            <h2 id="comm-title" class="text-3xl md:text-5xl font-black mb-4 uppercase leading-tight">
+                                Among Us <br> <span class="text-white/30 text-xl md:text-2xl">Syrian Edition</span></h2>
+                            <p id="comm-desc"
+                                class="text-gray-400 max-w-md font-light leading-relaxed text-sm md:text-base">Every
+                                single night. Lobbies fill up, voice channels explode. No mercy for the impostors.</p>
+                        </div>
+                        <div class="mt-8 flex items-center gap-4">
+                            <div class="inline-block bg-white/5 px-4 py-3 rounded-xl border border-white/10">
+                                <span class="block text-lg font-bold">07:00 PM+</span>
+                                <span class="text-[8px] text-gray-500 uppercase font-black tracking-widest">Syria Time
+                                    (UTC+3)</span>
+                            </div>
+                            <div
+                                class="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:scale-110 transition-transform">
+                                <i class='bx bx-play text-2xl text-among-red'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        document.getElementById('comm-tag').innerText = t.commTag;
-        document.getElementById('comm-title').innerHTML = t.commTitle;
-        document.getElementById('comm-desc').innerText = t.commDesc;
-        document.getElementById('gmod-title').innerText = t.gmodTitle;
-        document.getElementById('gmod-desc').innerText = t.gmodDesc;
-        document.getElementById('cinema-title').innerText = t.cinemaTitle;
-        document.getElementById('cinema-desc').innerText = t.cinemaDesc;
-        document.getElementById('debate-title').innerText = t.debateTitle;
-        document.getElementById('debate-desc').innerText = t.debateDesc;
+                <div
+                    class="md:col-span-3 lg:col-span-1 glass-card rounded-[2.5rem] p-8 flex flex-col justify-between group overflow-hidden reveal border-b-4 border-b-blue-500/30">
+                    <div>
+                        <i class='bx bxs-invader text-4xl text-blue-500 mb-4'></i>
+                        <h3 id="gmod-title" class="text-xl md:text-2xl font-black uppercase mb-3">Garry's Mod</h3>
+                        <p id="gmod-desc" class="text-gray-400 text-sm leading-relaxed">Sandbox madness. From serious
+                            roleplay to absolute TTT mayhem.</p>
+                    </div>
+                    <div class="mt-6"><span
+                            class="text-[9px] font-black uppercase tracking-widest text-blue-400 bg-blue-400/10 px-3 py-1 rounded-md">Mainstage</span>
+                    </div>
+                </div>
 
-        document.getElementById('rev-title').innerText = t.revTitle;
-        document.getElementById('rev-supernova').innerText = t.revSupernova;
-        document.getElementById('rev-alex').innerText = t.revAlex;
-        document.getElementById('rev-george').innerText = t.revGeorge;
-        document.getElementById('rev-mohammad').innerText = t.revMohammad;
-        document.getElementById('rev-yosef').innerText = t.revYosef;
+                <div
+                    class="md:col-span-3 lg:col-span-1 glass-card rounded-[2.5rem] p-8 flex flex-col justify-center relative overflow-hidden reveal border-b-4 border-b-purple-500/30">
+                    <i class='bx bxs-camera-movie text-4xl text-purple-500 mb-4'></i>
+                    <h3 id="cinema-title" class="text-xl md:text-2xl font-black uppercase mb-3">Late Night Cinema</h3>
+                    <p id="cinema-desc" class="text-gray-400 text-sm leading-relaxed">We stream movies, anime, and
+                        classic Ramadan series in HD.</p>
+                </div>
 
-        document.getElementById('cult-title').innerHTML = t.cultTitle;
-        document.getElementById('cult-sub').innerText = t.cultSub;
-        document.getElementById('cult-desc').innerText = t.cultDesc;
+                <div
+                    class="md:col-span-6 lg:col-span-2 glass-card rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal">
+                    <div class="max-w-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class='bx bxs-bolt-circle text-3xl text-levant-gold'></i>
+                            <h3 id="debate-title" class="text-2xl md:text-3xl font-black uppercase">The Arena</h3>
+                        </div>
+                        <p id="debate-desc" class="text-gray-400 text-sm md:text-base leading-relaxed">Politics,
+                            religion, ideology—it's all on the table. Debate hard, keep it family.</p>
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto">
+                        <span
+                            class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Heated</span>
+                        <span
+                            class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Respect</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        document.body.style.opacity = '1';
-        reveal();
-    }, 400);
-}
+        <section id="reviews" class="py-12 px-4 max-w-7xl mx-auto">
+            <div class="mb-12 reveal text-center">
+                <h2 id="rev-title" class="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4">The Family
+                </h2>
+                <div class="h-1 w-24 bg-levant-gold mx-auto rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-yellow-500/50">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.weserv.nl/?url=cdn.discordapp.com/avatars/411234567890123456/a_unique_hash.png&w=128&h=128&fit=cover"
+                                alt="SuperNova" class="w-12 h-12 rounded-full ring-2 ring-yellow-500/30 discord-avatar">
+                            <div>
+                                <h4 class="font-bold text-sm text-white">SuperNova</h4>
+                                <p class="text-[10px] text-gray-500 font-mono">@eric_cartman44</p>
+                                <span
+                                    class="text-[9px] text-gray-600 bg-gray-800/50 px-1.5 py-0.5 rounded mt-1 inline-block">She/Her</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest flex items-center gap-1 no-anim-badge">
+                            <i class='bx bxs-crown'></i> Owner
+                        </span>
+                    </div>
+                    <p id="rev-supernova" class="text-gray-300 text-sm leading-relaxed italic">"Started from 3 AM calls,
+                        now we're a whole tribe. It's more than just a server, it's a sanctuary."</p>
+                    <div class="mt-auto flex text-yellow-500 text-sm star-rating">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                            class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    </div>
+                </div>
 
-document.getElementById('lang-toggle').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    updateLanguage();
-});
+                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-gray-400/50">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.weserv.nl/?url=cdn.discordapp.com/avatars/123456789012345678/a_unique_hash.png&w=128&h=128&fit=cover"
+                                alt="Alex" class="w-12 h-12 rounded-full ring-2 ring-gray-400/30 discord-avatar">
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Alex</h4>
+                                <p class="text-[10px] text-gray-500 font-mono">@alex994</p>
+                                <span
+                                    class="text-[9px] text-gray-600 bg-gray-800/50 px-1.5 py-0.5 rounded mt-1 inline-block">He/Him</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-gray-200/10 text-gray-200 px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest flex items-center gap-1 no-anim-badge">
+                            <i class='bx bxs-diamond'></i> Founder
+                        </span>
+                    </div>
+                    <p id="rev-alex" class="text-gray-300 text-sm leading-relaxed italic">"Witnessed every single
+                        glow-up. If you want a place with zero fake vibes, this is it. Welcome home."</p>
+                    <div class="mt-auto flex text-yellow-500 text-sm star-rating">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                            class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    </div>
+                </div>
 
-document.getElementById('lang-toggle-mob').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    updateLanguage();
-    setTimeout(toggleMenu, 600);
-});
+                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-green-500/50">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.weserv.nl/?url=cdn.discordapp.com/avatars/223456789012345678/a_unique_hash.png&w=128&h=128&fit=cover"
+                                alt="George" class="w-12 h-12 rounded-full ring-2 ring-green-500/30 discord-avatar">
+                            <div>
+                                <h4 class="font-bold text-sm text-white">George</h4>
+                                <p class="text-[10px] text-gray-500 font-mono">@lilzeng</p>
+                                <span
+                                    class="text-[9px] text-gray-600 bg-gray-800/50 px-1.5 py-0.5 rounded mt-1 inline-block">He/Him</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-green-500/20 text-green-500 px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest flex items-center gap-1 no-anim-badge">
+                            <i class='bx bx-code-alt'></i> Dev
+                        </span>
+                    </div>
+                    <p id="rev-george" class="text-gray-300 text-sm leading-relaxed italic">"I just keep the lights on
+                        with some code, but the people here are the real magic. 10/10 vibes only."</p>
+                    <div class="mt-auto flex text-yellow-500 text-sm star-rating">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                            class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    </div>
+                </div>
 
-function reveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 80;
-        if (revealTop < windowHeight - revealPoint) {
-            el.classList.add('active');
-        }
-    });
-}
+                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-blue-500/50">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.weserv.nl/?url=cdn.discordapp.com/avatars/323456789012345678/a_unique_hash.png&w=128&h=128&fit=cover"
+                                alt="Mohammad" class="w-12 h-12 rounded-full ring-2 ring-blue-500/30 discord-avatar">
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Mohammad</h4>
+                                <p class="text-[10px] text-gray-500 font-mono">@mo77hmmad5</p>
+                                <span
+                                    class="text-[9px] text-gray-600 bg-gray-800/50 px-1.5 py-0.5 rounded mt-1 inline-block">He/Him</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-blue-500/20 text-blue-500 px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest flex items-center gap-1 no-anim-badge">
+                            <i class='bx bxs-shield-alt-2'></i> Staff
+                        </span>
+                    </div>
+                    <p id="rev-mohammad" class="text-gray-300 text-sm leading-relaxed italic">"Moderating this chaos is
+                        a full-time job but I wouldn't trade these legends for anything else."</p>
+                    <div class="mt-auto flex text-yellow-500 text-sm star-rating">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                            class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                    </div>
+                </div>
 
-window.addEventListener('scroll', reveal);
+                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-purple-500/50">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.weserv.nl/?url=cdn.discordapp.com/avatars/523456789012345678/a_unique_hash.png&w=128&h=128&fit=cover"
+                                alt="Yosef" class="w-12 h-12 rounded-full ring-2 ring-purple-500/30 discord-avatar">
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Yosef</h4>
+                                <p class="text-[10px] text-gray-500 font-mono">@yosefhll</p>
+                                <span
+                                    class="text-[9px] text-gray-600 bg-gray-800/50 px-1.5 py-0.5 rounded mt-1 inline-block">He/Him</span>
+                            </div>
+                        </div>
+                        <span
+                            class="bg-purple-500/20 text-purple-500 px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest flex items-center gap-1 no-anim-badge">
+                            <i class='bx bxs-palette'></i> Creative
+                        </span>
+                    </div>
+                    <p id="rev-yosef" class="text-gray-300 text-sm leading-relaxed italic">"Designed the pixels to match
+                        the soul. Sharp, modern, but always keeping it Levantine."</p>
+                    <div class="mt-auto flex text-yellow-500 text-sm star-rating">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                            class='bx bxs-star'></i><i class='bx bxs-star-half'></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="culture" class="py-12 md:py-24 px-4 max-w-7xl mx-auto">
+            <div class="mb-8 md:mb-12 reveal">
+                <h2 id="cult-title"
+                    class="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none text-center md:text-left">
+                    The <br> Heritage</h2>
+                <p id="cult-sub"
+                    class="text-levant-gold font-serif italic text-xl md:text-2xl mt-4 text-center md:text-left">Fairuz
+                    in the morning, Wassouf for the soul.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8">
+                <div
+                    class="lg:col-span-8 group relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-[#111] h-[300px] md:h-[500px] border border-white/10 reveal shadow-2xl">
+                    <img src="https://imgs.search.brave.com/Tx2daFZafV77nbqGQwSY4jCpwiZw7uz5b7EQxyJQv88/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bmV3YXJhYi5jb20v/c2l0ZXMvZGVmYXVs/dC9maWxlcy9zdHls/ZXMvaW1hZ2VfMzQ1/eDE5NS9wdWJsaWMv/MTU2NTc1NzUxMS5q/cGVnP2g9YTVmMmYy/M2EmaXRvaz1sQWx1/QnJTaA"
+                        class="card-img" alt="Fairuz">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 md:bottom-12 md:left-12">
+                        <span class="text-levant-gold text-[9px] font-black tracking-[0.3em] uppercase mb-2 block">Our
+                            Icon</span>
+                        <h3 class="text-3xl md:text-6xl font-black uppercase tracking-tighter">Fairuz</h3>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 glass-card rounded-[2rem] p-8 md:p-12 flex flex-col justify-center reveal">
+                    <h3 class="text-2xl md:text-3xl font-black uppercase mb-6 italic serif text-levant-gold">Bilad
+                        Al-Sham</h3>
+                    <p id="cult-desc" class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">Syria, Lebanon,
+                        Jordan, Palestine. Many dialects, one spirit.</p>
+                    <div class="flex gap-2">
+                        <span class="role-pill flex-1 text-center border border-white/5">Syria</span>
+                        <span class="role-pill flex-1 text-center border border-white/5">Levant</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black pt-16 pb-8 px-4 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <h2 class="text-4xl md:text-7xl font-black italic mb-4 tracking-tighter text-glow">SYRIA<span
+                    class="text-levant-gold">.</span></h2>
+            <p class="text-gray-500 text-[9px] md:text-[11px] tracking-[0.4em] uppercase font-black mb-12">The Digital
+                Levantine Hub</p>
+            <div
+                class="w-full pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left items-center">
+                <div class="order-2 md:order-1">
+                    <p class="text-[8px] text-gray-600 font-bold uppercase mb-1">Server Owner</p>
+                    <p class="text-[10px] text-white font-black uppercase">eric_cartman44</p>
+                </div>
+                <p class="text-[9px] text-gray-600 uppercase font-bold text-center order-1 md:order-2">© 2026 SYRIA
+                    SERVER</p>
+                <div class="md:text-right order-3">
+                    <p class="text-[8px] text-gray-600 font-bold uppercase mb-1">Digital Architect</p>
+                    <a href="https://instagram.com/lilzeng1"
+                        class="text-[10px] text-white font-black uppercase underline decoration-levant-gold underline-offset-4 hover:text-levant-gold transition-colors">GEORGE
+                        ARSHED</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
