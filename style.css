@@ -54,119 +54,28 @@ body {
 
 .glass-card:hover .star-rating i {
     opacity: 1;
-    animation: starPulse 1s infinite alternate;
-}
-
-.glass-card:hover .star-rating i:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.glass-card:hover .star-rating i:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-.glass-card:hover .star-rating i:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
-.glass-card:hover .star-rating i:nth-child(5) {
-    animation-delay: 0.4s;
-}
-
-@keyframes starPulse {
-    from {
-        transform: scale(1);
-        filter: brightness(1);
-    }
-
-    to {
-        transform: scale(1.2);
-        filter: brightness(1.5) drop-shadow(0 0 5px #d4af37);
-    }
-}
-
-@keyframes ghostFloat {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(12deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotate(15deg);
-    }
-}
-
-@keyframes controllerShake {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scale(1.1);
-    }
-
-    25% {
-        transform: rotate(-5deg) scale(1.1);
-    }
-
-    75% {
-        transform: rotate(5deg) scale(1.1);
-    }
-}
-
-@keyframes micPulse {
-    0% {
-        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
-    }
-
-    50% {
-        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
-    }
-
-    100% {
-        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
-    }
-}
-
-.glass-card:hover .among-ghost-fix i {
-    animation: ghostFloat 2s ease-in-out infinite;
-}
-
-.glass-card:hover i.bxs-game {
-    animation: controllerShake 0.5s ease-in-out infinite;
-}
-
-.glass-card:hover i.bxs-microphone-alt {
-    animation: micPulse 1.5s ease-in-out infinite;
-}
-
-@media (min-width: 1024px) {
-    .glass-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(212, 175, 55, 0.3);
-        transform: translateY(-8px);
-    }
-}
-
-.apple-btn-secondary {
-    @apply px-8 py-4 bg-white/5 text-white border border-white/10 text-[11px] font-black uppercase tracking-widest rounded-2xl transition-all;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .gradient-text {
-    background: linear-gradient(to bottom, #fff 50%, #888 100%);
+    background: linear-gradient(to bottom, #fff 30%, rgba(255, 255, 255, 0.5));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.serif {
-    font-family: 'Playfair Display', serif;
+.apple-btn-secondary {
+    @apply px-8 py-4 bg-white/5 text-white text-[11px] font-black uppercase tracking-widest rounded-2xl border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md flex items-center justify-center;
+}
+
+.mobile-link {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-link:active {
+    transform: scale(0.9);
+    opacity: 0.5;
 }
 
 .card-img {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -216,38 +125,6 @@ body {
     }
 }
 
-[dir="rtl"] .text-left {
-    text-align: right !important;
-}
-
-[dir="rtl"] .text-right {
-    text-align: left !important;
-}
-
-[dir="rtl"] .ml-auto {
-    margin-right: auto;
-    margin-left: 0;
-}
-
-[dir="rtl"] .mr-auto {
-    margin-left: auto;
-    margin-right: 0;
-}
-
-[dir="rtl"] .among-ghost-fix {
-    right: auto !important;
-    left: 0 !important;
-    transform: scaleX(-1);
-}
-
-[dir="rtl"] p,
-[dir="rtl"] h1,
-[dir="rtl"] h2 {
-    line-height: 1.6 !important;
-}
-
-[dir="rtl"] .nav-item,
-[dir="rtl"] .mobile-link,
-[dir="rtl"] #stat-text {
-    letter-spacing: 0 !important;
+[dir="rtl"] .scroll-smooth {
+    scroll-behavior: smooth;
 }
