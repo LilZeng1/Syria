@@ -1,3 +1,4 @@
+// Translation()
 const translations = {
     en: {
         statText: "1,800+ Members — You're the missing one!",
@@ -48,18 +49,18 @@ const translations = {
         gmodTitle: "غاري مود",
         gmodDesc: "عالم من الفوضى. من الرول بلاي لجنون الـ TTT. هي روح الجيمنج عنا.",
         cinemaTitle: "سهرات سينما",
-        cinemaDesc: "البشار جاهز؟ عم نعرض أفلام، أنمي، ومسلسلات رمضان الكلاسيكية بأعلى جودة.",
+        cinemaDesc: "البشار جاهز؟ عم نعرض أفلام، أنمي، ومسلسلات رمضان القديمة والجديدة بوضوح عالي.",
         debateTitle: "الساحة",
-        debateDesc: "ما بنهرب من المواضيع التقيلة. سياسة، دين، وأفكار—كلو ع الطاولة. ناقش بقوة، بس ضل محترم.",
+        debateDesc: "سياسة، دين، أو ليش البيتزا بالأناناس جريمة. تناقشوا قد ما بدكن، بس خلونا عيلة وحدة.",
         revTitle: "العيلة",
-        revSupernova: "بدينا بمكالمات نص الليل وصرنا قبيلة. هاد مو بس سيرفر، هاد ملجأ لكل حدا فينا.",
-        revAlex: "شفت السيرفر وهو عم يكبر خطوة بخطوة. إذا بدك ناس حقيقية بلا حركات زايدة، هون مكانك.",
-        revGeorge: "أنا بس عم اهتم بالكود، بس الروح الحقيقية هي الناس اللي هون. ١٠/١٠ أحلى شباب.",
-        revMohammad: "تنظيم هالفوضى مو سهل بنوب، بس مع هالشلة كل شي بصير متعة. فعالياتنا غير.",
-        revYosef: "صممت هالمكان ليكون بيشبهنا: عصري ومرتب، بس بروح شامية أصيلة بكل بكسل.",
-        cultTitle: "التراث <br> العريق",
-        cultSub: "فيروز بالصبح، والـ 'أبو وديع' بالليل.",
-        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجاتنا غير بس الروح واحدة. هون عم نحكي قصصنا.",
+        revSupernova: "بلشنا بمكالمات لوش الصبح، وهلق صرنا قبيلة كاملة. السيرفر مو مجرد مكان، هو ملجأ للكل.",
+        revAlex: "شفت السيرفر وهو عم يكبر خطوة بخطوة. إذا بدك مكان حقيقي بدون نفاق، فوت لهون. أهلاً فيك ببيتك.",
+        revGeorge: "أنا بس عم اهتم بالأكواد، بس الناس هون هنن السحر الحقيقي. جو رايق ١٠/١٠.",
+        revMohammad: "إدارة الفوضى هون بدها طولة بال، بس ما ببدل هالمجانين بالدنيا كلها.",
+        revYosef: "صممنا كل بكسل ليناسب روح المكان. عصري، فخم، وبنفس الوقت بحافظ على هويتنا الشامية.",
+        cultTitle: "التراث <br> الأصيل",
+        cultSub: "فيروز الصبح، والوسوف للروح.",
+        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات مختلفة، بس القلب واحد. هون بنحكي قصصنا.",
         toggleBtn: "EN",
         toggleMob: "ENGLISH"
     }
@@ -68,61 +69,64 @@ const translations = {
 let currentLang = 'en';
 
 window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
     setTimeout(() => {
-        loader.classList.add('hidden-loader');
-        setTimeout(() => {
-            loader.style.display = 'none';
-            reveal();
-        }, 700);
-    }, 800);
+        document.getElementById('loader').classList.add('hidden-loader');
+        reveal();
+    }, 1000);
+    fetchAvatars();
 });
 
-const mobileMenu = document.getElementById('mobile-menu');
-const openBtn = document.getElementById('open-menu');
-const closeBtn = document.getElementById('close-menu');
-const mobileLinks = document.querySelectorAll('.mobile-link');
+async function fetchAvatars() {
+    const users = [
+        { id: "1335340293838602281", name: "SuperNova" },
+        { id: "680408469064515829", name: "Alex" },
+        { id: "1447924209677373480", name: "George" },
+        { id: "832647378724192297", name: "Mohammad" },
+        { id: "551385778949849103", name: "Yosef" }
+    ];
 
-function toggleMenu() {
-    const isClosed = mobileMenu.classList.contains('translate-x-full');
-    mobileMenu.classList.toggle('translate-x-full');
-    document.body.style.overflow = isClosed ? 'hidden' : '';
+    users.forEach(async (user) => {
+        try {
+            const response = await fetch(`https://discord-lookup-api-alpha.vercel.app/api/user/${user.id}`);
+            const data = await response.json();
+            if (data.avatar_url) {
+                const imgElements = document.querySelectorAll(`img[alt="${user.name}"]`);
+                imgElements.forEach(img => img.src = data.avatar_url);
+            }
+        } catch (error) {
+            console.error("Avatar fetch failed for", user.name);
+        }
+    });
 }
 
-openBtn.addEventListener('click', toggleMenu);
-closeBtn.addEventListener('click', toggleMenu);
-mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('translate-x-full');
+}
+
+document.getElementById('open-menu').addEventListener('click', toggleMenu);
+document.getElementById('close-menu').addEventListener('click', toggleMenu);
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+        setTimeout(toggleMenu, 300);
+    });
+});
 
 function updateLanguage() {
     const t = translations[currentLang];
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     document.body.style.opacity = '0';
 
     setTimeout(() => {
-        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        document.documentElement.lang = currentLang;
-
-        document.getElementById('lang-toggle').innerText = t.toggleBtn;
-        document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
         document.getElementById('stat-text').innerText = t.statText;
-
-        const navLinks = document.querySelectorAll('.nav-item');
-        navLinks[0].innerText = t.navHome;
-        navLinks[1].innerText = t.navDiscord;
-        navLinks[2].innerText = t.navCommunity;
-        navLinks[3].innerText = t.navReviews;
-        navLinks[4].innerText = t.navHeritage;
-
-        const mobLinks = document.querySelectorAll('.mobile-link');
-        mobLinks[0].innerText = t.navHome;
-        mobLinks[1].innerText = t.navCommunity;
-        mobLinks[2].innerText = t.navReviews;
-        mobLinks[3].innerText = t.navHeritage;
-        mobLinks[4].innerText = t.navDiscord;
-
         document.getElementById('hero-title').innerHTML = t.heroTitle;
         document.getElementById('hero-sub').innerText = t.heroSub;
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
         document.getElementById('explore-btn').innerText = t.exploreBtn;
+        document.getElementById('lang-toggle').innerText = t.toggleBtn;
+        document.getElementById('lang-toggle-mob').innerText = t.toggleMob;
+
         document.getElementById('comm-tag').innerText = t.commTag;
         document.getElementById('comm-title').innerHTML = t.commTitle;
         document.getElementById('comm-desc').innerText = t.commDesc;
@@ -132,7 +136,7 @@ function updateLanguage() {
         document.getElementById('cinema-desc').innerText = t.cinemaDesc;
         document.getElementById('debate-title').innerText = t.debateTitle;
         document.getElementById('debate-desc').innerText = t.debateDesc;
-        
+
         document.getElementById('rev-title').innerText = t.revTitle;
         document.getElementById('rev-supernova').innerText = t.revSupernova;
         document.getElementById('rev-alex').innerText = t.revAlex;
