@@ -1,4 +1,3 @@
-/* Variables */
 :root {
     --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --arabic-font: 'Noto Sans Arabic', sans-serif;
@@ -48,23 +47,41 @@ body {
     filter: drop-shadow(0 0 15px currentColor);
 }
 
-.glass-card:hover .among-ghost-fix i {
-    animation: ghostFloat 2s ease-in-out infinite;
+.star-rating i {
+    opacity: 0.8;
+    transition: all 0.3s ease;
 }
 
-.glass-card:hover i.bxs-game {
-    animation: controllerShake 0.5s ease-in-out infinite;
+.glass-card:hover .star-rating i {
+    opacity: 1;
+    animation: starPulse 1s infinite alternate;
 }
 
-.glass-card:hover i.bxs-microphone-alt {
-    animation: micPulse 1.5s ease-in-out infinite;
+.glass-card:hover .star-rating i:nth-child(2) {
+    animation-delay: 0.1s;
 }
 
-@media (min-width: 1024px) {
-    .glass-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(212, 175, 55, 0.3);
-        transform: translateY(-8px);
+.glass-card:hover .star-rating i:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.glass-card:hover .star-rating i:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.glass-card:hover .star-rating i:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes starPulse {
+    from {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: scale(1.2);
+        filter: brightness(1.5) drop-shadow(0 0 5px #d4af37);
     }
 }
 
@@ -107,6 +124,26 @@ body {
 
     100% {
         filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+    }
+}
+
+.glass-card:hover .among-ghost-fix i {
+    animation: ghostFloat 2s ease-in-out infinite;
+}
+
+.glass-card:hover i.bxs-game {
+    animation: controllerShake 0.5s ease-in-out infinite;
+}
+
+.glass-card:hover i.bxs-microphone-alt {
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
+@media (min-width: 1024px) {
+    .glass-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(212, 175, 55, 0.3);
+        transform: translateY(-8px);
     }
 }
 
@@ -162,6 +199,11 @@ body {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+.discord-avatar {
+    object-fit: cover;
+    background-color: #111;
 }
 
 @media (max-width: 768px) {
