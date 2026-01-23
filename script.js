@@ -39,7 +39,7 @@ const translations = {
         navHeritage: "تراثنا",
         navDiscord: "ديسكورد",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "مو مجرد سيرفر، هاد بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك.",
+        heroSub: "مو مجرد سيرفر، هad بيتك التاني. من النقاشات الحامية لسهر والضحك لوش الصبح. فوت كأنك ببيتك.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> انضم لديسكورد",
         exploreBtn: "خدلك جولة",
         commTag: "طقوسنا اليومية",
