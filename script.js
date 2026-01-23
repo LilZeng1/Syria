@@ -109,15 +109,15 @@ function updateLanguage() {
         navLinks[0].innerText = t.navHome;
         navLinks[1].innerText = t.navDiscord;
         navLinks[2].innerText = t.navCommunity;
-        navLinks[4].innerText = t.navReviews;
-        navLinks[5].innerText = t.navHeritage;
+        navLinks[3].innerText = t.navReviews;
+        navLinks[4].innerText = t.navHeritage;
 
         const mobLinks = document.querySelectorAll('.mobile-link');
         mobLinks[0].innerText = t.navHome;
         mobLinks[1].innerText = t.navCommunity;
-        mobLinks[3].innerText = t.navReviews;
-        mobLinks[4].innerText = t.navHeritage;
-        mobLinks[5].innerText = t.navDiscord;
+        mobLinks[2].innerText = t.navReviews;
+        mobLinks[3].innerText = t.navHeritage;
+        mobLinks[4].innerText = t.navDiscord;
 
         document.getElementById('hero-title').innerHTML = t.heroTitle;
         document.getElementById('hero-sub').innerText = t.heroSub;
