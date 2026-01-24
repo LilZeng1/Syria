@@ -50,16 +50,42 @@
         </div>
     </div>
 
+    <div id="upload-modal"
+        class="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="glass-card max-w-md w-full rounded-3xl p-8 relative transform scale-95 transition-transform duration-300"
+            id="upload-content">
+            <button id="close-upload" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white"><i
+                    class='bx bx-x'></i></button>
+            <h3 class="text-2xl font-black uppercase mb-2">Share Moment</h3>
+            <p class="text-gray-400 text-xs mb-6">Upload a screenshot to the gallery.</p>
+            <div class="border-2 border-dashed border-white/20 rounded-2xl p-8 text-center mb-6 hover:border-levant-gold/50 transition-colors cursor-pointer relative"
+                id="drop-zone">
+                <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    accept="image/*">
+                <i class='bx bxs-cloud-upload text-4xl text-gray-500 mb-2'></i>
+                <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Tap to browse</p>
+                <div id="preview-container" class="hidden absolute inset-0 bg-[#050505] rounded-2xl overflow-hidden">
+                    <img id="image-preview" src="" class="w-full h-full object-cover opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class='bx bxs-check-circle text-4xl text-green-500'></i>
+                    </div>
+                </div>
+            </div>
+            <button id="submit-upload"
+                class="w-full py-4 bg-levant-gold text-black font-black uppercase tracking-widest rounded-xl hover:bg-white transition-colors">Post
+                to Gallery</button>
+        </div>
+    </div>
+
     <div id="mobile-menu"
         class="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 p-6 text-center">
         <button id="close-menu" class="absolute top-8 right-8 text-4xl text-white"><i class='bx bx-x'></i></button>
         <a href="#hero" class="mobile-link text-2xl font-black uppercase tracking-widest">Home</a>
         <a href="#boosters" class="mobile-link text-2xl font-black uppercase tracking-widest text-nitro-pink">VIPs</a>
-        <a href="#community" class="mobile-link text-2xl font-black uppercase tracking-widest">Our Vibe</a>
+        <a href="#schedule" class="mobile-link text-2xl font-black uppercase tracking-widest">Schedule</a>
         <a href="#stats" class="mobile-link text-2xl font-black uppercase tracking-widest">Growth</a>
         <a href="#gallery" class="mobile-link text-2xl font-black uppercase tracking-widest">Moments</a>
         <a href="#reviews" class="mobile-link text-2xl font-black uppercase tracking-widest">Family</a>
-        <a href="#culture" class="mobile-link text-2xl font-black uppercase tracking-widest">Heritage</a>
         <a href="https://discord.gg/qFDQG5aDJN"
             class="mobile-link text-2xl font-black uppercase tracking-widest text-discord-blurple">Join Discord</a>
         <button id="lang-toggle-mob" class="mt-4 bg-white text-black px-10 py-4 rounded-2xl font-black">ARABIC</button>
@@ -79,10 +105,9 @@
                     class="nav-item text-nitro-pink hover:text-white transition-colors shadow-none">VIPs</a>
                 <a href="https://discord.gg/ekHgfYs4eA" target="_blank" class="nav-item text-discord-blurple">Join
                     Discord</a>
-                <a href="#community" class="nav-item hover:text-levant-gold transition-colors">Our Vibe</a>
-                <a href="#stats" class="nav-item hover:text-levant-gold transition-colors">Growth</a>
+                <a href="#schedule" class="nav-item hover:text-levant-gold transition-colors">Schedule</a>
+                <a href="#gallery" class="nav-item hover:text-levant-gold transition-colors">Moments</a>
                 <a href="#reviews" class="nav-item hover:text-levant-gold transition-colors">Family</a>
-                <a href="#culture" class="nav-item hover:text-levant-gold transition-colors">Heritage</a>
                 <button id="lang-toggle"
                     class="bg-white text-black px-4 py-1.5 rounded-full font-black hover:bg-levant-gold transition-all shadow-lg shadow-white/5">AR</button>
             </div>
@@ -119,7 +144,7 @@
                         class="w-full sm:w-auto px-8 py-4 bg-[#5865F2] text-white text-[11px] font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-xl shadow-discord-blurple/20">
                         <i class='bx bxl-discord-alt text-xl'></i> Jump In Discord
                     </a>
-                    <a id="explore-btn" href="#community" class="apple-btn-secondary w-full sm:w-auto">Take a Tour</a>
+                    <a id="explore-btn" href="#schedule" class="apple-btn-secondary w-full sm:w-auto">Check Events</a>
                 </div>
             </div>
             <div
@@ -133,13 +158,7 @@
                         FULL</span>
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
                             class='bx bxs-circle text-[6px] text-purple-500 align-middle mr-2'></i>Movie Night: Starting
-                        in 20m</span>
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
-                            class='bx bxs-circle text-[6px] text-blue-500 align-middle mr-2'></i>New Member: Sarah_99
-                        joined</span>
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
-                            class='bx bxs-circle text-[6px] text-levant-gold align-middle mr-2'></i>Top G:
-                        Ahmed_Sy</span>
+                        soon</span>
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
                             class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
                         Online</span>
@@ -161,8 +180,8 @@
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">VC Energy</p>
                 </div>
                 <div class="glass-card rounded-3xl p-8 text-center">
-                    <h3 class="text-4xl font-black text-white mb-2">50+</h3>
-                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Daily Events</p>
+                    <h3 class="text-4xl font-black text-white mb-2">Weekly</h3>
+                    <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Curated Events</p>
                 </div>
                 <div class="glass-card rounded-3xl p-8 text-center">
                     <h3 class="text-4xl font-black text-levant-gold mb-2">ZERO</h3>
@@ -200,29 +219,26 @@
                     <div class="flex items-center gap-4">
                         <div class="flex -space-x-4">
                             <div
-                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-0">
-                                <img src="https://cdn.discordapp.com/embed/avatars/0.png"
-                                    class="w-full h-full rounded-full opacity-50">
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-0 overflow-hidden">
+                                <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/771419392307101696/avatars/29be40774bd45ffbecb51b32423d1908.webp?size=160"
+                                    class="w-full h-full object-cover">
                             </div>
                             <div
-                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10">
-                                <img src="https://cdn.discordapp.com/embed/avatars/1.png"
-                                    class="w-full h-full rounded-full opacity-60">
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden">
+                                <img src="https://cdn.discordapp.com/avatars/495926332145008641/a_d158e2139e8d394443ffb5af60c7951f.webp?size=256"
+                                    class="w-full h-full object-cover">
                             </div>
                             <div
-                                class="w-14 h-14 rounded-full border-2 border-nitro-pink bg-gray-800 flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(244,127,255,0.4)]">
-                                <img src="https://cdn.discordapp.com/embed/avatars/2.png"
-                                    class="w-full h-full rounded-full">
-                                <i class='bx bxs-star absolute -top-1 -right-1 text-nitro-pink text-xs'></i>
+                                class="w-16 h-16 rounded-full border-2 border-nitro-pink bg-gray-800 flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(244,127,255,0.4)] overflow-hidden">
+                                <img src="https://cdn.discordapp.com/avatars/1286407873873838103/bdfe2c19fe2d4b192b5caea81acc0686.webp?size=256"
+                                    class="w-full h-full object-cover">
+                                <i
+                                    class='bx bxs-star absolute top-0 right-0 text-nitro-pink text-xs bg-black rounded-full p-0.5'></i>
                             </div>
                             <div
-                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10">
-                                <img src="https://cdn.discordapp.com/embed/avatars/3.png"
-                                    class="w-full h-full rounded-full opacity-60">
-                            </div>
-                            <div
-                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center text-[10px] font-black relative z-0">
-                                +12
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden">
+                                <img src="https://cdn.discordapp.com/avatars/584922604658491412/c6c4d525f4b3a78ab02246eb8e74b7cc.webp?size=256"
+                                    class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -230,74 +246,69 @@
             </div>
         </section>
 
-        <section id="community" class="py-12 md:py-24 px-4 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-3 gap-4 md:gap-6">
+        <section id="schedule" class="py-12 md:py-24 px-4 max-w-7xl mx-auto">
+            <div class="mb-12 reveal text-center">
+                <h2 id="sched-title" class="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-4">The
+                    Schedule</h2>
+                <div class="h-1 w-24 bg-levant-gold mx-auto rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div
-                    class="md:col-span-6 lg:col-span-2 glass-card rounded-[2.5rem] p-6 md:p-12 relative overflow-hidden group min-h-fit reveal">
-                    <div class="among-ghost-fix absolute top-0 right-0 p-4 opacity-30 pointer-events-none">
-                        <i class='bx bxs-ghost text-[150px] md:text-[250px] text-among-red rotate-12'></i>
+                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-blue-500/30">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <i class='bx bxs-calendar-star text-9xl'></i>
                     </div>
-                    <div class="relative z-10 flex flex-col h-full justify-between">
-                        <div>
-                            <span id="comm-tag"
-                                class="inline-block text-among-red font-black tracking-widest text-[9px] uppercase bg-among-red/10 px-3 py-1 rounded-md mb-4 border border-among-red/20">Our
-                                Daily Ritual</span>
-                            <h2 id="comm-title" class="text-3xl md:text-5xl font-black mb-4 uppercase leading-tight">
-                                Among Us <br> <span class="text-white/30 text-xl md:text-2xl">Syrian Edition</span></h2>
-                            <p id="comm-desc"
-                                class="text-gray-400 max-w-md font-light leading-relaxed text-sm md:text-base">Every
-                                single night. Lobbies fill up, voice channels explode. No mercy for the impostors.</p>
-                        </div>
-                        <div class="mt-8 flex items-center gap-4">
-                            <div class="inline-block bg-white/5 px-4 py-3 rounded-xl border border-white/10">
-                                <span class="block text-lg font-bold">07:00 PM+</span>
-                                <span class="text-[8px] text-gray-500 uppercase font-black tracking-widest">Syria Time
-                                    (UTC+3)</span>
-                            </div>
-                            <div
-                                class="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:scale-110 transition-transform">
-                                <i class='bx bx-play text-2xl text-among-red'></i>
-                            </div>
+                    <span
+                        class="inline-block w-fit text-blue-400 font-black tracking-widest text-[9px] uppercase bg-blue-400/10 px-3 py-1 rounded-md mb-6 border border-blue-400/20">Gaming</span>
+                    <h3 class="text-2xl font-black uppercase mb-2">Among Us</h3>
+                    <p class="text-gray-400 text-xs font-mono mb-6">Every Saturday @ 10:00 PM</p>
+                    <div class="mt-auto">
+                        <div
+                            class="flex items-center gap-2 text-xs text-gray-300 bg-white/5 p-3 rounded-xl border border-white/10">
+                            <i class='bx bxs-volume-full text-blue-400'></i>
+                            <span class="uppercase font-bold text-[10px]">Channel: Among Us / Gaming</span>
                         </div>
                     </div>
                 </div>
 
                 <div
-                    class="md:col-span-3 lg:col-span-1 glass-card rounded-[2.5rem] p-8 flex flex-col justify-between group overflow-hidden reveal border-b-4 border-b-blue-500/30">
-                    <div>
-                        <i class='bx bxs-invader text-4xl text-blue-500 mb-4'></i>
-                        <h3 id="gmod-title" class="text-xl md:text-2xl font-black uppercase mb-3">Garry's Mod</h3>
-                        <p id="gmod-desc" class="text-gray-400 text-sm leading-relaxed">Sandbox madness. From serious
-                            roleplay to absolute TTT mayhem.</p>
+                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-purple-500/30">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <i class='bx bxs-movie-play text-9xl'></i>
                     </div>
-                    <div class="mt-6"><span
-                            class="text-[9px] font-black uppercase tracking-widest text-blue-400 bg-blue-400/10 px-3 py-1 rounded-md">Mainstage</span>
-                    </div>
-                </div>
-
-                <div
-                    class="md:col-span-3 lg:col-span-1 glass-card rounded-[2.5rem] p-8 flex flex-col justify-center relative overflow-hidden reveal border-b-4 border-b-purple-500/30">
-                    <i class='bx bxs-camera-movie text-4xl text-purple-500 mb-4'></i>
-                    <h3 id="cinema-title" class="text-xl md:text-2xl font-black uppercase mb-3">Late Night Cinema</h3>
-                    <p id="cinema-desc" class="text-gray-400 text-sm leading-relaxed">We stream movies, anime, and
-                        classic Ramadan series in HD.</p>
-                </div>
-
-                <div
-                    class="md:col-span-6 lg:col-span-2 glass-card rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal">
-                    <div class="max-w-md">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class='bx bxs-bolt-circle text-3xl text-levant-gold'></i>
-                            <h3 id="debate-title" class="text-2xl md:text-3xl font-black uppercase">The Arena</h3>
+                    <span
+                        class="inline-block w-fit text-purple-400 font-black tracking-widest text-[9px] uppercase bg-purple-400/10 px-3 py-1 rounded-md mb-6 border border-purple-400/20">Cinema</span>
+                    <h3 class="text-2xl font-black uppercase mb-2">Movie Night</h3>
+                    <p class="text-gray-400 text-xs font-mono mb-2">Mon Jan 26th @ 12:00 AM</p>
+                    <p class="text-white text-sm font-bold mb-6">"Django Unchained" & "White Chicks"</p>
+                    <div class="mt-auto">
+                        <div
+                            class="flex items-center gap-2 text-xs text-gray-300 bg-white/5 p-3 rounded-xl border border-white/10">
+                            <i class='bx bxs-volume-full text-purple-400'></i>
+                            <span class="uppercase font-bold text-[10px]">Channel: Movies</span>
                         </div>
-                        <p id="debate-desc" class="text-gray-400 text-sm md:text-base leading-relaxed">Politics,
-                            religion, ideology—it's all on the table. Debate hard, keep it family.</p>
                     </div>
-                    <div class="flex gap-2 w-full md:w-auto">
-                        <span
-                            class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Heated</span>
-                        <span
-                            class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Respect</span>
+                </div>
+
+                <div
+                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-levant-gold/30">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <i class='bx bxs-conversation text-9xl'></i>
+                    </div>
+                    <span
+                        class="inline-block w-fit text-levant-gold font-black tracking-widest text-[9px] uppercase bg-levant-gold/10 px-3 py-1 rounded-md mb-6 border border-levant-gold/20">Social</span>
+                    <h3 class="text-2xl font-black uppercase mb-2">The Gathering</h3>
+                    <div class="flex flex-col gap-2 mb-6">
+                        <p class="text-gray-400 text-xs font-mono">Tue Jan 27th @ 12:00 AM</p>
+                        <p class="text-gray-400 text-xs font-mono">Thu Jan 29th @ 09:30 PM</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div
+                            class="flex items-center gap-2 text-xs text-gray-300 bg-white/5 p-3 rounded-xl border border-white/10">
+                            <i class='bx bxs-volume-full text-levant-gold'></i>
+                            <span class="uppercase font-bold text-[10px]">Channel: Muggles only</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -311,16 +322,12 @@
                     <p id="gallery-sub" class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">
                         Screenshots don't lie</p>
                 </div>
-                <div class="flex gap-2">
-                    <div
-                        class="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer">
-                        <i class='bx bx-chevron-left'></i></div>
-                    <div
-                        class="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer">
-                        <i class='bx bx-chevron-right'></i></div>
-                </div>
+                <button id="upload-btn"
+                    class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2">
+                    <i class='bx bxs-camera-plus text-lg'></i> Share Moment
+                </button>
             </div>
-            <div class="columns-1 md:columns-3 gap-4 space-y-4">
+            <div id="gallery-grid" class="columns-1 md:columns-3 gap-4 space-y-4">
                 <div
                     class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300">
                     <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
@@ -487,9 +494,18 @@
                         <h4 id="faq-q1" class="font-bold text-sm md:text-base">How do I verify?</h4>
                         <i class='bx bx-plus transition-transform duration-300 group-[.active]:rotate-45'></i>
                     </div>
-                    <div class="max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-40">
-                        <p id="faq-a1" class="text-gray-400 text-xs md:text-sm mt-4 pt-4 border-t border-white/5">Join
-                            voice, say hi, or react to the rules bot. We keep it simple.</p>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-96">
+                        <div id="faq-a1"
+                            class="text-gray-400 text-xs md:text-sm mt-4 pt-4 border-t border-white/5 leading-relaxed">
+                            <p class="mb-2">You need to send an application to our staff. You will be asked:</p>
+                            <ol class="list-decimal list-inside space-y-1 ml-2">
+                                <li>What is your country of origin and how old are you?</li>
+                                <li>Why do you want to join this server? What do you expect from it?</li>
+                                <li>On a scale from 1 to 10, how tolerant are you of opinions that differ from your
+                                    beliefs?</li>
+                            </ol>
+                            <p class="mt-2">If accepted by staff, you're in.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="glass-card rounded-2xl p-6 cursor-pointer group" onclick="toggleFaq(this)">
