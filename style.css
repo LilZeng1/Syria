@@ -2,6 +2,8 @@
     --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --arabic-font: 'Noto Sans Arabic', sans-serif;
     --levant-gold: #d4af37;
+    --nitro-pink: #f47fff;
+    --neon-purple: #8a2be2;
 }
 
 * {
@@ -37,6 +39,12 @@ body {
     height: 100%;
 }
 
+.nitro-card {
+    background: rgba(10, 5, 20, 0.4);
+    border: 1px solid rgba(244, 127, 255, 0.1);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.05);
+}
+
 .text-glow {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
@@ -46,9 +54,15 @@ body {
     display: inline-block;
 }
 
-.glass-card:not(#stats .glass-card):hover i:not(.no-anim-badge i) {
+.glass-card:not(#stats .glass-card):not(.nitro-card):hover i:not(.no-anim-badge i) {
     transform: translateY(-5px) scale(1.1);
     filter: drop-shadow(0 0 15px currentColor);
+}
+
+.nitro-card:hover {
+    border-color: rgba(244, 127, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(138, 43, 226, 0.15);
+    transform: translateY(-5px);
 }
 
 .no-anim-badge {
