@@ -19,11 +19,23 @@
                         'apple-gray': '#1d1d1f',
                         'levant-gold': '#d4af37',
                         'among-red': '#ff1a1a',
-                        'discord-blurple': '#5865F2'
+                        'discord-blurple': '#5865F2',
+                        'nitro-pink': '#f47fff',
+                        'neon-purple': '#8a2be2'
                     },
                     fontFamily: {
                         sans: ['Inter', 'Noto Sans Arabic', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
                     }
                 }
             }
@@ -42,8 +54,10 @@
         class="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 p-6 text-center">
         <button id="close-menu" class="absolute top-8 right-8 text-4xl text-white"><i class='bx bx-x'></i></button>
         <a href="#hero" class="mobile-link text-2xl font-black uppercase tracking-widest">Home</a>
+        <a href="#boosters" class="mobile-link text-2xl font-black uppercase tracking-widest text-nitro-pink">VIPs</a>
         <a href="#community" class="mobile-link text-2xl font-black uppercase tracking-widest">Our Vibe</a>
         <a href="#stats" class="mobile-link text-2xl font-black uppercase tracking-widest">Growth</a>
+        <a href="#gallery" class="mobile-link text-2xl font-black uppercase tracking-widest">Moments</a>
         <a href="#reviews" class="mobile-link text-2xl font-black uppercase tracking-widest">Family</a>
         <a href="#culture" class="mobile-link text-2xl font-black uppercase tracking-widest">Heritage</a>
         <a href="https://discord.gg/qFDQG5aDJN"
@@ -61,6 +75,8 @@
             </a>
             <div class="hidden md:flex gap-8 items-center text-[10px] font-black uppercase tracking-[0.2em]">
                 <a href="#hero" class="nav-item hover:text-levant-gold transition-colors">Home</a>
+                <a href="#boosters"
+                    class="nav-item text-nitro-pink hover:text-white transition-colors shadow-none">VIPs</a>
                 <a href="https://discord.gg/ekHgfYs4eA" target="_blank" class="nav-item text-discord-blurple">Join
                     Discord</a>
                 <a href="#community" class="nav-item hover:text-levant-gold transition-colors">Our Vibe</a>
@@ -92,7 +108,8 @@
                 </div>
                 <h1 id="hero-title"
                     class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-[1.1] tracking-tighter mb-8 gradient-text uppercase">
-                    The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span></h1>
+                    The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span>
+                </h1>
                 <p id="hero-sub"
                     class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed mb-10">Not
                     just another server—it's home. From heated debates to 3 AM gaming sessions. Come as you are, stay
@@ -103,6 +120,32 @@
                         <i class='bx bxl-discord-alt text-xl'></i> Jump In Discord
                     </a>
                     <a id="explore-btn" href="#community" class="apple-btn-secondary w-full sm:w-auto">Take a Tour</a>
+                </div>
+            </div>
+            <div
+                class="absolute bottom-0 left-0 right-0 bg-black/40 border-t border-white/5 backdrop-blur-sm overflow-hidden py-3">
+                <div class="whitespace-nowrap animate-marquee flex gap-16 items-center">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
+                        Online</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-red-500 align-middle mr-2'></i>Among Us Lobby:
+                        FULL</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-purple-500 align-middle mr-2'></i>Movie Night: Starting
+                        in 20m</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-blue-500 align-middle mr-2'></i>New Member: Sarah_99
+                        joined</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-levant-gold align-middle mr-2'></i>Top G:
+                        Ahmed_Sy</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
+                        Online</span>
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
+                            class='bx bxs-circle text-[6px] text-red-500 align-middle mr-2'></i>Among Us Lobby:
+                        FULL</span>
                 </div>
             </div>
         </section>
@@ -124,6 +167,65 @@
                 <div class="glass-card rounded-3xl p-8 text-center">
                     <h3 class="text-4xl font-black text-levant-gold mb-2">ZERO</h3>
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Fake Vibes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="boosters" class="py-12 md:py-20 px-4 max-w-7xl mx-auto reveal">
+            <div class="glass-card nitro-card rounded-[3rem] p-8 md:p-12 border-none relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20 opacity-50"></div>
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-nitro-pink blur-[100px] opacity-20 animate-pulse-slow">
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-64 h-64 bg-neon-purple blur-[100px] opacity-20 animate-pulse-slow">
+                </div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-center md:text-left">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-nitro-pink/10 rounded-lg border border-nitro-pink/20 mb-4">
+                            <i class='bx bxs-rocket text-nitro-pink'></i>
+                            <span class="text-[9px] font-black uppercase tracking-widest text-nitro-pink">Server
+                                Boosters</span>
+                        </div>
+                        <h2 id="booster-title"
+                            class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-4">Hall of <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple">Legends</span>
+                        </h2>
+                        <p id="booster-desc" class="text-gray-400 text-sm max-w-md">The real MVPs keeping our audio
+                            crisp and our streams HD. Respect the badge.</p>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="flex -space-x-4">
+                            <div
+                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-0">
+                                <img src="https://cdn.discordapp.com/embed/avatars/0.png"
+                                    class="w-full h-full rounded-full opacity-50">
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10">
+                                <img src="https://cdn.discordapp.com/embed/avatars/1.png"
+                                    class="w-full h-full rounded-full opacity-60">
+                            </div>
+                            <div
+                                class="w-14 h-14 rounded-full border-2 border-nitro-pink bg-gray-800 flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(244,127,255,0.4)]">
+                                <img src="https://cdn.discordapp.com/embed/avatars/2.png"
+                                    class="w-full h-full rounded-full">
+                                <i class='bx bxs-star absolute -top-1 -right-1 text-nitro-pink text-xs'></i>
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10">
+                                <img src="https://cdn.discordapp.com/embed/avatars/3.png"
+                                    class="w-full h-full rounded-full opacity-60">
+                            </div>
+                            <div
+                                class="w-12 h-12 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center text-[10px] font-black relative z-0">
+                                +12
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -196,6 +298,63 @@
                             class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Heated</span>
                         <span
                             class="px-4 py-2 bg-white/5 rounded-lg text-[9px] font-black uppercase tracking-widest border border-white/10 flex-1 text-center hover:bg-white/10 transition-colors cursor-default">Respect</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-12 px-4 max-w-7xl mx-auto reveal">
+            <div class="flex items-end justify-between mb-8">
+                <div>
+                    <h2 id="gallery-title" class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-2">
+                        Moments</h2>
+                    <p id="gallery-sub" class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">
+                        Screenshots don't lie</p>
+                </div>
+                <div class="flex gap-2">
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer">
+                        <i class='bx bx-chevron-left'></i></div>
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer">
+                        <i class='bx bx-chevron-right'></i></div>
+                </div>
+            </div>
+            <div class="columns-1 md:columns-3 gap-4 space-y-4">
+                <div
+                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
+                        <div
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class='bx bxs-heart text-2xl text-levant-gold'></i>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-2 transition-transform duration-300">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-square relative">
+                        <div
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class='bx bxs-joystick text-2xl text-discord-blurple'></i>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-1 transition-transform duration-300">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-[9/16] relative">
+                        <div
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class='bx bxs-music text-2xl text-green-500'></i>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-1 transition-transform duration-300">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
+                        <div
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class='bx bxs-camera text-2xl text-white'></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -318,6 +477,33 @@
                 </div>
             </div>
         </section>
+
+        <section id="faq" class="py-12 px-4 max-w-4xl mx-auto reveal">
+            <h2 id="faq-title" class="text-2xl md:text-4xl font-black uppercase text-center mb-8 tracking-tighter">Quick
+                Q<span class="text-levant-gold">&</span>A</h2>
+            <div class="flex flex-col gap-4">
+                <div class="glass-card rounded-2xl p-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 id="faq-q1" class="font-bold text-sm md:text-base">How do I verify?</h4>
+                        <i class='bx bx-plus transition-transform duration-300 group-[.active]:rotate-45'></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-40">
+                        <p id="faq-a1" class="text-gray-400 text-xs md:text-sm mt-4 pt-4 border-t border-white/5">Join
+                            voice, say hi, or react to the rules bot. We keep it simple.</p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 id="faq-q2" class="font-bold text-sm md:text-base">Are non-Syrians welcome?</h4>
+                        <i class='bx bx-plus transition-transform duration-300 group-[.active]:rotate-45'></i>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-40">
+                        <p id="faq-a2" class="text-gray-400 text-xs md:text-sm mt-4 pt-4 border-t border-white/5">100%.
+                            If you vibe with the culture and respect the rules, you're family.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-black pt-16 pb-8 px-4 border-t border-white/5">
@@ -344,5 +530,10 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        function toggleFaq(el) {
+            el.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
