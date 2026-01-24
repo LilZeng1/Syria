@@ -2,23 +2,15 @@ const translations = {
     en: {
         statText: "1,800+ Members — You're the missing one!",
         navHome: "Home",
-        navCommunity: "Our Vibe",
+        navSchedule: "Schedule",
         navReviews: "Family",
         navHeritage: "Heritage",
         navDiscord: "Join Discord",
         heroTitle: "The Heart <br> <span class='italic serif text-levant-gold'>Of The Levant.</span>",
         heroSub: "Forget regular servers. This is where the real ones hang out. From deep talks to gaming chaos, it's just home.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> Jump In Discord",
-        exploreBtn: "Take a Tour",
-        commTag: "Our Daily Ritual",
-        commTitle: "Among Us <br> <span class='text-white/30 text-xl md:text-2xl'>Syrian Edition</span>",
-        commDesc: "Every single night. Voice channels explode and friendships are tested. No mercy for the impostors, just chaos.",
-        gmodTitle: "Garry's Mod",
-        gmodDesc: "Sandbox madness. From serious roleplay to absolute TTT mayhem. The true gaming spirit.",
-        cinemaTitle: "Late Night Cinema",
-        cinemaDesc: "Popcorn ready? We're streaming movies, anime, and those classic Ramadan vibes in HD.",
-        debateTitle: "The Arena",
-        debateDesc: "Politics, religion, or why pineapple on pizza is a crime. Debate hard, keep it family.",
+        exploreBtn: "Check Events",
+        schedTitle: "The Schedule",
         revTitle: "The Family",
         revSupernova: "\"Started from 3 AM calls, now we're a whole tribe. It's more than just a server, it's a sanctuary.\"",
         revAlex: "\"Witnessed every single glow-up. If you want a place with zero fake vibes, this is it. Welcome home.\"",
@@ -32,30 +24,28 @@ const translations = {
         gallerySub: "Screenshots don't lie",
         faqTitle: "Quick Q<span class='text-levant-gold'>&</span>A",
         faqQ1: "How do I verify?",
-        faqA1: "Join voice, say hi, or react to the rules bot. We keep it simple.",
+        faqA1: `<p class="mb-2">You need to send an application to our staff. You will be asked:</p>
+                <ol class="list-decimal list-inside space-y-1 ml-2">
+                    <li>What is your country of origin and how old are you?</li>
+                    <li>Why do you want to join this server? What do you expect from it?</li>
+                    <li>On a scale from 1 to 10, How tolerant are you of opinions that differ from your beliefs?</li>
+                </ol>
+                <p class="mt-2">If accepted by staff, you're in.</p>`,
         faqQ2: "Are non-Syrians welcome?",
         faqA2: "100%. If you vibe with the culture and respect the rules, you're family."
     },
     ar: {
         statText: "أكثر من ١٨٠٠ عضو — أنت الشخص الناقص!",
         navHome: "الرئيسية",
-        navCommunity: "أجوائنا",
+        navSchedule: "الجدول",
         navReviews: "العائلة",
         navHeritage: "التراث",
         navDiscord: "انضم إلينا",
         heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
         heroSub: "انسَ السيرفرات العادية. هنا المكان اللي بيجمعنا من جد. من النقاشات العميقة لجنون الألعاب، هنا بيتك.",
         enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> ادخل السيرفر",
-        exploreBtn: "خذ جولة",
-        commTag: "طقوسنا اليومية",
-        commTitle: "أمونغ أس <br> <span class='text-white/30 text-xl md:text-2xl'>بالنسخة السورية</span>",
-        commDesc: "كل ليلة. الغرف بتتملى وأصواتنا بتعلى. ما في رحمة للخونة، بس ضحك وجنون.",
-        gmodTitle: "غاريز مود",
-        gmodDesc: "عالم من الخيال. من تقمص الأدوار الجاد للفوضى المطلقة. متعة اللعب الحقيقية.",
-        cinemaTitle: "سينما آخر الليل",
-        cinemaDesc: "البوشار جاهز؟ عم نعرض أفلام، أنمي، وأجواء رمضان الكلاسيكية بدقة عالية.",
-        debateTitle: "الحلبة",
-        debateDesc: "سياسة، دين، أو ليش البيتزا بالأناناس جريمة. تناقش بقوة، بس خلي الاحترام أساس.",
+        exploreBtn: "جدول الفعاليات",
+        schedTitle: "جدولنا",
         revTitle: "العائلة",
         revSupernova: "\"بدأنا من اتصالات الساعة ٣ الصبح، وهلا صرنا قبيلة كاملة. مو مجرد سيرفر، هاد ملجأنا.\"",
         revAlex: "\"شفت السيرفر وهو بيكبر خطوة بخطوة. إذا بدك مكان حقيقي بدون تزييف، هاد هو المكان. أهلاً فيك.\"",
@@ -69,7 +59,13 @@ const translations = {
         gallerySub: "صور للذكرى",
         faqTitle: "سؤال <span class='text-levant-gold'>و</span> جواب",
         faqQ1: "كيف بوثق حسابي؟",
-        faqA1: "ادخل صوت، سلم علينا، أو تفاعل مع بوت القوانين. الموضوع بسيط.",
+        faqA1: `<p class="mb-2">لازم تقدم طلب للادارة، رح تنسأل:</p>
+                <ol class="list-decimal list-inside space-y-1 ml-2">
+                    <li>ما هو بلدك الأصلي وكم عمرك؟</li>
+                    <li>لماذا تريد الانضمام إلى هذا الخادم؟ وماذا تتوقع منه؟</li>
+                    <li>على مقياس من 1 إلى 10، ما مدى تسامحك مع الآراء التي تختلف عن معتقداتك؟</li>
+                </ol>
+                <p class="mt-2">اذا وافقوا عليك، مبروك صرت منا.</p>`,
         faqQ2: "هل مسموح لغير السوريين؟",
         faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين والجو العام، أنت من العيلة."
     }
@@ -105,16 +101,7 @@ function updateLanguage() {
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
         document.getElementById('explore-btn').innerText = t.exploreBtn;
 
-        document.getElementById('comm-tag').innerText = t.commTag;
-        document.getElementById('comm-title').innerHTML = t.commTitle;
-        document.getElementById('comm-desc').innerText = t.commDesc;
-
-        document.getElementById('gmod-title').innerText = t.gmodTitle;
-        document.getElementById('gmod-desc').innerText = t.gmodDesc;
-        document.getElementById('cinema-title').innerText = t.cinemaTitle;
-        document.getElementById('cinema-desc').innerText = t.cinemaDesc;
-        document.getElementById('debate-title').innerText = t.debateTitle;
-        document.getElementById('debate-desc').innerText = t.debateDesc;
+        document.getElementById('sched-title').innerText = t.schedTitle;
 
         document.getElementById('rev-title').innerText = t.revTitle;
         document.getElementById('rev-supernova').innerText = t.revSupernova;
@@ -133,7 +120,7 @@ function updateLanguage() {
         
         document.getElementById('faq-title').innerHTML = t.faqTitle;
         document.getElementById('faq-q1').innerText = t.faqQ1;
-        document.getElementById('faq-a1').innerText = t.faqA1;
+        document.getElementById('faq-a1').innerHTML = t.faqA1;
         document.getElementById('faq-q2').innerText = t.faqQ2;
         document.getElementById('faq-a2').innerText = t.faqA2;
 
@@ -166,3 +153,71 @@ function reveal() {
 }
 
 window.addEventListener('scroll', reveal);
+
+const modal = document.getElementById('upload-modal');
+const btn = document.getElementById('upload-btn');
+const close = document.getElementById('close-upload');
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const previewContainer = document.getElementById('preview-container');
+const imagePreview = document.getElementById('image-preview');
+const submitBtn = document.getElementById('submit-upload');
+
+function openModal() {
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        document.getElementById('upload-content').classList.remove('scale-95');
+    }, 10);
+}
+
+function closeModal() {
+    modal.classList.add('opacity-0');
+    document.getElementById('upload-content').classList.add('scale-95');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        resetForm();
+    }, 300);
+}
+
+function resetForm() {
+    fileInput.value = '';
+    previewContainer.classList.add('hidden');
+    imagePreview.src = '';
+}
+
+btn.addEventListener('click', openModal);
+close.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+fileInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            previewContainer.classList.remove('hidden');
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+submitBtn.addEventListener('click', () => {
+    if (!fileInput.files[0]) return;
+    
+    const newCard = document.createElement('div');
+    newCard.className = 'break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300 reveal active';
+    newCard.innerHTML = `
+        <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
+            <img src="${imagePreview.src}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                 <span class="text-[10px] font-black uppercase tracking-widest text-white">Just Now</span>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('gallery-grid').prepend(newCard);
+    closeModal();
+});
