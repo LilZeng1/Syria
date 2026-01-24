@@ -25,7 +25,16 @@ const translations = {
         revGeorge: "\"I just keep the lights on with some code, but the people here are the real magic. 10/10 vibes only.\"",
         cultTitle: "The <br> Heritage",
         cultSub: "Fairuz in the morning, Wassouf for the soul.",
-        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. A bridge between tradition and the digital age."
+        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. A bridge between tradition and the digital age.",
+        boosterTitle: "Hall of <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>Legends</span>",
+        boosterDesc: "The real MVPs keeping our audio crisp and our streams HD. Respect the badge.",
+        galleryTitle: "Moments",
+        gallerySub: "Screenshots don't lie",
+        faqTitle: "Quick Q<span class='text-levant-gold'>&</span>A",
+        faqQ1: "How do I verify?",
+        faqA1: "Join voice, say hi, or react to the rules bot. We keep it simple.",
+        faqQ2: "Are non-Syrians welcome?",
+        faqA2: "100%. If you vibe with the culture and respect the rules, you're family."
     },
     ar: {
         statText: "أكثر من ١٨٠٠ عضو — أنت الشخص الناقص!",
@@ -53,7 +62,16 @@ const translations = {
         revGeorge: "\"أنا بس بهتم بالكود والإضاءة، بس الناس هون هنن السحر الحقيقي. أجواء خيالية ١٠/١٠.\"",
         cultTitle: "التراث <br> العريق",
         cultSub: "فيروز بالصبح، والوسوف للروح.",
-        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات كتيرة، بس الروح وحدة. جسر بين الأصالة والعصر الرقمي."
+        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات كتيرة، بس الروح وحدة. جسر بين الأصالة والعصر الرقمي.",
+        boosterTitle: "قاعة <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>الأساطير</span>",
+        boosterDesc: "الأعضاء الذهبيين اللي مخليين الصوت واضح والبث عالي الدقة. كل الاحترام.",
+        galleryTitle: "لحظات",
+        gallerySub: "صور للذكرى",
+        faqTitle: "سؤال <span class='text-levant-gold'>و</span> جواب",
+        faqQ1: "كيف بوثق حسابي؟",
+        faqA1: "ادخل صوت، سلم علينا، أو تفاعل مع بوت القوانين. الموضوع بسيط.",
+        faqQ2: "هل مسموح لغير السوريين؟",
+        faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين والجو العام، أنت من العيلة."
     }
 };
 
@@ -106,6 +124,18 @@ function updateLanguage() {
         document.getElementById('cult-title').innerHTML = t.cultTitle;
         document.getElementById('cult-sub').innerText = t.cultSub;
         document.getElementById('cult-desc').innerText = t.cultDesc;
+        
+        document.getElementById('booster-title').innerHTML = t.boosterTitle;
+        document.getElementById('booster-desc').innerText = t.boosterDesc;
+        
+        document.getElementById('gallery-title').innerText = t.galleryTitle;
+        document.getElementById('gallery-sub').innerText = t.gallerySub;
+        
+        document.getElementById('faq-title').innerHTML = t.faqTitle;
+        document.getElementById('faq-q1').innerText = t.faqQ1;
+        document.getElementById('faq-a1').innerText = t.faqA1;
+        document.getElementById('faq-q2').innerText = t.faqQ2;
+        document.getElementById('faq-a2').innerText = t.faqA2;
 
         document.body.style.opacity = '1';
         reveal();
