@@ -17,7 +17,7 @@
                 extend: {
                     colors: {
                         'apple-gray': '#1d1d1f',
-                        'levant-gold': '#d4af37',
+                        'levant-gold': 'var(--accent-color, #d4af37)',
                         'among-red': '#ff1a1a',
                         'discord-blurple': '#5865F2',
                         'nitro-pink': '#f47fff',
@@ -30,6 +30,7 @@
                     animation: {
                         'marquee': 'marquee 25s linear infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 8s linear infinite',
                     },
                     keyframes: {
                         marquee: {
@@ -43,6 +44,9 @@
     </script>
 </head>
 <body class="bg-[#050505] text-white selection:bg-levant-gold/30 overflow-x-hidden transition-opacity duration-500">
+    <canvas id="matrix-canvas"
+        class="fixed inset-0 z-[1] opacity-0 pointer-events-none transition-opacity duration-700"></canvas>
+
     <div id="loader"
         class="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-all duration-700">
         <div class="scale-110 md:scale-150">
@@ -52,26 +56,87 @@
 
     <div id="live-activity" class="fixed bottom-24 left-4 z-50 hidden md:flex flex-col gap-2 pointer-events-none"></div>
 
-    <div id="music-player"
-        class="fixed bottom-4 right-4 z-50 glass-card rounded-full p-2 pr-6 flex items-center gap-3 transition-transform duration-300 hover:scale-105 cursor-pointer border border-white/10 bg-black/80">
-        <div class="relative w-10 h-10 rounded-full bg-gray-800 overflow-hidden flex items-center justify-center group">
-            <img src="./Assets/ServerIcon.png"
-                class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
-                id="music-cover">
-            <div class="absolute inset-0 flex items-center justify-center">
-                <i class='bx bx-play text-xl' id="play-icon"></i>
-            </div>
-            <div class="equalizer absolute bottom-0 left-0 right-0 h-1/2 flex items-end justify-center gap-[2px] opacity-0 transition-opacity"
-                id="eq-viz">
-                <span class="w-1 bg-levant-gold h-2 animate-eq-1"></span>
-                <span class="w-1 bg-levant-gold h-4 animate-eq-2"></span>
-                <span class="w-1 bg-levant-gold h-3 animate-eq-3"></span>
+    <div id="portal-trigger" class="fixed bottom-6 right-6 z-50 group cursor-pointer">
+        <div
+            class="absolute inset-0 bg-levant-gold/20 rounded-full blur-xl animate-pulse-slow group-hover:bg-levant-gold/40 transition-all">
+        </div>
+        <div
+            class="relative w-14 h-14 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center overflow-hidden hover:scale-110 transition-transform duration-300 shadow-2xl shadow-levant-gold/10">
+            <i
+                class='bx bxs-component text-2xl text-levant-gold group-hover:rotate-180 transition-transform duration-700'></i>
+            <div
+                class="absolute inset-0 border-2 border-transparent border-t-levant-gold/50 rounded-full animate-spin-slow">
             </div>
         </div>
-        <div class="flex flex-col">
-            <span class="text-[10px] font-black uppercase text-levant-gold tracking-widest">Now Playing</span>
-            <span class="text-[9px] text-gray-400 font-mono scroll-text w-24 whitespace-nowrap overflow-hidden">Fairuz -
-                Kifak Inta (LoFi)</span>
+        <div
+            class="absolute bottom-full right-0 mb-4 bg-black/90 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-white/10">
+            Command Portal
+        </div>
+    </div>
+
+    <div id="portal-overlay"
+        class="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-2xl hidden opacity-0 transition-opacity duration-300 flex items-center justify-center">
+        <div class="absolute inset-0" id="close-portal-bg"></div>
+        <div class="relative w-full max-w-lg p-8 transform scale-95 transition-transform duration-300"
+            id="portal-content">
+            <div class="glass-card rounded-[2.5rem] p-8 border border-levant-gold/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h3 class="text-2xl font-black uppercase italic tracking-tighter">System <span
+                                class="text-levant-gold">Override</span></h3>
+                        <p class="text-[10px] text-gray-400 font-mono tracking-widest uppercase">Customize your
+                            experience</p>
+                    </div>
+                    <button id="close-portal"
+                        class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+                        <i class='bx bx-x text-xl'></i>
+                    </button>
+                </div>
+
+                <div class="space-y-8">
+                    <div>
+                        <label class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-3 block">Accent
+                            Interface</label>
+                        <div class="flex gap-4">
+                            <button
+                                class="theme-btn w-10 h-10 rounded-full bg-[#d4af37] ring-2 ring-offset-4 ring-offset-black ring-[#d4af37] transition-transform hover:scale-110"
+                                data-color="#d4af37"></button>
+                            <button
+                                class="theme-btn w-10 h-10 rounded-full bg-[#f47fff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#f47fff] transition-all hover:scale-110"
+                                data-color="#f47fff"></button>
+                            <button
+                                class="theme-btn w-10 h-10 rounded-full bg-[#00ffff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#00ffff] transition-all hover:scale-110"
+                                data-color="#00ffff"></button>
+                            <button
+                                class="theme-btn w-10 h-10 rounded-full bg-[#ff1a1a] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#ff1a1a] transition-all hover:scale-110"
+                                data-color="#ff1a1a"></button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-levant-gold/30 transition-colors cursor-pointer group"
+                            id="toggle-matrix">
+                            <div class="flex justify-between items-start mb-2">
+                                <i
+                                    class='bx bx-code-alt text-2xl text-gray-400 group-hover:text-green-400 transition-colors'></i>
+                                <div class="w-2 h-2 rounded-full bg-gray-600" id="matrix-status"></div>
+                            </div>
+                            <h4 class="font-bold text-sm">Matrix Mode</h4>
+                            <p class="text-[9px] text-gray-500">Digital Rain Overlay</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-levant-gold/30 transition-colors cursor-pointer group"
+                            id="toggle-focus">
+                            <div class="flex justify-between items-start mb-2">
+                                <i
+                                    class='bx bx-bullseye text-2xl text-gray-400 group-hover:text-blue-400 transition-colors'></i>
+                                <div class="w-2 h-2 rounded-full bg-gray-600" id="focus-status"></div>
+                            </div>
+                            <h4 class="font-bold text-sm">Zen Focus</h4>
+                            <p class="text-[9px] text-gray-500">Blur Backgrounds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -178,7 +243,7 @@
                 class="absolute bottom-0 left-0 right-0 bg-black/40 border-t border-white/5 backdrop-blur-sm overflow-hidden py-3 z-20">
                 <div class="whitespace-nowrap animate-marquee flex gap-16 items-center">
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
-                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
+                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Bots
                         Online</span>
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
                             class='bx bxs-circle text-[6px] text-red-500 align-middle mr-2'></i>Among Us Lobby:
@@ -187,10 +252,10 @@
                             class='bx bxs-circle text-[6px] text-purple-500 align-middle mr-2'></i>Movie Night: Starting
                         soon</span>
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
-                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
-                        Online</span>
+                            class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Chat
+                        Active</span>
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
-                            class='bx bxs-circle text-[6px] text-red-500 align-middle mr-2'></i>Among Us Lobby:
+                            class='bx bxs-circle text-[6px] text-red-500 align-middle mr-2'></i>Gaming Lobby:
                         FULL</span>
                 </div>
             </div>
@@ -351,7 +416,7 @@
                     <h2 id="gallery-title" class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-2">
                         Moments</h2>
                     <p id="gallery-sub" class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">
-                        Screenshots don't lie</p>
+                        The history we build together</p>
                 </div>
                 <button id="upload-btn"
                     class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2">
@@ -360,48 +425,19 @@
             </div>
             <div id="gallery-grid" class="columns-1 md:columns-3 gap-4 space-y-4">
                 <div
-                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300">
-                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
-                        <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                            <i class='bx bxs-heart text-2xl text-levant-gold'></i>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1624138784181-dc7f5b751b66?q=80&w=1000&auto=format&fit=crop"
-                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                    </div>
+                    class="break-inside-avoid border-2 border-dashed border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[200px] text-gray-600 animate-pulse">
+                    <i class='bx bx-image-add text-3xl mb-2'></i>
+                    <span class="text-[9px] font-black uppercase tracking-widest">Empty Slot</span>
                 </div>
                 <div
-                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-2 transition-transform duration-300">
-                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-square relative">
-                        <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                            <i class='bx bxs-joystick text-2xl text-discord-blurple'></i>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop"
-                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                    </div>
+                    class="break-inside-avoid border-2 border-dashed border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[250px] text-gray-600 animate-pulse">
+                    <i class='bx bx-image-add text-3xl mb-2'></i>
+                    <span class="text-[9px] font-black uppercase tracking-widest">Waiting for You</span>
                 </div>
                 <div
-                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-1 transition-transform duration-300">
-                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-[9/16] relative">
-                        <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                            <i class='bx bxs-music text-2xl text-green-500'></i>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop"
-                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                </div>
-                <div
-                    class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-1 transition-transform duration-300">
-                    <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
-                        <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                            <i class='bx bxs-camera text-2xl text-white'></i>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop"
-                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
-                    </div>
+                    class="break-inside-avoid border-2 border-dashed border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[200px] text-gray-600 animate-pulse">
+                    <i class='bx bx-image-add text-3xl mb-2'></i>
+                    <span class="text-[9px] font-black uppercase tracking-widest">Make History</span>
                 </div>
             </div>
         </section>
@@ -500,8 +536,8 @@
                     class="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none text-center md:text-left">
                     The <br> Heritage</h2>
                 <p id="cult-sub"
-                    class="text-levant-gold font-serif italic text-xl md:text-2xl mt-4 text-center md:text-left">Fairuz
-                    in the morning, Wassouf for the soul.</p>
+                    class="text-levant-gold font-serif italic text-xl md:text-2xl mt-4 text-center md:text-left">Beats
+                    in the morning, vibes for the soul.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8">
                 <div
