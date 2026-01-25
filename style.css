@@ -39,6 +39,11 @@ body {
     height: 100%;
 }
 
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
 .nitro-card {
     background: rgba(10, 5, 20, 0.4);
     border: 1px solid rgba(244, 127, 255, 0.1);
@@ -133,6 +138,64 @@ body {
     100% {
         filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
     }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutSlide {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes eqAnim {
+    0% {
+        height: 20%;
+    }
+
+    50% {
+        height: 100%;
+    }
+
+    100% {
+        height: 20%;
+    }
+}
+
+.animate-eq-1 {
+    animation: eqAnim 0.8s infinite ease-in-out;
+}
+
+.animate-eq-2 {
+    animation: eqAnim 1.2s infinite ease-in-out 0.2s;
+}
+
+.animate-eq-3 {
+    animation: eqAnim 1.0s infinite ease-in-out 0.4s;
+}
+
+.notification-enter {
+    animation: slideInLeft 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.notification-exit {
+    animation: fadeOutSlide 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 .glass-card:hover .among-ghost-fix i {
@@ -254,4 +317,20 @@ body {
 [dir="rtl"] .mobile-link,
 [dir="rtl"] #stat-text {
     letter-spacing: 0 !important;
+}
+
+[dir="rtl"] .notification-enter {
+    animation: slideInRight 0.5s forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
