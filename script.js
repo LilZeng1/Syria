@@ -62,7 +62,7 @@ const translations = {
         faqA1: `<p class="mb-2">لازم تقدم طلب للادارة، رح تنسأل:</p>
                 <ol class="list-decimal list-inside space-y-1 ml-2">
                     <li>ما هو بلدك الأصلي وكم عمرك؟</li>
-                    <li>لماذا تريد الانضمام إلى هذا سيرفر؟ وماذا تتوقع منه؟</li>
+                    <li>لماذا تريد الانضمام إلى هذا الخادم؟ وماذا تتوقع منه؟</li>
                     <li>على مقياس من 1 إلى 10، ما مدى تسامحك مع الآراء التي تختلف عن معتقداتك؟</li>
                 </ol>
                 <p class="mt-2">اذا وافقوا عليك، مبروك صرت منا.</p>`,
@@ -86,6 +86,9 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden-loader');
         reveal();
+        initStarfield();
+        startLiveFeed();
+        initTilt();
     }, 1000);
 });
 
@@ -100,24 +103,18 @@ function updateLanguage() {
         document.getElementById('hero-sub').innerText = t.heroSub;
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
         document.getElementById('explore-btn').innerText = t.exploreBtn;
-
         document.getElementById('sched-title').innerText = t.schedTitle;
-
         document.getElementById('rev-title').innerText = t.revTitle;
         document.getElementById('rev-supernova').innerText = t.revSupernova;
         document.getElementById('rev-alex').innerText = t.revAlex;
         document.getElementById('rev-george').innerText = t.revGeorge;
-
         document.getElementById('cult-title').innerHTML = t.cultTitle;
         document.getElementById('cult-sub').innerText = t.cultSub;
         document.getElementById('cult-desc').innerText = t.cultDesc;
-        
         document.getElementById('booster-title').innerHTML = t.boosterTitle;
         document.getElementById('booster-desc').innerText = t.boosterDesc;
-        
         document.getElementById('gallery-title').innerText = t.galleryTitle;
         document.getElementById('gallery-sub').innerText = t.gallerySub;
-        
         document.getElementById('faq-title').innerHTML = t.faqTitle;
         document.getElementById('faq-q1').innerText = t.faqQ1;
         document.getElementById('faq-a1').innerHTML = t.faqA1;
@@ -192,11 +189,11 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-fileInput.addEventListener('change', function() {
+fileInput.addEventListener('change', function () {
     const file = this.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             imagePreview.src = e.target.result;
             previewContainer.classList.remove('hidden');
         }
@@ -206,7 +203,7 @@ fileInput.addEventListener('change', function() {
 
 submitBtn.addEventListener('click', () => {
     if (!fileInput.files[0]) return;
-    
+
     const newCard = document.createElement('div');
     newCard.className = 'break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300 reveal active';
     newCard.innerHTML = `
@@ -217,7 +214,193 @@ submitBtn.addEventListener('click', () => {
             </div>
         </div>
     `;
-    
+
     document.getElementById('gallery-grid').prepend(newCard);
     closeModal();
+});
+
+function initStarfield() {
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let stars = [];
+    const maxStars = 100;
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    function Star() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2;
+    }
+
+    Star.prototype.update = function () {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+    }
+
+    Star.prototype.draw = function () {
+        ctx.fillStyle = 'rgba(212, 175, 55, ' + (Math.random() * 0.5 + 0.3) + ')';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    for (let i = 0; i < maxStars; i++) stars.push(new Star());
+
+    let mouse = { x: 0, y: 0 };
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        stars.forEach(star => {
+            star.update();
+            star.draw();
+
+            let dx = mouse.x - star.x;
+            let dy = mouse.y - star.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 150) {
+                ctx.strokeStyle = `rgba(212, 175, 55, ${1 - distance / 150})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+            }
+        });
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+}
+
+const mockEvents = [
+    { type: 'join', text: 'Sarah just joined the server!' },
+    { type: 'boost', text: 'Ahmed boosted the server! 🚀' },
+    { type: 'vc', text: 'Gaming VC is active (12 users)' },
+    { type: 'music', text: 'Music Bot is playing Fairuz' },
+    { type: 'event', text: 'Movie Night starting in 15m' }
+];
+
+function startLiveFeed() {
+    const container = document.getElementById('live-activity');
+    if (!container) return;
+
+    setInterval(() => {
+        const event = mockEvents[Math.floor(Math.random() * mockEvents.length)];
+        const el = document.createElement('div');
+        el.className = 'glass-card px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 flex items-center gap-2 notification-enter shadow-xl bg-black/80';
+        let icon = '';
+        if (event.type === 'join') icon = '<i class="bx bxs-user-plus text-green-400"></i>';
+        if (event.type === 'boost') icon = '<i class="bx bxs-rocket text-pink-500"></i>';
+        if (event.type === 'vc') icon = '<i class="bx bxs-microphone text-blue-400"></i>';
+        if (event.type === 'music') icon = '<i class="bx bxs-music text-purple-400"></i>';
+        if (event.type === 'event') icon = '<i class="bx bxs-calendar text-yellow-500"></i>';
+
+        el.innerHTML = `${icon} <span>${event.text}</span>`;
+
+        container.appendChild(el);
+        if (container.children.length > 3) {
+            container.removeChild(container.firstChild);
+        }
+
+        setTimeout(() => {
+            el.classList.remove('notification-enter');
+            el.classList.add('notification-exit');
+            setTimeout(() => el.remove(), 500);
+        }, 4000);
+    }, 5000);
+}
+
+let isPlaying = false;
+const playerBtn = document.getElementById('music-player');
+const playIcon = document.getElementById('play-icon');
+const eq = document.getElementById('eq-viz');
+const cover = document.getElementById('music-cover');
+
+if (playerBtn) {
+    playerBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+            playIcon.className = 'bx bx-pause text-xl';
+            eq.classList.remove('opacity-0');
+            cover.classList.add('animate-spin-slow');
+            cover.style.animation = 'spin 4s linear infinite';
+        } else {
+            playIcon.className = 'bx bx-play text-xl';
+            eq.classList.add('opacity-0');
+            cover.style.animation = 'none';
+        }
+    });
+}
+
+function initTilt() {
+    const cards = document.querySelectorAll('.tilt-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+    });
+}
+
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
+
+const animateCounters = () => {
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target + "+";
+            }
+        };
+        updateCount();
+    });
+}
+
+let counted = false;
+window.addEventListener('scroll', () => {
+    const statsSection = document.getElementById('stats');
+    if (statsSection && window.scrollY + window.innerHeight > statsSection.offsetTop && !counted) {
+        animateCounters();
+        counted = true;
+    }
 });
