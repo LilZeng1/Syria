@@ -50,6 +50,31 @@
         </div>
     </div>
 
+    <div id="live-activity" class="fixed bottom-24 left-4 z-50 hidden md:flex flex-col gap-2 pointer-events-none"></div>
+
+    <div id="music-player"
+        class="fixed bottom-4 right-4 z-50 glass-card rounded-full p-2 pr-6 flex items-center gap-3 transition-transform duration-300 hover:scale-105 cursor-pointer border border-white/10 bg-black/80">
+        <div class="relative w-10 h-10 rounded-full bg-gray-800 overflow-hidden flex items-center justify-center group">
+            <img src="./Assets/ServerIcon.png"
+                class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
+                id="music-cover">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i class='bx bx-play text-xl' id="play-icon"></i>
+            </div>
+            <div class="equalizer absolute bottom-0 left-0 right-0 h-1/2 flex items-end justify-center gap-[2px] opacity-0 transition-opacity"
+                id="eq-viz">
+                <span class="w-1 bg-levant-gold h-2 animate-eq-1"></span>
+                <span class="w-1 bg-levant-gold h-4 animate-eq-2"></span>
+                <span class="w-1 bg-levant-gold h-3 animate-eq-3"></span>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-[10px] font-black uppercase text-levant-gold tracking-widest">Now Playing</span>
+            <span class="text-[9px] text-gray-400 font-mono scroll-text w-24 whitespace-nowrap overflow-hidden">Fairuz -
+                Kifak Inta (LoFi)</span>
+        </div>
+    </div>
+
     <div id="upload-modal"
         class="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="glass-card max-w-md w-full rounded-3xl p-8 relative transform scale-95 transition-transform duration-300"
@@ -117,8 +142,9 @@
 
     <main class="w-full">
         <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+            <canvas id="starfield" class="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-auto"></canvas>
             <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.08)_0%,_rgba(0,0,0,0)_70%)]">
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.08)_0%,_rgba(0,0,0,0)_70%)] z-0">
             </div>
             <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto reveal">
                 <div
@@ -132,23 +158,24 @@
                         Members — You're the missing one!</span>
                 </div>
                 <h1 id="hero-title"
-                    class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-[1.1] tracking-tighter mb-8 gradient-text uppercase">
+                    class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-[1.1] tracking-tighter mb-8 gradient-text uppercase relative">
                     The Heart <br> <span class="italic serif text-levant-gold">Of The Levant.</span>
                 </h1>
                 <p id="hero-sub"
-                    class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed mb-10">Not
-                    just another server—it's home. From heated debates to 3 AM gaming sessions. Come as you are, stay
-                    for the family.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed mb-10 relative">
+                    Not just another server—it's home. From heated debates to 3 AM gaming sessions. Come as you are,
+                    stay for the family.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center relative">
                     <a id="enter-btn" href="https://discord.gg/ekHgfYs4eA"
-                        class="w-full sm:w-auto px-8 py-4 bg-[#5865F2] text-white text-[11px] font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-xl shadow-discord-blurple/20">
-                        <i class='bx bxl-discord-alt text-xl'></i> Jump In Discord
+                        class="w-full sm:w-auto px-8 py-4 bg-[#5865F2] text-white text-[11px] font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-xl shadow-discord-blurple/20 group">
+                        <i class='bx bxl-discord-alt text-xl group-hover:rotate-12 transition-transform'></i> Jump In
+                        Discord
                     </a>
                     <a id="explore-btn" href="#schedule" class="apple-btn-secondary w-full sm:w-auto">Check Events</a>
                 </div>
             </div>
             <div
-                class="absolute bottom-0 left-0 right-0 bg-black/40 border-t border-white/5 backdrop-blur-sm overflow-hidden py-3">
+                class="absolute bottom-0 left-0 right-0 bg-black/40 border-t border-white/5 backdrop-blur-sm overflow-hidden py-3 z-20">
                 <div class="whitespace-nowrap animate-marquee flex gap-16 items-center">
                     <span class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400"><i
                             class='bx bxs-circle text-[6px] text-green-500 align-middle mr-2'></i>Music Bot
@@ -171,19 +198,19 @@
 
         <section id="stats" class="py-12 md:py-20 px-4 max-w-7xl mx-auto reveal">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass-card rounded-3xl p-8 text-center">
-                    <h3 class="text-4xl font-black text-levant-gold mb-2">1.8K+</h3>
+                <div class="tilt-card glass-card rounded-3xl p-8 text-center" data-tilt>
+                    <h3 class="text-4xl font-black text-levant-gold mb-2 counter" data-target="1800">0</h3>
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Active Souls</p>
                 </div>
-                <div class="glass-card rounded-3xl p-8 text-center">
+                <div class="tilt-card glass-card rounded-3xl p-8 text-center" data-tilt>
                     <h3 class="text-4xl font-black text-white mb-2">24/7</h3>
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">VC Energy</p>
                 </div>
-                <div class="glass-card rounded-3xl p-8 text-center">
+                <div class="tilt-card glass-card rounded-3xl p-8 text-center" data-tilt>
                     <h3 class="text-4xl font-black text-white mb-2">Weekly</h3>
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Curated Events</p>
                 </div>
-                <div class="glass-card rounded-3xl p-8 text-center">
+                <div class="tilt-card glass-card rounded-3xl p-8 text-center" data-tilt>
                     <h3 class="text-4xl font-black text-levant-gold mb-2">ZERO</h3>
                     <p class="text-[10px] text-gray-500 uppercase font-black tracking-widest">Fake Vibes</p>
                 </div>
@@ -191,7 +218,8 @@
         </section>
 
         <section id="boosters" class="py-12 md:py-20 px-4 max-w-7xl mx-auto reveal">
-            <div class="glass-card nitro-card rounded-[3rem] p-8 md:p-12 border-none relative overflow-hidden">
+            <div class="glass-card nitro-card rounded-[3rem] p-8 md:p-12 border-none relative overflow-hidden"
+                data-tilt>
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20 opacity-50"></div>
                 <div
                     class="absolute -top-24 -right-24 w-64 h-64 bg-nitro-pink blur-[100px] opacity-20 animate-pulse-slow">
@@ -219,24 +247,24 @@
                     <div class="flex items-center gap-4">
                         <div class="flex -space-x-4">
                             <div
-                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-0 overflow-hidden">
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-0 overflow-hidden transition-transform hover:z-30 hover:scale-110">
                                 <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/771419392307101696/avatars/29be40774bd45ffbecb51b32423d1908.webp?size=160"
                                     class="w-full h-full object-cover">
                             </div>
                             <div
-                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden">
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden transition-transform hover:z-30 hover:scale-110">
                                 <img src="https://cdn.discordapp.com/avatars/495926332145008641/a_d158e2139e8d394443ffb5af60c7951f.webp?size=256"
                                     class="w-full h-full object-cover">
                             </div>
                             <div
-                                class="w-16 h-16 rounded-full border-2 border-nitro-pink bg-gray-800 flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(244,127,255,0.4)] overflow-hidden">
+                                class="w-16 h-16 rounded-full border-2 border-nitro-pink bg-gray-800 flex items-center justify-center relative z-20 shadow-[0_0_15px_rgba(244,127,255,0.4)] overflow-hidden transition-transform hover:scale-110">
                                 <img src="https://cdn.discordapp.com/avatars/1286407873873838103/bdfe2c19fe2d4b192b5caea81acc0686.webp?size=256"
                                     class="w-full h-full object-cover">
                                 <i
                                     class='bx bxs-star absolute top-0 right-0 text-nitro-pink text-xs bg-black rounded-full p-0.5'></i>
                             </div>
                             <div
-                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden">
+                                class="w-14 h-14 rounded-full border-2 border-[#050505] bg-gray-800 flex items-center justify-center relative z-10 overflow-hidden transition-transform hover:z-30 hover:scale-110">
                                 <img src="https://cdn.discordapp.com/avatars/584922604658491412/c6c4d525f4b3a78ab02246eb8e74b7cc.webp?size=256"
                                     class="w-full h-full object-cover">
                             </div>
@@ -254,9 +282,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div
-                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-blue-500/30">
-                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                <div class="tilt-card glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-blue-500/30"
+                    data-tilt>
+                    <div
+                        class="absolute top-0 right-0 p-6 opacity-10 transition-transform group-hover:scale-125 group-hover:rotate-12 duration-500">
                         <i class='bx bxs-calendar-star text-9xl'></i>
                     </div>
                     <span
@@ -272,9 +301,10 @@
                     </div>
                 </div>
 
-                <div
-                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-purple-500/30">
-                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                <div class="tilt-card glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-purple-500/30"
+                    data-tilt>
+                    <div
+                        class="absolute top-0 right-0 p-6 opacity-10 transition-transform group-hover:scale-125 group-hover:-rotate-12 duration-500">
                         <i class='bx bxs-movie-play text-9xl'></i>
                     </div>
                     <span
@@ -291,9 +321,10 @@
                     </div>
                 </div>
 
-                <div
-                    class="glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-levant-gold/30">
-                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                <div class="tilt-card glass-card rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group reveal border-b-4 border-b-levant-gold/30"
+                    data-tilt>
+                    <div
+                        class="absolute top-0 right-0 p-6 opacity-10 transition-transform group-hover:scale-125 group-hover:rotate-6 duration-500">
                         <i class='bx bxs-conversation text-9xl'></i>
                     </div>
                     <span
@@ -332,36 +363,44 @@
                     class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300">
                     <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
                         <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                             <i class='bx bxs-heart text-2xl text-levant-gold'></i>
                         </div>
+                        <img src="https://images.unsplash.com/photo-1624138784181-dc7f5b751b66?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
                     </div>
                 </div>
                 <div
                     class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-2 transition-transform duration-300">
                     <div class="bg-gray-800 rounded-xl overflow-hidden aspect-square relative">
                         <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                             <i class='bx bxs-joystick text-2xl text-discord-blurple'></i>
                         </div>
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
                     </div>
                 </div>
                 <div
                     class="break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-1 transition-transform duration-300">
                     <div class="bg-gray-800 rounded-xl overflow-hidden aspect-[9/16] relative">
                         <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                             <i class='bx bxs-music text-2xl text-green-500'></i>
                         </div>
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
                     </div>
                 </div>
                 <div
                     class="break-inside-avoid glass-card rounded-2xl p-2 group hover:-rotate-1 transition-transform duration-300">
                     <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
                         <div
-                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                             <i class='bx bxs-camera text-2xl text-white'></i>
                         </div>
+                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
                     </div>
                 </div>
             </div>
@@ -374,7 +413,8 @@
                 <div class="h-1 w-24 bg-levant-gold mx-auto rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-yellow-500/50">
+                <div class="tilt-card glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-yellow-500/50"
+                    data-tilt>
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
                             <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
@@ -400,7 +440,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-gray-400/50">
+                <div class="tilt-card glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-gray-400/50"
+                    data-tilt>
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
                             <img src="https://cdn.discordapp.com/avatars/680408469064515829/e4a14aa8637538af9ac8a371886e6f5f.webp?size=128"
@@ -425,7 +466,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-green-500/50">
+                <div class="tilt-card glass-card rounded-[2rem] p-8 flex flex-col gap-6 reveal border-t-4 border-t-green-500/50"
+                    data-tilt>
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
                             <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128"
@@ -472,7 +514,8 @@
                         <h3 class="text-3xl md:text-6xl font-black uppercase tracking-tighter">Levantine Vibes</h3>
                     </div>
                 </div>
-                <div class="lg:col-span-4 glass-card rounded-[2rem] p-8 md:p-12 flex flex-col justify-center reveal">
+                <div class="lg:col-span-4 tilt-card glass-card rounded-[2rem] p-8 md:p-12 flex flex-col justify-center reveal"
+                    data-tilt>
                     <h3 class="text-2xl md:text-3xl font-black uppercase mb-6 italic serif text-levant-gold">Bilad
                         Al-Sham</h3>
                     <p id="cult-desc" class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">Syria, Lebanon,
