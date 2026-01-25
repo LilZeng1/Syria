@@ -1,7 +1,7 @@
 :root {
     --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --arabic-font: 'Noto Sans Arabic', sans-serif;
-    --levant-gold: #d4af37;
+    --accent-color: #d4af37;
     --nitro-pink: #f47fff;
     --neon-purple: #8a2be2;
 }
@@ -94,7 +94,7 @@ body {
 
     to {
         transform: scale(1.2);
-        filter: brightness(1.5) drop-shadow(0 0 5px #d4af37);
+        filter: brightness(1.5) drop-shadow(0 0 5px var(--accent-color));
     }
 }
 
@@ -164,32 +164,6 @@ body {
     }
 }
 
-@keyframes eqAnim {
-    0% {
-        height: 20%;
-    }
-
-    50% {
-        height: 100%;
-    }
-
-    100% {
-        height: 20%;
-    }
-}
-
-.animate-eq-1 {
-    animation: eqAnim 0.8s infinite ease-in-out;
-}
-
-.animate-eq-2 {
-    animation: eqAnim 1.2s infinite ease-in-out 0.2s;
-}
-
-.animate-eq-3 {
-    animation: eqAnim 1.0s infinite ease-in-out 0.4s;
-}
-
 .notification-enter {
     animation: slideInLeft 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
@@ -213,7 +187,7 @@ body {
 @media (min-width: 1024px) {
     .glass-card:hover {
         background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(212, 175, 55, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
@@ -271,6 +245,39 @@ body {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+.text-levant-gold,
+.bg-levant-gold,
+.border-levant-gold {
+    color: var(--accent-color) !important;
+}
+
+.bg-levant-gold {
+    background-color: var(--accent-color) !important;
+}
+
+.border-levant-gold {
+    border-color: var(--accent-color) !important;
+}
+
+.hover\:text-levant-gold:hover {
+    color: var(--accent-color) !important;
+}
+
+body.focus-mode section:not(.active),
+body.focus-mode nav,
+body.focus-mode footer {
+    filter: blur(8px) grayscale(100%);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+body.focus-mode #portal-overlay,
+body.focus-mode #portal-trigger {
+    filter: none;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 @media (max-width: 768px) {
