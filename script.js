@@ -16,12 +16,12 @@ const translations = {
         revAlex: "\"Witnessed every single glow-up. If you want a place with zero fake vibes, this is it. Welcome home.\"",
         revGeorge: "\"I just keep the lights on with some code, but the people here are the real magic. 10/10 vibes only.\"",
         cultTitle: "The <br> Heritage",
-        cultSub: "Fairuz in the morning, Wassouf for the soul.",
+        cultSub: "Beats in the morning, vibes for the soul.",
         cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. A bridge between tradition and the digital age.",
         boosterTitle: "Hall of <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>Legends</span>",
         boosterDesc: "The real MVPs keeping our audio crisp and our streams HD. Respect the badge.",
         galleryTitle: "Moments",
-        gallerySub: "Screenshots don't lie",
+        gallerySub: "The history we build together",
         faqTitle: "Quick Q<span class='text-levant-gold'>&</span>A",
         faqQ1: "How do I verify?",
         faqA1: `<p class="mb-2">You need to send an application to our staff. You will be asked:</p>
@@ -51,12 +51,12 @@ const translations = {
         revAlex: "\"شفت السيرفر وهو بيكبر خطوة بخطوة. إذا بدك مكان حقيقي بدون تزييف، هاد هو المكان. أهلاً فيك.\"",
         revGeorge: "\"أنا بس بهتم بالكود والإضاءة، بس الناس هون هنن السحر الحقيقي. أجواء خيالية ١٠/١٠.\"",
         cultTitle: "التراث <br> العريق",
-        cultSub: "فيروز بالصبح، والوسوف للروح.",
+        cultSub: "أنغام الصباح، وراحة للروح.",
         cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات كتيرة، بس الروح وحدة. جسر بين الأصالة والعصر الرقمي.",
         boosterTitle: "قاعة <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>الأساطير</span>",
         boosterDesc: "الأعضاء الذهبيين اللي مخليين الصوت واضح والبث عالي الدقة. كل الاحترام.",
         galleryTitle: "لحظات",
-        gallerySub: "صور للذكرى",
+        gallerySub: "تاريخنا سوا",
         faqTitle: "سؤال <span class='text-levant-gold'>و</span> جواب",
         faqQ1: "كيف بوثق حسابي؟",
         faqA1: `<p class="mb-2">لازم تقدم طلب للادارة، رح تنسأل:</p>
@@ -89,6 +89,7 @@ window.addEventListener('load', () => {
         initStarfield();
         startLiveFeed();
         initTilt();
+        initPortal();
     }, 1000);
 });
 
@@ -215,7 +216,13 @@ submitBtn.addEventListener('click', () => {
         </div>
     `;
 
-    document.getElementById('gallery-grid').prepend(newCard);
+    const grid = document.getElementById('gallery-grid');
+    grid.prepend(newCard);
+
+    const emptySlots = grid.querySelectorAll('.border-dashed');
+    if (emptySlots.length > 0) {
+    }
+
     closeModal();
 });
 
@@ -251,10 +258,13 @@ function initStarfield() {
     }
 
     Star.prototype.draw = function () {
-        ctx.fillStyle = 'rgba(212, 175, 55, ' + (Math.random() * 0.5 + 0.3) + ')';
+        const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#d4af37';
+        ctx.fillStyle = accent;
+        ctx.globalAlpha = Math.random() * 0.5 + 0.3;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
+        ctx.globalAlpha = 1;
     }
 
     for (let i = 0; i < maxStars; i++) stars.push(new Star());
@@ -275,12 +285,15 @@ function initStarfield() {
             let dy = mouse.y - star.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
             if (distance < 150) {
-                ctx.strokeStyle = `rgba(212, 175, 55, ${1 - distance / 150})`;
+                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#d4af37';
+                ctx.strokeStyle = accent;
                 ctx.lineWidth = 0.5;
+                ctx.globalAlpha = 1 - distance / 150;
                 ctx.beginPath();
                 ctx.moveTo(star.x, star.y);
                 ctx.lineTo(mouse.x, mouse.y);
                 ctx.stroke();
+                ctx.globalAlpha = 1;
             }
         });
         requestAnimationFrame(animate);
@@ -295,7 +308,7 @@ const mockEvents = [
     { type: 'join', text: 'Sarah just joined the server!' },
     { type: 'boost', text: 'Ahmed boosted the server! 🚀' },
     { type: 'vc', text: 'Gaming VC is active (12 users)' },
-    { type: 'music', text: 'Music Bot is playing Fairuz' },
+    { type: 'music', text: 'Music Bot is playing tunes' },
     { type: 'event', text: 'Movie Night starting in 15m' }
 ];
 
@@ -327,28 +340,6 @@ function startLiveFeed() {
             setTimeout(() => el.remove(), 500);
         }, 4000);
     }, 5000);
-}
-
-let isPlaying = false;
-const playerBtn = document.getElementById('music-player');
-const playIcon = document.getElementById('play-icon');
-const eq = document.getElementById('eq-viz');
-const cover = document.getElementById('music-cover');
-
-if (playerBtn) {
-    playerBtn.addEventListener('click', () => {
-        isPlaying = !isPlaying;
-        if (isPlaying) {
-            playIcon.className = 'bx bx-pause text-xl';
-            eq.classList.remove('opacity-0');
-            cover.classList.add('animate-spin-slow');
-            cover.style.animation = 'spin 4s linear infinite';
-        } else {
-            playIcon.className = 'bx bx-play text-xl';
-            eq.classList.add('opacity-0');
-            cover.style.animation = 'none';
-        }
-    });
 }
 
 function initTilt() {
@@ -404,3 +395,118 @@ window.addEventListener('scroll', () => {
         counted = true;
     }
 });
+
+// Portal Logic
+function initPortal() {
+    const trigger = document.getElementById('portal-trigger');
+    const overlay = document.getElementById('portal-overlay');
+    const closeBtn = document.getElementById('close-portal');
+    const closeBg = document.getElementById('close-portal-bg');
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    const matrixToggle = document.getElementById('toggle-matrix');
+    const focusToggle = document.getElementById('toggle-focus');
+
+    function togglePortal() {
+        const isHidden = overlay.classList.contains('hidden');
+        if (isHidden) {
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                document.getElementById('portal-content').classList.remove('scale-95');
+            }, 10);
+        } else {
+            overlay.classList.add('opacity-0');
+            document.getElementById('portal-content').classList.add('scale-95');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+    }
+
+    trigger.addEventListener('click', togglePortal);
+    closeBtn.addEventListener('click', togglePortal);
+    closeBg.addEventListener('click', togglePortal);
+
+    // Theme Switcher
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const color = btn.getAttribute('data-color');
+            document.documentElement.style.setProperty('--accent-color', color);
+            document.documentElement.style.setProperty('--levant-gold', color);
+
+            const canvas = document.getElementById('starfield');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        });
+    });
+
+    // Matrix Logic
+    let matrixInterval;
+    let isMatrixOn = false;
+    matrixToggle.addEventListener('click', () => {
+        isMatrixOn = !isMatrixOn;
+        document.getElementById('matrix-status').style.backgroundColor = isMatrixOn ? '#4ade80' : '#4b5563';
+        document.getElementById('matrix-canvas').style.opacity = isMatrixOn ? '0.1' : '0';
+
+        if (isMatrixOn) {
+            startMatrix();
+        } else {
+            clearInterval(matrixInterval);
+        }
+    });
+
+    function startMatrix() {
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#0F0';
+            ctx.fillStyle = accent;
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        clearInterval(matrixInterval);
+        matrixInterval = setInterval(draw, 30);
+    }
+
+    // Focus Logic
+    let isFocusOn = false;
+    focusToggle.addEventListener('click', () => {
+        isFocusOn = !isFocusOn;
+        document.getElementById('focus-status').style.backgroundColor = isFocusOn ? '#60a5fa' : '#4b5563';
+        if (isFocusOn) {
+            document.body.classList.add('focus-mode');
+        } else {
+            document.body.classList.remove('focus-mode');
+        }
+    });
+}
