@@ -80,7 +80,7 @@
     </div>
 
     <div id="music-player"
-        class="fixed bottom-8 left-8 z-40 hidden md:flex items-center gap-4 bg-black/40 backdrop-blur-xl border border-white/10 p-3 rounded-2xl hover:border-levant-gold/50 transition-all group">
+        class="fixed bottom-8 left-8 z-40 hidden md:flex items-center gap-4 bg-black/40 backdrop-blur-xl border border-white/10 p-3 rounded-2xl hover:border-levant-gold/50 transition-all group interactable">
         <div class="relative w-10 h-10 rounded-full overflow-hidden animate-spin-slow group-hover:animate-none">
             <img src="./Assets/ServerIcon.png" class="w-full h-full object-cover opacity-80"
                 onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
@@ -88,20 +88,18 @@
         </div>
         <div class="flex flex-col">
             <span class="text-[9px] font-black uppercase text-levant-gold tracking-widest">Radio Levant</span>
-            <div class="flex items-center gap-1 h-3">
-                <span class="w-1 h-full bg-white/50 rounded-full animate-[pulse_0.5s_ease-in-out_infinite]"></span>
-                <span class="w-1 h-full bg-white/50 rounded-full animate-[pulse_0.7s_ease-in-out_infinite]"></span>
-                <span class="w-1 h-full bg-white/50 rounded-full animate-[pulse_0.4s_ease-in-out_infinite]"></span>
-                <span class="text-[10px] font-mono ml-1">Lofi Beats</span>
+            <div class="flex items-center gap-1 h-3" id="audio-visualizer">
+                <span class="w-1 h-2 bg-white/50 rounded-full animate-pulse"></span>
+                <span class="w-1 h-4 bg-white/50 rounded-full animate-pulse delay-75"></span>
+                <span class="w-1 h-3 bg-white/50 rounded-full animate-pulse delay-150"></span>
+                <span class="w-1 h-5 bg-white/50 rounded-full animate-pulse delay-100"></span>
             </div>
         </div>
-        <button
+        <button id="toggle-music"
             class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-levant-gold hover:text-black transition-colors">
             <i class='bx bx-play'></i>
         </button>
     </div>
-
-    <div id="live-activity" class="fixed top-24 right-4 z-40 flex flex-col gap-2 pointer-events-none items-end"></div>
 
     <div id="portal-trigger" class="fixed bottom-8 right-8 z-50 group cursor-none interactable">
         <div
@@ -109,109 +107,131 @@
         </div>
         <div
             class="relative w-16 h-16 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center overflow-hidden transition-transform duration-300 shadow-2xl shadow-levant-gold/10 group-hover:scale-110">
-            <i
-                class='bx bxs-component text-3xl text-levant-gold group-hover:rotate-180 transition-transform duration-700'></i>
+            <i class='bx bxs-cog text-3xl text-levant-gold group-hover:rotate-90 transition-transform duration-700'></i>
             <div
                 class="absolute inset-0 border-2 border-transparent border-t-levant-gold/50 rounded-full animate-spin-slow">
             </div>
         </div>
     </div>
 
-    <div id="portal-overlay"
-        class="fixed inset-0 z-[1000] bg-black/95 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex items-center justify-center">
-        <div class="absolute inset-0" id="close-portal-bg"></div>
-        <div class="relative w-full max-w-2xl p-4 md:p-8 transform scale-95 transition-transform duration-300"
-            id="portal-content">
-            <div
-                class="glass-card rounded-[2rem] p-8 md:p-12 border border-levant-gold/20 shadow-[0_0_100px_rgba(212,175,55,0.1)] bg-[#0a0a0a]">
-                <div class="flex justify-between items-center mb-10">
-                    <div>
-                        <h3 class="text-3xl font-black uppercase italic tracking-tighter glitch-text"
-                            data-text="SYSTEM OVERRIDE">System <span class="text-levant-gold">Override</span></h3>
-                        <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-1">///
-                            CONFIG_MOD_V.2.0.26</p>
+    <div id="settings-panel"
+        class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-[#050505]/95 backdrop-blur-2xl z-[1000] transform translate-x-full transition-transform duration-500 border-l border-white/10 shadow-[-50px_0_100px_rgba(0,0,0,0.8)]">
+        <div class="h-full flex flex-col p-8 overflow-y-auto">
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h3 class="text-3xl font-black uppercase italic tracking-tighter glitch-text"
+                        data-text="SYSTEM CONFIG">System <span class="text-levant-gold">Config</span></h3>
+                    <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-1">///
+                        USER_PREFERENCES_V.3.1</p>
+                </div>
+                <button id="close-settings"
+                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 flex items-center justify-center transition-all interactable">
+                    <i class='bx bx-x text-2xl'></i>
+                </button>
+            </div>
+
+            <div class="space-y-10">
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 block"><i
+                            class='bx bxs-palette mr-2'></i>Accent Resonance</label>
+                    <div class="grid grid-cols-4 gap-3">
+                        <button
+                            class="theme-btn w-full aspect-square rounded-xl bg-[#d4af37] ring-2 ring-offset-4 ring-offset-black ring-[#d4af37] transition-transform hover:scale-105 interactable"
+                            data-color="#d4af37"></button>
+                        <button
+                            class="theme-btn w-full aspect-square rounded-xl bg-[#f47fff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#f47fff] transition-all hover:scale-105 interactable"
+                            data-color="#f47fff"></button>
+                        <button
+                            class="theme-btn w-full aspect-square rounded-xl bg-[#00ffff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#00ffff] transition-all hover:scale-105 interactable"
+                            data-color="#00ffff"></button>
+                        <button
+                            class="theme-btn w-full aspect-square rounded-xl bg-[#ff1a1a] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#ff1a1a] transition-all hover:scale-105 interactable"
+                            data-color="#ff1a1a"></button>
                     </div>
-                    <button id="close-portal"
-                        class="w-12 h-12 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 flex items-center justify-center transition-all interactable">
-                        <i class='bx bx-x text-2xl'></i>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest block"><i
+                            class='bx bxs-terminal mr-2'></i>Visual FX</label>
+
+                    <button
+                        class="w-full p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between group hover:bg-white/10 transition-all interactable"
+                        id="toggle-matrix">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-green-500">
+                                <i class='bx bx-code-alt text-xl'></i></div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xs uppercase">Matrix Rain</h4>
+                                <p class="text-[9px] text-gray-500">Overlay Effect</p>
+                            </div>
+                        </div>
+                        <div class="w-10 h-5 bg-gray-700 rounded-full relative transition-colors duration-300"
+                            id="matrix-switch">
+                            <div
+                                class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300">
+                            </div>
+                        </div>
+                    </button>
+
+                    <button
+                        class="w-full p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between group hover:bg-white/10 transition-all interactable"
+                        id="toggle-particles">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-blue-500"><i
+                                    class='bx bxs-meteor text-xl'></i></div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-xs uppercase">Particles</h4>
+                                <p class="text-[9px] text-gray-500">Interactive Background</p>
+                            </div>
+                        </div>
+                        <div class="w-10 h-5 bg-green-500 rounded-full relative transition-colors duration-300"
+                            id="particle-switch">
+                            <div
+                                class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300 translate-x-5">
+                            </div>
+                        </div>
                     </button>
                 </div>
 
-                <div class="space-y-10">
-                    <div>
-                        <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 block"><i
-                                class='bx bxs-palette mr-2'></i>Neon Frequency</label>
-                        <div class="flex gap-4">
-                            <button
-                                class="theme-btn w-12 h-12 rounded-xl bg-[#d4af37] ring-2 ring-offset-4 ring-offset-black ring-[#d4af37] transition-transform hover:scale-110 interactable"
-                                data-color="#d4af37"></button>
-                            <button
-                                class="theme-btn w-12 h-12 rounded-xl bg-[#f47fff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#f47fff] transition-all hover:scale-110 interactable"
-                                data-color="#f47fff"></button>
-                            <button
-                                class="theme-btn w-12 h-12 rounded-xl bg-[#00ffff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#00ffff] transition-all hover:scale-110 interactable"
-                                data-color="#00ffff"></button>
-                            <button
-                                class="theme-btn w-12 h-12 rounded-xl bg-[#ff1a1a] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#ff1a1a] transition-all hover:scale-110 interactable"
-                                data-color="#ff1a1a"></button>
-                        </div>
-                    </div>
+                <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
+                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 block"><i
+                            class='bx bxs-volume-full mr-2'></i>Audio Level</label>
+                    <input type="range" min="0" max="100" value="50"
+                        class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-levant-gold interactable"
+                        id="volume-slider">
+                </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all cursor-none interactable group"
-                            id="toggle-matrix">
-                            <div class="flex justify-between items-start mb-4">
-                                <i
-                                    class='bx bx-code-alt text-3xl text-gray-400 group-hover:text-green-400 transition-colors'></i>
-                                <div class="w-2 h-2 rounded-full bg-gray-600 transition-colors shadow-[0_0_10px_rgba(0,0,0,0)]"
-                                    id="matrix-status"></div>
-                            </div>
-                            <h4 class="font-black text-sm uppercase tracking-wider">Matrix Rain</h4>
-                            <p class="text-[9px] text-gray-500 font-mono mt-1">EXECUTE_DIGITAL_OVERLAY.EXE</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all cursor-none interactable group"
-                            id="toggle-focus">
-                            <div class="flex justify-between items-start mb-4">
-                                <i
-                                    class='bx bx-bullseye text-3xl text-gray-400 group-hover:text-blue-400 transition-colors'></i>
-                                <div class="w-2 h-2 rounded-full bg-gray-600 transition-colors shadow-[0_0_10px_rgba(0,0,0,0)]"
-                                    id="focus-status"></div>
-                            </div>
-                            <h4 class="font-black text-sm uppercase tracking-wider">Zen Mode</h4>
-                            <p class="text-[9px] text-gray-500 font-mono mt-1">DISABLE_BACKGROUND_NOISE</p>
-                        </div>
-                    </div>
+                <div class="pt-10 border-t border-white/5">
+                    <p class="text-[9px] text-gray-600 font-mono text-center">SYRIA SERVER CONFIG V.2.0.26<br>DESIGNED
+                        BY GEORGE ARSHED</p>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="settings-overlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden opacity-0 transition-opacity duration-500">
     </div>
 
     <div id="upload-modal"
         class="fixed inset-0 z-[2000] bg-black/90 backdrop-blur-2xl hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="glass-card max-w-xl w-full rounded-[2.5rem] p-1 relative transform scale-95 transition-transform duration-300 overflow-hidden border border-white/20 shadow-[0_0_100px_rgba(212,175,55,0.15)]"
             id="upload-content">
-
             <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-
             <div class="relative bg-[#050505] rounded-[2.3rem] p-8 md:p-10 h-full">
                 <button id="close-upload"
                     class="absolute top-6 right-6 text-2xl text-gray-500 hover:text-white transition-colors interactable"><i
                         class='bx bx-x'></i></button>
-
                 <div class="text-center mb-8">
                     <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-2 glitch-text"
                         data-text="UPLOAD MEMORY">Upload <span class="text-levant-gold">Memory</span></h3>
                     <p class="text-gray-500 text-[10px] font-mono uppercase tracking-widest">///
                         SECURE_SERVER_LINK_ESTABLISHED</p>
                 </div>
-
                 <div class="relative group cursor-none" id="drop-zone">
                     <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 z-50 cursor-none"
-                        accept="image/png, image/jpeg, image/gif, image/x-icon">
-
+                        accept="image/png, image/jpeg, image/gif">
                     <div class="border-2 border-dashed border-white/10 rounded-3xl h-64 flex flex-col items-center justify-center transition-all duration-300 group-hover:border-levant-gold/50 group-hover:bg-levant-gold/5 relative overflow-hidden"
                         id="drop-visuals">
-
                         <div
                             class="absolute inset-0 bg-gradient-to-b from-transparent to-levant-gold/5 opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
@@ -221,7 +241,6 @@
                             class="text-xs text-gray-400 font-bold uppercase tracking-widest group-hover:text-white transition-colors">
                             Drag Image Here</p>
                         <p class="text-[9px] text-gray-600 font-mono mt-2 uppercase">.PNG .JPG .GIF only</p>
-
                         <div id="preview-container" class="hidden absolute inset-0 bg-[#050505] z-40">
                             <img id="image-preview" src="" class="w-full h-full object-contain opacity-80">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent">
@@ -234,17 +253,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div id="error-overlay"
-                            class="hidden absolute inset-0 bg-red-900/90 z-50 flex flex-col items-center justify-center text-center p-8 backdrop-blur-sm animate-pulse">
-                            <i class='bx bxs-error-circle text-5xl text-white mb-4'></i>
-                            <h4 class="text-xl font-black uppercase text-white mb-2">System Failure</h4>
-                            <p class="text-xs text-white/80 font-mono">EXECUTABLES DETECTED. SECURITY PROTOCOL ENGAGED.
-                            </p>
-                        </div>
                     </div>
                 </div>
-
                 <button id="submit-upload"
                     class="mt-6 w-full py-5 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-levant-gold hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden group interactable">
                     <span class="relative z-10">Initialize Upload</span>
@@ -264,13 +274,13 @@
                 class='bx bx-x'></i></button>
         <a href="#hero"
             class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Home</a>
-        <a href="#boosters"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter text-nitro-pink hover:text-white transition-colors interactable">VIPs</a>
+        <a href="#heritage"
+            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Heritage</a>
         <a href="#schedule"
             class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Schedule</a>
-        <a href="#gallery"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Moments</a>
-        <a href="https://discord.gg/qFDQG5aDJN"
+        <a href="#protocols"
+            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Rules</a>
+        <a href="https://discord.gg/ekHgfYs4eA"
             class="mobile-link text-3xl font-black uppercase tracking-tighter text-discord-blurple interactable">Join
             Discord</a>
         <button id="lang-toggle-mob"
@@ -285,7 +295,8 @@
                 class="flex items-center gap-3 text-2xl font-black tracking-tighter italic text-glow group interactable">
                 <div class="relative w-8 h-8">
                     <img src="./Assets/ServerIcon.png"
-                        class="w-full h-full rounded-full border border-levant-gold/30 relative z-10" alt="Icon">
+                        class="w-full h-full rounded-full border border-levant-gold/30 relative z-10" alt="Icon"
+                        onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
                     <div
                         class="absolute inset-0 bg-levant-gold blur-md opacity-50 group-hover:opacity-100 transition-opacity">
                     </div>
@@ -293,28 +304,18 @@
                 <span>SYRIA<span class="text-levant-gold blink">.</span></span>
             </a>
             <div class="hidden md:flex gap-10 items-center text-[10px] font-black uppercase tracking-[0.2em]">
-                <a href="#hero" class="nav-item hover:text-levant-gold transition-colors relative group interactable">
-                    Home
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#boosters"
-                    class="nav-item text-nitro-pink hover:text-white transition-colors shadow-none interactable">VIPs</a>
-                <a href="https://discord.gg/ekHgfYs4eA" target="_blank"
-                    class="nav-item text-discord-blurple hover:scale-105 transition-transform interactable">Join
-                    Discord</a>
+                <a href="#hero"
+                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Home<span
+                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
+                <a href="#heritage"
+                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Heritage<span
+                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
                 <a href="#schedule"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">
-                    Schedule
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#gallery"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">
-                    Moments
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span>
-                </a>
+                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Schedule<span
+                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
+                <a href="#protocols"
+                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Rules<span
+                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
                 <button id="lang-toggle"
                     class="bg-white text-black px-6 py-2 rounded-full font-black hover:bg-levant-gold hover:scale-105 transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] interactable">AR</button>
             </div>
@@ -339,17 +340,19 @@
 
             <div class="relative z-10 text-center px-4 w-full max-w-6xl mx-auto reveal flex flex-col items-center">
                 <div class="flex flex-col md:flex-row items-center gap-4 mb-8">
-                     <div
+                    <div
                         class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] hover:border-levant-gold/30 transition-colors interactable">
                         <span class="relative flex h-3 w-3">
                             <span
                                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                         </span>
-                        <span id="stat-text" class="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase">1,800+
-                            Members — Missing You!</span>
+                        <span id="stat-text"
+                            class="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase">1,800+ Members —
+                            Missing You!</span>
                     </div>
-                    <div id="levant-clock" class="text-[9px] md:text-[10px] font-mono tracking-widest text-levant-gold border border-levant-gold/20 bg-black/40 px-4 py-3 rounded-full uppercase">
+                    <div id="levant-clock"
+                        class="text-[9px] md:text-[10px] font-mono tracking-widest text-levant-gold border border-levant-gold/20 bg-black/40 px-4 py-3 rounded-full uppercase">
                         LEVANT TIME: <span id="clock-display">00:00:00</span>
                     </div>
                 </div>
@@ -375,8 +378,8 @@
                         <i class='bx bxl-discord-alt text-2xl group-hover:rotate-12 transition-transform'></i> Jump In
                         Discord
                     </a>
-                    <a id="explore-btn" href="#schedule" class="apple-btn-secondary w-full interactable">Check
-                        Events</a>
+                    <a id="explore-btn" href="#heritage" class="apple-btn-secondary w-full interactable">Explore
+                        Heritage</a>
                 </div>
             </div>
 
@@ -395,9 +398,6 @@
                     <span
                         class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 flex items-center gap-2"><i
                             class='bx bxs-message-dots text-base text-green-500'></i>General Chat: Active</span>
-                    <span
-                        class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 flex items-center gap-2"><i
-                            class='bx bxs-star text-base text-levant-gold'></i>New Member Joined</span>
                 </div>
             </div>
         </section>
@@ -435,54 +435,51 @@
             </div>
         </section>
 
-        <section id="boosters" class="py-20 px-4 max-w-7xl mx-auto reveal">
-            <div class="glass-card nitro-card rounded-[3rem] p-8 md:p-16 border-none relative overflow-hidden transform transition-all duration-500 hover:scale-[1.01]"
-                data-tilt>
+        <section id="heritage" class="py-20 px-4 max-w-5xl mx-auto reveal">
+            <div class="glass-card rounded-[3rem] p-8 md:p-16 border border-white/10 relative overflow-hidden">
                 <div
-                    class="absolute top-0 right-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay">
+                    class="absolute top-0 right-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10">
                 </div>
                 <div
-                    class="absolute -top-32 -right-32 w-96 h-96 bg-nitro-pink blur-[120px] opacity-20 animate-pulse-slow">
-                </div>
-                <div
-                    class="absolute -bottom-32 -left-32 w-96 h-96 bg-neon-purple blur-[120px] opacity-20 animate-pulse-slow">
+                    class="absolute -top-40 -left-40 w-96 h-96 bg-levant-gold/10 rounded-full blur-[100px] pointer-events-none">
                 </div>
 
-                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-                    <div class="text-center md:text-left">
-                        <div
-                            class="inline-flex items-center gap-3 px-4 py-2 bg-nitro-pink/10 rounded-xl border border-nitro-pink/20 mb-6">
-                            <i class='bx bxs-rocket text-nitro-pink animate-bounce'></i>
-                            <span class="text-[9px] font-black uppercase tracking-widest text-nitro-pink">Server
-                                Boosters</span>
-                        </div>
-                        <h2 id="booster-title"
-                            class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-6">Hall of <span
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple">Legends</span>
-                        </h2>
-                        <p id="booster-desc" class="text-gray-300 text-sm md:text-base max-w-md leading-relaxed">The
-                            real MVPs keeping our audio crisp and our streams HD. Respect the badge.</p>
+                <div class="relative z-10 text-center md:text-left">
+                    <div
+                        class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-xl border border-white/10 mb-8">
+                        <i class='bx bxs-arch text-levant-gold'></i>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-levant-gold">Our
+                            Manifesto</span>
                     </div>
 
-                    <div class="flex items-center gap-6 perspective-1000">
-                        <div class="flex -space-x-6">
+                    <h2 id="about-title" class="text-3xl md:text-5xl font-black uppercase leading-tight mb-8">The Dream
+                        of <span class="text-levant-gold">Unity</span></h2>
+
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <p id="about-en" class="text-gray-300 text-sm md:text-base leading-loose font-light">
+                                We all have this dream that one day Syria will rise, grow great, and be a place where we
+                                feel we belong. No one can make this fantasy true except Syrians, Syrian people and no
+                                one else. The new generation have the potentials to do that. It would be awesome when
+                                you open Syrian chat and contact with people from your own land, your culture, people
+                                who understands the jokes and cultural references you make. For one second we might feel
+                                united again, less lonely, and we might have faith in our selves again. Long live Syria,
+                                land of civilisations.
+                            </p>
+                        </div>
+                        <div class="relative" dir="rtl">
                             <div
-                                class="w-16 h-16 rounded-full border-4 border-[#050505] bg-gray-800 relative z-0 overflow-hidden transition-all duration-300 hover:z-30 hover:scale-125 hover:-translate-y-2 interactable shadow-lg">
-                                <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/771419392307101696/avatars/29be40774bd45ffbecb51b32423d1908.webp?size=160"
-                                    class="w-full h-full object-cover">
+                                class="absolute -right-4 top-0 w-1 h-full bg-gradient-to-b from-transparent via-levant-gold to-transparent opacity-50">
                             </div>
-                            <div
-                                class="w-20 h-20 rounded-full border-4 border-nitro-pink bg-gray-800 relative z-20 shadow-[0_0_30px_rgba(244,127,255,0.4)] overflow-hidden transition-all duration-300 hover:scale-125 hover:-translate-y-2 interactable">
-                                <img src="https://cdn.discordapp.com/avatars/1286407873873838103/bdfe2c19fe2d4b192b5caea81acc0686.webp?size=256"
-                                    class="w-full h-full object-cover">
-                                <i
-                                    class='bx bxs-star absolute top-1 right-1 text-nitro-pink text-xs bg-black rounded-full p-1'></i>
-                            </div>
-                            <div
-                                class="w-16 h-16 rounded-full border-4 border-[#050505] bg-gray-800 relative z-10 overflow-hidden transition-all duration-300 hover:z-30 hover:scale-125 hover:-translate-y-2 interactable">
-                                <img src="https://cdn.discordapp.com/avatars/495926332145008641/a_d158e2139e8d394443ffb5af60c7951f.webp?size=256"
-                                    class="w-full h-full object-cover">
-                            </div>
+                            <p id="about-ar"
+                                class="text-gray-300 text-sm md:text-base leading-loose font-bold font-['Noto_Sans_Arabic'] text-right">
+                                كلنا عنا هادا الحلم بأنو بيوم من الأيام سوريا رح تكبر وتضوي وتصير مكان نحس فيه
+                                بالانتماء. ماحدا فيه يعمل هالخيال حقيقة غير السوريين، الشعب السوري؛ ولا أيا حدا تاني.
+                                الجيل الجديد عندو القدرة ليعمل هيك شي. رح يكون شعور حلو لما تفتح الشات السوري وتتواصل مع
+                                عالم من أرضك، من ثقافتك، عالم بيفهمو النكت يلي رح تحكيها، المراجع الثقافية يلي رح تذكرا.
+                                ل لحظة ممكن نحس حالنا متحدين من جديد، شعورنا بالانعزال رح يخف، وبجوز يرجع أيماننا
+                                بأنفسنا وببلدنا من جديد. عاشت سوريا، مهد الحضارات.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -599,11 +596,12 @@
                 <div
                     class="break-inside-avoid glass-card rounded-[2rem] p-2 group hover:rotate-1 transition-transform duration-300 reveal active interactable">
                     <div class="bg-gray-800 rounded-[1.8rem] overflow-hidden relative">
-                        <img src="https://media1.tenor.com/m/K-zC17kZgDAAAAAd/cat-vibing.gif"
-                            class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-110 duration-700">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-[10px] font-black uppercase tracking-widest text-white">Vibing Cat</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-white">Damascus
+                                Nights</span>
                         </div>
                     </div>
                 </div>
@@ -612,6 +610,151 @@
                     <i class='bx bx-image-add text-5xl mb-4'></i>
                     <span class="text-[9px] font-black uppercase tracking-widest">Waiting for You</span>
                 </div>
+            </div>
+        </section>
+
+        <section id="protocols" class="py-20 px-4 max-w-7xl mx-auto reveal">
+            <div class="mb-12 text-center">
+                <h2 id="protocol-title"
+                    class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white">System <span
+                        class="text-levant-gold">Protocols</span></h2>
+                <p id="protocol-sub" class="text-[10px] text-gray-500 font-mono tracking-widest uppercase">///
+                    READ_BEFORE_ENTRY</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="rules-grid">
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-user-check text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">01</span>
+                    </div>
+                    <h3 id="rule-1-title" class="text-lg font-bold uppercase mb-2 text-white">Respect</h3>
+                    <p id="rule-1-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Treat everyone
+                        as you wish to be treated. We are a family.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-lock-alt text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">02</span>
+                    </div>
+                    <h3 id="rule-2-title" class="text-lg font-bold uppercase mb-2 text-white">Privacy</h3>
+                    <p id="rule-2-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">No leaking.
+                        Personal info stays private. Red line.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-no-entry text-2xl text-white/20 group-hover:text-red-500 transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">03</span>
+                    </div>
+                    <h3 id="rule-3-title" class="text-lg font-bold uppercase mb-2 text-white">No Hate</h3>
+                    <p id="rule-3-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Racism and hate
+                        speech = Immediate ban. Zero tolerance.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class='bx bxs-skull text-2xl text-white/20 group-hover:text-red-500 transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">04</span>
+                    </div>
+                    <h3 id="rule-4-title" class="text-lg font-bold uppercase mb-2 text-white">Clean Content</h3>
+                    <p id="rule-4-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">No NSFW, gore,
+                        or disturbing content. Keep it classy.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-link text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">05</span>
+                    </div>
+                    <h3 id="rule-5-title" class="text-lg font-bold uppercase mb-2 text-white">Safe Links</h3>
+                    <p id="rule-5-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Clarify before
+                        posting files or links to avoid auto-ban.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-bell-off text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">06</span>
+                    </div>
+                    <h3 id="rule-6-title" class="text-lg font-bold uppercase mb-2 text-white">No Spam</h3>
+                    <p id="rule-6-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Don't abuse
+                        @everyone or ping staff without reason.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-brain text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">07</span>
+                    </div>
+                    <h3 id="rule-7-title" class="text-lg font-bold uppercase mb-2 text-white">Debate Ideas</h3>
+                    <p id="rule-7-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Attack the
+                        argument, not the person. Be civilized.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-category text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">08</span>
+                    </div>
+                    <h3 id="rule-8-title" class="text-lg font-bold uppercase mb-2 text-white">Organize</h3>
+                    <p id="rule-8-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Use the correct
+                        channels for your content.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-mask text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">09</span>
+                    </div>
+                    <h3 id="rule-9-title" class="text-lg font-bold uppercase mb-2 text-white">Real Identity</h3>
+                    <p id="rule-9-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">No impersonation
+                        or fake accounts. Transparency is key.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-drama text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">10</span>
+                    </div>
+                    <h3 id="rule-10-title" class="text-lg font-bold uppercase mb-2 text-white">No Drama</h3>
+                    <p id="rule-10-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">Resolve issues
+                        privately with staff. Don't make a scene.</p>
+                </div>
+
+                <div
+                    class="protocol-card p-6 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors md:col-span-2 lg:col-span-1 xl:col-span-2 h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <i
+                            class='bx bxs-hand text-2xl text-white/20 group-hover:text-levant-gold transition-colors'></i>
+                        <span class="text-[9px] font-black text-gray-600">11</span>
+                    </div>
+                    <h3 id="rule-11-title" class="text-lg font-bold uppercase mb-2 text-white">No Harassment</h3>
+                    <p id="rule-11-desc" class="text-xs text-gray-400 font-mono leading-relaxed mt-auto">We are
+                        civilized humans, not wild animals. Harassment is strictly prohibited.</p>
+                </div>
+
             </div>
         </section>
 
@@ -745,39 +888,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="protocols" class="py-20 px-4 max-w-7xl mx-auto reveal">
-            <div class="mb-12 text-center">
-                <h2 id="protocol-title" class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white">System <span class="text-levant-gold">Protocols</span></h2>
-                <p id="protocol-sub" class="text-[10px] text-gray-500 font-mono tracking-widest uppercase">/// READ_BEFORE_ENTRY</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
-                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">01</div>
-                    <h3 id="rule-1-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">Respect</h3>
-                    <p id="rule-1-desc" class="text-sm text-gray-400 font-mono leading-relaxed">Zero tolerance for disrespect. We are a family, treat everyone as such.</p>
-                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
-                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700"></div>
-                    </div>
-                </div>
-                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
-                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">02</div>
-                    <h3 id="rule-2-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">No Politics</h3>
-                    <p id="rule-2-desc" class="text-sm text-gray-400 font-mono leading-relaxed">Leave the politics at the door. We are here to vibe, not to argue.</p>
-                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
-                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700 delay-100"></div>
-                    </div>
-                </div>
-                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
-                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">03</div>
-                    <h3 id="rule-3-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">Privacy</h3>
-                    <p id="rule-3-desc" class="text-sm text-gray-400 font-mono leading-relaxed">What happens in the server, stays in the server. Do not leak.</p>
-                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
-                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700 delay-200"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-black pt-24 pb-12 px-4 border-t border-white/5 relative overflow-hidden">
@@ -809,7 +919,7 @@
     </footer>
 
     <audio id="bg-music" loop>
-        <source src="#" type="audio/mp3">
+        <source src="https://cdn.pixabay.com/audio/2022/10/05/audio_686121f5bd.mp3" type="audio/mp3">
     </audio>
 
     <script src="script.js"></script>
