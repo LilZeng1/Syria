@@ -14,7 +14,15 @@ const translations = {
         faqQ1: "How do I verify?",
         faqA1: "You need to send an application to our staff...",
         faqQ2: "Are non-Syrians welcome?",
-        faqA2: "100%. If you vibe with the culture, you're family."
+        faqA2: "100%. If you vibe with the culture, you're family.",
+        protocolTitle: "System <span class='text-levant-gold'>Protocols</span>",
+        protocolSub: "/// READ_BEFORE_ENTRY",
+        rule1Title: "Respect",
+        rule1Desc: "Zero tolerance for disrespect. We are a family, treat everyone as such.",
+        rule2Title: "No Politics",
+        rule2Desc: "Leave the politics at the door. We are here to vibe, not to argue.",
+        rule3Title: "Privacy",
+        rule3Desc: "What happens in the server, stays in the server. Do not leak."
     },
     ar: {
         statText: "أكثر من ١٨٠٠ عضو — مكانك فاضي!",
@@ -31,13 +39,20 @@ const translations = {
         faqQ1: "كيف بوثق حسابي؟",
         faqA1: "لازم تقدم طلب للادارة، رح تنسأل اسئلة بسيطة...",
         faqQ2: "هل مسموح لغير السوريين؟",
-        faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين، أنت من العيلة."
+        faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين، أنت من العيلة.",
+        protocolTitle: "قوانين <span class='text-levant-gold'>النظام</span>",
+        protocolSub: "/// اقرأ_قبل_الدخول",
+        rule1Title: "الاحترام",
+        rule1Desc: "الاحترام واجب على الجميع. نحنا عيلة، عامل الكل منيح.",
+        rule2Title: "بلا سياسة",
+        rule2Desc: "اترك السياسة برا. نحنا هون لنتسلى وننبسط، مو لنتخانق.",
+        rule3Title: "الخصوصية",
+        rule3Desc: "اللي بصير بالسيرفر بضل بالسيرفر. ممنوع التسريب."
     }
 };
 
 let currentLang = 'en';
 
-// Interactive Elements Hover
 const interactables = document.querySelectorAll('.interactable');
 interactables.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -48,7 +63,6 @@ interactables.forEach(el => {
     });
 });
 
-// Typing Effect
 const phrases = [
     "Not just another server—it's home.", 
     "From heated debates to 3 AM gaming.", 
@@ -80,7 +94,6 @@ function typeEffect() {
     setTimeout(typeEffect, speed);
 }
 
-// Core Loader & Initilaziton
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden-loader');
@@ -89,10 +102,11 @@ window.addEventListener('load', () => {
         initTilt();
         initPortal();
         typeEffect();
+        updateTime();
+        setInterval(updateTime, 1000);
     }, 1500);
 });
 
-// Menu Logic
 function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     const isOpen = menu.style.transform === 'translateX(0%)';
@@ -101,7 +115,6 @@ function toggleMenu() {
 document.getElementById('open-menu').addEventListener('click', toggleMenu);
 document.getElementById('close-menu').addEventListener('click', toggleMenu);
 
-// Scroll Reveal
 function reveal() {
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(el => {
@@ -114,7 +127,6 @@ function reveal() {
 }
 window.addEventListener('scroll', reveal);
 
-// Strict Upload Logic
 const modal = document.getElementById('upload-modal');
 const btn = document.getElementById('upload-btn');
 const close = document.getElementById('close-upload');
@@ -157,7 +169,6 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-// Drag & Drop Visuals
 ['dragenter', 'dragover'].forEach(eventName => {
     dropZone.addEventListener(eventName, (e) => {
         e.preventDefault();
@@ -228,7 +239,6 @@ submitBtn.addEventListener('click', () => {
     }, 1500);
 });
 
-// STARFIELD
 function initStarfield() {
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
@@ -288,7 +298,6 @@ function initStarfield() {
     animate();
 }
 
-// PORTAL & THEME LOGIC
 function initPortal() {
     const trigger = document.getElementById('portal-trigger');
     const overlay = document.getElementById('portal-overlay');
@@ -386,7 +395,6 @@ function initPortal() {
     });
 }
 
-// TILT 3D EFFECT
 function initTilt() {
     const cards = document.querySelectorAll('.tilt-card');
     cards.forEach(card => {
@@ -406,7 +414,19 @@ function initTilt() {
     });
 }
 
-// --- LANGUAGE SWITCH ---
+function updateTime() {
+    const now = new Date();
+    const options = {
+        timeZone: 'Asia/Damascus',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    };
+    const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+    document.getElementById('clock-display').innerText = timeString;
+}
+
 document.getElementById('lang-toggle').addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     updateLanguage();
@@ -424,7 +444,6 @@ function updateLanguage() {
     setTimeout(() => {
         document.getElementById('stat-text').innerText = t.statText;
         document.getElementById('hero-title').innerHTML = t.heroTitle;
-        // Reset typewriter
         phraseIndex = 0; charIndex = 0; isDeleting = false;
         
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
@@ -438,6 +457,16 @@ function updateLanguage() {
         document.getElementById('faq-a1').innerHTML = t.faqA1;
         document.getElementById('faq-q2').innerText = t.faqQ2;
         document.getElementById('faq-a2').innerText = t.faqA2;
+        
+        document.getElementById('protocol-title').innerHTML = t.protocolTitle;
+        document.getElementById('protocol-sub').innerText = t.protocolSub;
+        document.getElementById('rule-1-title').innerText = t.rule1Title;
+        document.getElementById('rule-1-desc').innerText = t.rule1Desc;
+        document.getElementById('rule-2-title').innerText = t.rule2Title;
+        document.getElementById('rule-2-desc').innerText = t.rule2Desc;
+        document.getElementById('rule-3-title').innerText = t.rule3Title;
+        document.getElementById('rule-3-desc').innerText = t.rule3Desc;
+
         document.body.style.opacity = '1';
         reveal();
     }, 400);
