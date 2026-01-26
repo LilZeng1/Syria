@@ -6,7 +6,7 @@
     <title>SYRIA | The Digital Levant</title>
     <link rel="icon" type="image/png" href="./Assets/ServerIcon.png">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&family=Space+Mono&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -17,684 +17,242 @@
                 extend: {
                     colors: {
                         'apple-gray': '#1d1d1f',
-                        'levant-gold': 'var(--accent-color, #d4af37)',
-                        'among-red': '#ff1a1a',
-                        'discord-blurple': '#5865F2',
-                        'nitro-pink': '#f47fff',
-                        'neon-purple': '#8a2be2',
-                        'cyber-black': '#0a0a0a'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans Arabic', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        mono: ['Space Mono', 'monospace'],
+                        'levant-gold': '#d4af37',
                     },
                     animation: {
-                        'marquee': 'marquee 20s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'spin-slow 12s linear infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
                         'float': 'float 6s ease-in-out infinite',
-                        'glitch': 'glitch 1s linear infinite',
-                    },
-                    keyframes: {
-                        'spin-slow': {
-                            'from': { transform: 'rotate(0deg)' },
-                            'to': { transform: 'rotate(360deg)' }
-                        },
-                        marquee: {
-                            '0%': { transform: 'translateX(100%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        glitch: {
-                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                            '62%': { transform: 'translate(0,0) skew(5deg)' },
-                        }
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-[#030303] text-white overflow-x-hidden selection:bg-levant-gold/30 selection:text-white">
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-    <div class="scanlines"></div>
+<body class="bg-[#030303] text-white selection:bg-levant-gold/30">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     <div class="noise-overlay"></div>
-    <canvas id="matrix-canvas"
-        class="fixed inset-0 z-[1] opacity-0 pointer-events-none transition-opacity duration-700"></canvas>
-    <canvas id="particle-canvas" class="fixed inset-0 z-[9990] pointer-events-none"></canvas>
-    <div id="loader"
-        class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-all duration-700">
-        <div class="relative w-24 h-24">
-            <div class="absolute inset-0 border-t-4 border-levant-gold rounded-full animate-spin"></div>
-            <div class="absolute inset-4 border-t-4 border-white/20 rounded-full animate-spin-slow reverse"></div>
+
+    <nav class="fixed top-0 w-full z-[100] glass-nav border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="./Assets/ServerIcon.png" class="w-10 h-10 rounded-xl shadow-2xl shadow-levant-gold/20"
+                    alt="Logo">
+                <span class="font-black tracking-tighter text-xl uppercase italic">Syria</span>
+            </div>
             <div
-                class="absolute inset-0 flex items-center justify-center font-black text-xs tracking-widest animate-pulse uppercase">
-                Loading</div>
-        </div>
-    </div>
-    <div id="music-player"
-        class="fixed bottom-8 left-8 z-40 hidden md:flex items-center gap-4 bg-black/60 backdrop-blur-2xl border border-white/10 p-4 rounded-3xl hover:border-levant-gold/50 transition-all group interactable shadow-2xl">
-        <div
-            class="relative w-12 h-12 rounded-full overflow-hidden animate-spin-slow group-hover:animate-none border-2 border-levant-gold/20">
-            <img src="./Assets/ServerIcon.png" id="track-art" class="w-full h-full object-cover opacity-90"
-                onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
-            <div class="absolute inset-0 bg-gradient-to-tr from-levant-gold/30 to-transparent"></div>
-        </div>
-        <div class="flex flex-col min-w-[120px]">
-            <span class="text-[8px] font-black uppercase text-levant-gold tracking-[0.2em] mb-1">Radio Levant</span>
-            <marquee scrollamount="3" class="text-[10px] font-bold uppercase tracking-wider mb-2" id="track-name">Fairuz
-                - Amara ya Amara</marquee>
-            <div class="flex items-center justify-between gap-3">
-                <button id="prev-track" class="text-white/60 hover:text-white transition-colors"><i
-                        class='bx bx-skip-previous text-xl'></i></button>
-                <button id="toggle-music"
-                    class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-levant-gold hover:text-black transition-all">
-                    <i class='bx bx-play text-xl'></i>
-                </button>
-                <button id="next-track" class="text-white/60 hover:text-white transition-colors"><i
-                        class='bx bx-skip-next text-xl'></i></button>
+                class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                <a href="#schedule" class="hover:text-white transition-colors">Schedule</a>
+                <a href="#family" class="hover:text-white transition-colors">The Family</a>
+                <a href="#unity" class="hover:text-white transition-colors">Unity</a>
+                <a href="#rules" class="hover:text-white transition-colors">Rules</a>
             </div>
-        </div>
-    </div>
-    <div id="portal-trigger" class="fixed bottom-8 right-8 z-50 group cursor-none interactable">
-        <div
-            class="absolute inset-0 bg-levant-gold/20 rounded-full blur-xl animate-pulse-slow group-hover:bg-levant-gold/40 transition-all">
-        </div>
-        <div
-            class="relative w-16 h-16 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center overflow-hidden transition-transform duration-300 shadow-2xl shadow-levant-gold/10 group-hover:scale-110">
-            <i class='bx bxs-cog text-3xl text-levant-gold group-hover:rotate-90 transition-transform duration-700'></i>
-            <div
-                class="absolute inset-0 border-2 border-transparent border-t-levant-gold/50 rounded-full animate-spin-slow">
-            </div>
-        </div>
-    </div>
-    <div id="settings-panel"
-        class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-[#050505]/95 backdrop-blur-2xl z-[1000] transform translate-x-full transition-transform duration-500 border-l border-white/10 shadow-[-50px_0_100px_rgba(0,0,0,0.8)]">
-        <div class="h-full flex flex-col p-8 overflow-y-auto custom-scrollbar">
-            <div class="flex justify-between items-center mb-10">
-                <div>
-                    <h3 class="text-3xl font-black uppercase italic tracking-tighter glitch-text"
-                        data-text="SYSTEM CONFIG">System <span class="text-levant-gold">Config</span></h3>
-                    <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-1">///
-                        USER_PREFERENCES_V.4.0</p>
-                </div>
-                <button id="close-settings"
-                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 flex items-center justify-center transition-all interactable">
-                    <i class='bx bx-x text-2xl'></i>
-                </button>
-            </div>
-            <div class="space-y-10">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 block"><i
-                            class='bx bxs-palette mr-2'></i>Accent Resonance</label>
-                    <div class="grid grid-cols-4 gap-3">
-                        <button
-                            class="theme-btn w-full aspect-square rounded-xl bg-[#d4af37] ring-2 ring-offset-4 ring-offset-black ring-[#d4af37] transition-transform hover:scale-105 interactable"
-                            data-color="#d4af37"></button>
-                        <button
-                            class="theme-btn w-full aspect-square rounded-xl bg-[#f47fff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#f47fff] transition-all hover:scale-105 interactable"
-                            data-color="#f47fff"></button>
-                        <button
-                            class="theme-btn w-full aspect-square rounded-xl bg-[#00ffff] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#00ffff] transition-all hover:scale-105 interactable"
-                            data-color="#00ffff"></button>
-                        <button
-                            class="theme-btn w-full aspect-square rounded-xl bg-[#ff1a1a] ring-2 ring-offset-4 ring-offset-black ring-transparent hover:ring-[#ff1a1a] transition-all hover:scale-105 interactable"
-                            data-color="#ff1a1a"></button>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest block"><i
-                            class='bx bxs-terminal mr-2'></i>Visual FX</label>
-                    <button
-                        class="w-full p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between group hover:bg-white/10 transition-all interactable"
-                        id="toggle-matrix">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-green-500">
-                                <i class='bx bx-code-alt text-xl'></i></div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-xs uppercase">Matrix Rain</h4>
-                                <p class="text-[9px] text-gray-500">Overlay Effect</p>
-                            </div>
-                        </div>
-                        <div class="w-10 h-5 bg-gray-700 rounded-full relative transition-colors duration-300"
-                            id="matrix-switch">
-                            <div
-                                class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300">
-                            </div>
-                        </div>
-                    </button>
-                    <button
-                        class="w-full p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between group hover:bg-white/10 transition-all interactable"
-                        id="toggle-particles">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-blue-500"><i
-                                    class='bx bxs-meteor text-xl'></i></div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-xs uppercase">Particles</h4>
-                                <p class="text-[9px] text-gray-500">Interactive Background</p>
-                            </div>
-                        </div>
-                        <div class="w-10 h-5 bg-green-500 rounded-full relative transition-colors duration-300"
-                            id="particle-switch">
-                            <div
-                                class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300 translate-x-5">
-                            </div>
-                        </div>
-                    </button>
-                </div>
-                <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
-                    <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4 block"><i
-                            class='bx bxs-volume-full mr-2'></i>Audio Level</label>
-                    <input type="range" min="0" max="100" value="50"
-                        class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-levant-gold interactable"
-                        id="volume-slider">
-                </div>
-                <div class="pt-10 border-t border-white/5">
-                    <p class="text-[9px] text-gray-600 font-mono text-center uppercase">Syria Server Config
-                        V.3.0.0<br>Designed by George Arshed</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="settings-overlay"
-        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden opacity-0 transition-opacity duration-500">
-    </div>
-    <div id="upload-modal"
-        class="fixed inset-0 z-[2000] bg-black/90 backdrop-blur-2xl hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="glass-card max-w-xl w-full rounded-[2.5rem] p-1 relative transform scale-95 transition-transform duration-300 overflow-hidden border border-white/20 shadow-[0_0_100px_rgba(212,175,55,0.15)]"
-            id="upload-content">
-            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-            <div class="relative bg-[#050505] rounded-[2.3rem] p-8 md:p-10 h-full">
-                <button id="close-upload"
-                    class="absolute top-6 right-6 text-2xl text-gray-500 hover:text-white transition-colors interactable"><i
-                        class='bx bx-x'></i></button>
-                <div class="text-center mb-8">
-                    <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-2 glitch-text"
-                        data-text="UPLOAD MEMORY">Upload <span class="text-levant-gold">Memory</span></h3>
-                    <p class="text-gray-500 text-[10px] font-mono uppercase tracking-widest">///
-                        SECURE_SERVER_LINK_ESTABLISHED</p>
-                </div>
-                <div class="relative group cursor-none" id="drop-zone">
-                    <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 z-50 cursor-none"
-                        accept="image/png, image/jpeg, image/jpg, image/gif, image/x-icon">
-                    <div class="border-2 border-dashed border-white/10 rounded-3xl h-64 flex flex-col items-center justify-center transition-all duration-300 group-hover:border-levant-gold/50 group-hover:bg-levant-gold/5 relative overflow-hidden"
-                        id="drop-visuals">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-b from-transparent to-levant-gold/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <i
-                            class='bx bxs-cloud-upload text-6xl text-gray-600 mb-4 transition-all duration-300 group-hover:text-levant-gold group-hover:scale-110 group-hover:-translate-y-2'></i>
-                        <p
-                            class="text-xs text-gray-400 font-bold uppercase tracking-widest group-hover:text-white transition-colors">
-                            Drag Image Here</p>
-                        <p class="text-[9px] text-gray-600 font-mono mt-2 uppercase">.PNG .JPG .GIF .ICO only</p>
-                        <div id="preview-container" class="hidden absolute inset-0 bg-[#050505] z-40">
-                            <img id="image-preview" src="" class="w-full h-full object-contain opacity-80">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-4 left-0 right-0 text-center">
-                                <div
-                                    class="inline-flex items-center gap-2 bg-green-500/10 text-green-500 px-4 py-2 rounded-full border border-green-500/20">
-                                    <i class='bx bxs-check-circle'></i>
-                                    <span class="text-[10px] font-black uppercase">Ready to Transmit</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button id="submit-upload"
-                    class="mt-6 w-full py-5 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-levant-gold hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden group interactable">
-                    <span class="relative z-10">Initialize Upload</span>
-                    <div
-                        class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    </div>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div id="mobile-menu"
-        class="fixed inset-0 z-[200] bg-black/98 backdrop-blur-3xl transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 p-6 text-center">
-        <canvas class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" id="menu-canvas"></canvas>
-        <button id="close-menu"
-            class="absolute top-8 right-8 text-4xl text-white hover:rotate-90 transition-transform interactable"><i
-                class='bx bx-x'></i></button>
-        <a href="#hero"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Home</a>
-        <a href="#heritage"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Heritage</a>
-        <a href="#schedule"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Schedule</a>
-        <a href="#rules"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Rules</a>
-        <a href="#protocols"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter hover:text-levant-gold transition-colors interactable">Protocols</a>
-        <a href="https://discord.gg/ekHgfYs4eA"
-            class="mobile-link text-3xl font-black uppercase tracking-tighter text-discord-blurple interactable">Join
-            Discord</a>
-        <button id="lang-toggle-mob"
-            class="mt-8 bg-white/10 border border-white/20 text-white px-12 py-4 rounded-2xl font-black uppercase tracking-widest interactable">Switch
-            Language</button>
-    </div>
-    <nav class="fixed top-6 left-0 right-0 w-full px-4 z-[100] transition-all duration-300" id="navbar">
-        <div
-            class="glass-nav max-w-6xl mx-auto rounded-3xl px-8 py-4 flex justify-between items-center border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-            <a href="#"
-                class="flex items-center gap-3 text-2xl font-black tracking-tighter italic text-glow group interactable">
-                <div class="relative w-8 h-8">
-                    <img src="./Assets/ServerIcon.png"
-                        class="w-full h-full rounded-full border border-levant-gold/30 relative z-10" alt="Icon"
-                        onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
-                    <div
-                        class="absolute inset-0 bg-levant-gold blur-md opacity-50 group-hover:opacity-100 transition-opacity">
-                    </div>
-                </div>
-                <span>SYRIA<span class="text-levant-gold blink">.</span></span>
-            </a>
-            <div class="hidden md:flex gap-10 items-center text-[10px] font-black uppercase tracking-[0.2em]">
-                <a href="#hero"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Home<span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
-                <a href="#heritage"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Heritage<span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
-                <a href="#schedule"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Schedule<span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
-                <a href="#rules"
-                    class="nav-item hover:text-levant-gold transition-colors relative group interactable">Rules<span
-                        class="absolute -bottom-1 left-0 w-0 h-[2px] bg-levant-gold transition-all group-hover:w-full"></span></a>
-                <button id="lang-toggle"
-                    class="bg-white text-black px-6 py-2 rounded-full font-black hover:bg-levant-gold hover:scale-105 transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] interactable uppercase">Ar</button>
-            </div>
-            <button id="open-menu" class="md:hidden text-3xl p-2 interactable"><i
-                    class='bx bx-menu-alt-right'></i></button>
+            <button id="lang-toggle"
+                class="bg-white text-black px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform active:scale-95">AR
+                / EN</button>
         </div>
     </nav>
-    <main class="w-full relative">
-        <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 pb-12 overflow-hidden">
-            <canvas id="starfield" class="absolute inset-0 w-full h-full z-0 opacity-60"></canvas>
-            <div class="relative z-10 text-center px-4 w-full max-w-6xl mx-auto reveal flex flex-col items-center">
-                <div class="flex flex-col md:flex-row items-center gap-6 mb-12">
-                    <div
-                        class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] hover:border-levant-gold/30 transition-colors interactable">
-                        <span class="relative flex h-3 w-3">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                        <span id="stat-text" class="text-[10px] font-black tracking-[0.2em] uppercase">1,800+ Members —
-                            Missing You!</span>
-                    </div>
-                    <div id="levant-clock"
-                        class="text-[10px] font-mono tracking-[0.3em] text-levant-gold border border-levant-gold/30 bg-black/60 px-6 py-3 rounded-full uppercase shadow-lg shadow-levant-gold/5">
-                        Levant Time: <span id="clock-display">00:00:00</span>
-                    </div>
+
+    <main>
+        <section class="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08),transparent_70%)]">
+            </div>
+            <div class="relative z-10 text-center max-w-5xl mx-auto">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-fade-in">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <p id="stat-text" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">1,800+
+                        Members — Missing You!</p>
                 </div>
                 <h1 id="hero-title"
-                    class="text-6xl sm:text-8xl md:text-[11rem] font-black leading-[0.85] tracking-tighter mb-12 uppercase relative select-none">
-                    The Heart <br>
+                    class="text-5xl md:text-8xl lg:text-[120px] font-black leading-[0.9] tracking-tighter mb-8">
+                    THE HEART <br>
                     <span
-                        class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x">Of
-                        The Levant.</span>
+                        class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x">OF
+                        THE LEVANT.</span>
                 </h1>
-                <div class="h-20 mb-14 overflow-hidden max-w-2xl mx-auto">
-                    <p id="hero-sub"
-                        class="text-gray-400 text-xl md:text-2xl font-light font-mono typewriter leading-relaxed"></p>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-8 justify-center items-center w-full max-w-2xl">
-                    <a id="enter-btn" href="https://discord.gg/ekHgfYs4eA"
-                        class="w-full py-6 bg-[#5865F2] text-white text-sm font-black uppercase tracking-[0.2em] rounded-2xl flex items-center justify-center gap-4 hover:brightness-110 hover:scale-[1.02] transition-all shadow-[0_15px_30px_rgba(88,101,242,0.3)] group interactable relative overflow-hidden">
-                        <i class='bx bxl-discord-alt text-3xl group-hover:rotate-12 transition-transform'></i> Jump In
-                        Discord
+                <p id="hero-sub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium">Forget
+                    regular servers. This is where the real ones hang out.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="https://discord.gg/syria"
+                        class="w-full md:w-auto bg-white text-black px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-levant-gold transition-colors group">
+                        <i class='bx bxl-discord-alt text-2xl'></i>
+                        <span id="enter-btn">Jump In Discord</span>
                     </a>
-                    <a id="explore-btn" href="#heritage"
-                        class="w-full py-6 bg-white/5 border border-white/10 text-white text-sm font-black uppercase tracking-[0.2em] rounded-2xl flex items-center justify-center backdrop-blur-md hover:bg-white/10 hover:scale-[1.02] transition-all group interactable">
-                        Explore Heritage
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section id="stats" class="py-32 relative z-10 px-4">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="glass-card rounded-[2.5rem] p-10 text-center reveal border border-white/5 bg-white/[0.02]">
-                    <div class="w-20 h-20 bg-levant-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                        <i class='bx bxs-group text-4xl text-levant-gold'></i>
-                    </div>
-                    <h3 class="text-5xl font-black mb-3 italic tracking-tighter">1800+</h3>
-                    <p class="text-[10px] text-gray-500 font-mono tracking-[0.3em] uppercase">Active Souls</p>
-                </div>
-                <div class="glass-card rounded-[2.5rem] p-10 text-center reveal border border-white/5 bg-white/[0.02]"
-                    style="transition-delay: 200ms">
-                    <div class="w-20 h-20 bg-nitro-pink/10 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                        <i class='bx bxs-trophy text-4xl text-nitro-pink'></i>
-                    </div>
-                    <h3 class="text-5xl font-black mb-3 italic tracking-tighter">LVL 3</h3>
-                    <p class="text-[10px] text-gray-500 font-mono tracking-[0.3em] uppercase">Nitro Status</p>
-                </div>
-                <div class="glass-card rounded-[2.5rem] p-10 text-center reveal border border-white/5 bg-white/[0.02]"
-                    style="transition-delay: 400ms">
-                    <div class="w-20 h-20 bg-green-500/10 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                        <i class='bx bxs-zap text-4xl text-green-500'></i>
-                    </div>
-                    <h3 class="text-5xl font-black mb-3 italic tracking-tighter">24/7</h3>
-                    <p class="text-[10px] text-gray-500 font-mono tracking-[0.3em] uppercase">Live Support</p>
-                </div>
-            </div>
-        </section>
-        <section id="heritage" class="py-32 relative overflow-hidden px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-10 reveal">
-                    <div class="max-w-2xl">
-                        <h2 id="about-title"
-                            class="text-5xl md:text-8xl font-black uppercase italic leading-[0.9] tracking-tighter mb-8">
-                            The Dream of <span class="text-levant-gold">Unity</span>
-                        </h2>
-                        <div class="flex items-center gap-6 no-anim-badge">
+                    <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div class="flex -space-x-3">
                             <div
-                                class="p-5 bg-white/5 rounded-2xl border border-white/10 hover:border-levant-gold/30 transition-colors">
-                                <i class='bx bxs-quote-alt-left text-3xl text-levant-gold'></i>
-                            </div>
-                            <p class="text-gray-400 font-medium text-lg leading-relaxed italic">"Our Manifesto" yazan
-                                yerdeki o icon hoverda oynamasin o iconun animationu olmasin!</p>
+                                class="w-8 h-8 rounded-full border-2 border-[#030303] bg-levant-gold flex items-center justify-center text-[10px] font-bold">
+                                2</div>
                         </div>
-                    </div>
-                    <div class="text-right hidden md:block">
-                        <p class="text-[10px] font-mono text-gray-600 uppercase tracking-[0.4em] mb-4">EST. 2023</p>
-                        <div class="h-1 w-32 bg-levant-gold ml-auto"></div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-gray-400">Boost Level 2</span>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="schedule" class="py-32 bg-white/[0.01] px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-24 reveal">
-                    <h2 id="sched-title"
-                        class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter relative inline-block">
-                        The Schedule
-                        <i class='bx bxs-zap text-5xl text-yellow-400 absolute -top-6 -right-10 animate-pulse'></i>
-                    </h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <span class="text-[10px] font-mono text-levant-gold uppercase tracking-widest mb-6 block">MON -
-                            WED</span>
-                        <h4 class="text-xl font-black uppercase mb-4">Intellectual Debates</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed uppercase">Politics, History, and Philosophy.
-                            Deep dives into the Levant's complex identity.</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all"
-                        style="transition-delay: 100ms">
-                        <span class="text-[10px] font-mono text-levant-gold uppercase tracking-widest mb-6 block">THU -
-                            FRI</span>
-                        <h4 class="text-xl font-black uppercase mb-4">Gaming Nights</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed uppercase">FPS, Strategy, and Sandbox. Join the
-                            squads for legendary sessions.</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all"
-                        style="transition-delay: 200ms">
-                        <span
-                            class="text-[10px] font-mono text-levant-gold uppercase tracking-widest mb-6 block">SATURDAY</span>
-                        <h4 class="text-xl font-black uppercase mb-4">Movie Night</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed uppercase">Classic cinema and modern
-                            blockbusters. Grab your popcorn, join the stream.</p>
-                    </div>
-                    <div class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all"
-                        style="transition-delay: 300ms">
-                        <span
-                            class="text-[10px] font-mono text-levant-gold uppercase tracking-widest mb-6 block">SUNDAY</span>
-                        <h4 class="text-xl font-black uppercase mb-4">Chill Vibes</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed uppercase">Lo-Fi beats, casual talk, and mental
-                            reset before the new week begins.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="reviews" class="py-32 px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-24 reveal">
-                    <h2 id="rev-title" class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-4">
-                        The Family</h2>
-                    <p class="text-gray-500 text-xs font-mono tracking-[0.3em] uppercase">Who Leads the Charge</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="glass-card rounded-[2.5rem] p-10 reveal border border-white/5 bg-white/[0.02]">
-                        <div class="flex items-center gap-5 mb-8 no-anim-badge">
-                            <div
-                                class="w-16 h-16 rounded-2xl bg-levant-gold/10 flex items-center justify-center text-levant-gold border border-levant-gold/20">
-                                <i class='bx bxs-crown text-3xl'></i>
-                            </div>
-                            <div>
-                                <h4 class="font-black uppercase tracking-tighter text-xl">Eric_Cartman44</h4>
-                                <p class="text-[10px] text-levant-gold font-black uppercase tracking-widest">Owner</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed italic uppercase font-medium">"Visionary behind
-                            the digital Levant. Keeping the culture alive in the digital age."</p>
-                    </div>
-                    <div class="glass-card rounded-[2.5rem] p-10 reveal border border-white/5 bg-white/[0.02]"
-                        style="transition-delay: 200ms">
-                        <div class="flex items-center gap-5 mb-8 no-anim-badge">
-                            <div
-                                class="w-16 h-16 rounded-2xl bg-neon-purple/10 flex items-center justify-center text-neon-purple border border-neon-purple/20">
-                                <i class='bx bxs-shield-alt text-3xl'></i>
-                            </div>
-                            <div>
-                                <h4 class="font-black uppercase tracking-tighter text-xl">Staff Council</h4>
-                                <p class="text-[10px] text-neon-purple font-black uppercase tracking-widest">Founder</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed italic uppercase font-medium">"The backbone of
-                            the community. Ensuring safety and order for every member."</p>
-                    </div>
-                    <div class="glass-card rounded-[2.5rem] p-10 reveal border border-white/5 bg-white/[0.02]"
-                        style="transition-delay: 400ms">
-                        <div class="flex items-center gap-5 mb-8 no-anim-badge">
-                            <div
-                                class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20">
-                                <i class='bx bxs-terminal text-3xl'></i>
-                            </div>
-                            <div>
-                                <h4 class="font-black uppercase tracking-tighter text-xl">George Arshed</h4>
-                                <p class="text-[10px] text-blue-500 font-black uppercase tracking-widest">Dev</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed italic uppercase font-medium">"The Digital
-                            Architect. Crafting the pixels and code that power our home."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="gallery" class="py-32 bg-black relative px-4 overflow-hidden">
+
+        <section id="schedule" class="py-32 px-6 relative">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-24 gap-10 reveal">
-                    <div>
-                        <h2 id="gallery-title"
-                            class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none mb-4">
-                            Moments</h2>
-                        <p id="gallery-sub" class="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">The
-                            history we build together</p>
-                    </div>
-                    <button id="upload-btn"
-                        class="px-12 py-5 bg-white text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-levant-gold hover:scale-105 transition-all shadow-2xl interactable">Upload
-                        Your Memory</button>
+                <div class="flex flex-col items-center mb-20 text-center">
+                    <h2 id="sched-title"
+                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 relative">
+                        The Schedule
+                    </h2>
+                    <div class="h-1 w-20 bg-levant-gold rounded-full"></div>
                 </div>
-                <div id="moments-grid"
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 min-h-[400px]">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div
-                        class="group relative aspect-square rounded-[2.5rem] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center text-center p-8 transition-all hover:border-levant-gold/40">
-                        <div class="relative z-10">
-                            <i class='bx bx-images text-5xl text-gray-700 mb-4'></i>
-                            <p class="text-[10px] font-black uppercase text-gray-500 tracking-widest">No memories
-                                yet.<br>Be the first to transmit.</p>
+                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
+                        <i
+                            class='bx bx-microphone text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Voice Debates</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Nightly deep dives into history, philosophy,
+                            and the future of the Levant.</p>
+                    </div>
+                    <div
+                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
+                        <i
+                            class='bx bx-joystick text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Gaming Hub</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Competitive sessions and casual hangouts for
+                            the community gamers.</p>
+                    </div>
+                    <div
+                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
+                        <i
+                            class='bx bx-broadcast text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
+                        <h3 class="text-2xl font-black mb-4 uppercase">Live Events</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Special guest appearances and community-wide
+                            cultural celebrations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="family" class="py-32 bg-[#050505]">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 id="rev-title" class="text-center text-4xl md:text-6xl font-black uppercase tracking-tighter mb-20">
+                    The Family</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="flex flex-col items-center text-center group reveal">
+                        <div class="relative mb-8">
+                            <div
+                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                            </div>
+                            <img src="https://cdn.discordapp.com/avatars/680408469064515829/e4a14aa8637538af9ac8a371886e6f5f.webp?size=128"
+                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
+                                alt="Founder">
                         </div>
+                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">Alex</h3>
+                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Founder</p>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section id="faq" class="py-32 bg-white/[0.01] px-4">
-            <div class="max-w-4xl mx-auto reveal">
-                <h2 id="faq-title"
-                    class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter text-center mb-24">Quick
-                    Q<span class="text-levant-gold">&</span>A</h2>
-                <div class="space-y-8">
-                    <div class="glass-card rounded-3xl p-8 border border-white/5 hover:border-white/10 transition-all">
-                        <h4 id="faq-q1" class="text-xl font-black uppercase mb-6 flex items-center gap-4">
-                            <span
-                                class="w-10 h-10 rounded-xl bg-levant-gold/10 flex items-center justify-center text-levant-gold text-sm">01</span>
-                            How do I verify?
-                        </h4>
-                        <div id="faq-a1" class="text-gray-400 leading-relaxed uppercase text-sm ml-14">
-                            You need to send an application to our staff. You will be asked:<ol
-                                class='list-decimal list-inside space-y-4 mt-4 marker:text-levant-gold'>
-                                <li>What is your country of origin and how old are you?</li>
-                                <li>Why do you want to join this server? What do you expect from it?</li>
-                                <li>On a scale from 1 to 10, how tolerant are you of opinions that differ from your
-                                    beliefs?</li>
-                            </ol>
+                    <div class="flex flex-col items-center text-center group reveal">
+                        <div class="relative mb-8">
+                            <div
+                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                            </div>
+                            <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
+                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
+                                alt="Owner">
                         </div>
+                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">SuperNova</h3>
+                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Owner</p>
                     </div>
-                    <div class="glass-card rounded-3xl p-8 border border-white/5 hover:border-white/10 transition-all">
-                        <h4 id="faq-q2" class="text-xl font-black uppercase mb-6 flex items-center gap-4">
-                            <span
-                                class="w-10 h-10 rounded-xl bg-levant-gold/10 flex items-center justify-center text-levant-gold text-sm">02</span>
-                            Are non-Syrians welcome?
-                        </h4>
-                        <p id="faq-a2" class="text-gray-400 leading-relaxed uppercase text-sm ml-14">100%. If you vibe
-                            with the culture and respect the rules, you're family.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="rules" class="py-32 px-4 relative overflow-hidden">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-24 reveal">
-                    <h2 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-4">Core <span
-                            class="text-levant-gold">Rules</span></h2>
-                    <p class="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">The Foundation of Our
-                        Community</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-1-title" class="text-xl font-black uppercase mb-4 text-levant-gold">Respect</h4>
-                        <p id="rule-1-desc" class="text-sm text-gray-400 leading-relaxed uppercase">Treat everyone as
-                            you wish to be treated. We are a family.</p>
-                    </div>
-                    <div id="rule-2-card"
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-2-title" class="text-xl font-black uppercase mb-4 text-levant-gold">Privacy</h4>
-                        <p id="rule-2-desc" class="text-sm text-gray-400 leading-relaxed uppercase">No leaking. Personal
-                            info stays private. Red line.</p>
-                    </div>
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-3-title" class="text-xl font-black uppercase mb-4 text-levant-gold">No Hate</h4>
-                        <p id="rule-3-desc" class="text-sm text-gray-400 leading-relaxed uppercase">Racism and hate
-                            speech = Immediate ban. Zero tolerance.</p>
-                    </div>
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-4-title" class="text-xl font-black uppercase mb-4 text-levant-gold">Clean Content
-                        </h4>
-                        <p id="rule-4-desc" class="text-sm text-gray-400 leading-relaxed uppercase">No NSFW, gore, or
-                            disturbing content. Keep it classy.</p>
-                    </div>
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-5-title" class="text-xl font-black uppercase mb-4 text-levant-gold">Safe Links</h4>
-                        <p id="rule-5-desc" class="text-sm text-gray-400 leading-relaxed uppercase">Clarify before
-                            posting files or links to avoid auto-ban.</p>
-                    </div>
-                    <div
-                        class="glass-card rounded-3xl p-8 reveal border border-white/5 hover:bg-white/5 transition-all">
-                        <h4 id="rule-6-title" class="text-xl font-black uppercase mb-4 text-levant-gold">No Spam</h4>
-                        <p id="rule-6-desc" class="text-sm text-gray-400 leading-relaxed uppercase">Don't abuse
-                            @everyone or ping staff without reason.</p>
+                    <div class="flex flex-col items-center text-center group reveal">
+                        <div class="relative mb-8">
+                            <div
+                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                            </div>
+                            <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128"
+                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
+                                alt="Dev">
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">George</h3>
+                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Developer</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="protocols" class="py-32 bg-white/[0.01] px-4 pb-48">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-24 reveal">
-                    <h2 id="protocol-title"
-                        class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-4">System <span
-                            class="text-levant-gold">Protocols</span></h2>
-                    <p id="protocol-sub" class="text-gray-500 font-mono text-[10px] uppercase tracking-[0.4em]">///
-                        READ_BEFORE_ENTRY</p>
+
+        <section id="unity" class="py-32 px-6">
+            <div
+                class="max-w-4xl mx-auto glass-card p-12 md:p-20 rounded-[60px] border border-white/5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-10 opacity-10">
+                    <i class='bx bxs-quote-right text-9xl text-levant-gold'></i>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12" id="unity-title">The Dream
+                    of Unity</h2>
+                <div class="space-y-12">
+                    <div class="reveal">
+                        <p class="text-[10px] font-bold text-levant-gold uppercase tracking-[0.4em] mb-4">English</p>
+                        <p id="unity-en" class="text-xl md:text-2xl font-medium leading-relaxed text-gray-200 italic">
+                        </p>
+                    </div>
+                    <div class="h-px w-full bg-white/10"></div>
+                    <div class="reveal" dir="rtl">
+                        <p class="text-[10px] font-bold text-levant-gold uppercase tracking-[0.4em] mb-4">العربية</p>
+                        <p id="unity-ar"
+                            class="text-2xl md:text-3xl font-bold leading-relaxed text-gray-200 font-arabic"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 id="protocol-title"
+                    class="text-center text-4xl md:text-6xl font-black uppercase tracking-tighter mb-20 italic">Core
+                    Rules</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div
-                        class="protocol-card bg-[#080808] border border-white/5 rounded-[2rem] p-10 reveal hover:border-levant-gold/40 transition-all relative overflow-hidden group">
-                        <div
-                            class="absolute -right-4 -top-4 text-9xl text-white/[0.02] font-black group-hover:text-levant-gold/[0.05] transition-colors">
-                            01</div>
-                        <i class='bx bx-fingerprint text-5xl text-levant-gold mb-8 block'></i>
-                        <h4 class="text-xl font-black uppercase mb-4 tracking-tighter">Biometric Entry</h4>
-                        <p class="text-xs text-gray-500 uppercase leading-relaxed font-mono">Verification of identity is
-                            mandatory for full clearance.</p>
+                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
+                        <i class='bx bx-shield-quarter text-3xl text-levant-gold mb-6'></i>
+                        <h4 class="font-black uppercase mb-2">Respect</h4>
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Foundation of all</p>
                     </div>
-                    <div class="protocol-card bg-[#080808] border border-white/5 rounded-[2rem] p-10 reveal hover:border-levant-gold/40 transition-all relative overflow-hidden group"
-                        style="transition-delay: 100ms">
-                        <div
-                            class="absolute -right-4 -top-4 text-9xl text-white/[0.02] font-black group-hover:text-levant-gold/[0.05] transition-colors">
-                            02</div>
-                        <i class='bx bx-shield-quarter text-5xl text-levant-gold mb-8 block'></i>
-                        <h4 class="text-xl font-black uppercase mb-4 tracking-tighter">Neural Guard</h4>
-                        <p class="text-xs text-gray-500 uppercase leading-relaxed font-mono">Auto-moderation active.
-                            Toxic patterns are purged instantly.</p>
+                    <div
+                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
+                        <i class='bx bx-error-circle text-3xl text-levant-gold mb-6'></i>
+                        <h4 class="font-black uppercase mb-2">No Spam</h4>
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Quality over quantity</p>
                     </div>
-                    <div class="protocol-card bg-[#080808] border border-white/5 rounded-[2rem] p-10 reveal hover:border-levant-gold/40 transition-all relative overflow-hidden group"
-                        style="transition-delay: 200ms">
-                        <div
-                            class="absolute -right-4 -top-4 text-9xl text-white/[0.02] font-black group-hover:text-levant-gold/[0.05] transition-colors">
-                            03</div>
-                        <i class='bx bx-data text-5xl text-levant-gold mb-8 block'></i>
-                        <h4 class="text-xl font-black uppercase mb-4 tracking-tighter">Data Sanctity</h4>
-                        <p class="text-xs text-gray-500 uppercase leading-relaxed font-mono">Encrypted communication
-                            channels. Your privacy is paramount.</p>
+                    <div
+                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
+                        <i class='bx bx-block text-3xl text-levant-gold mb-6'></i>
+                        <h4 class="font-black uppercase mb-2">Safe Env</h4>
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">No hate speech</p>
                     </div>
-                    <div class="protocol-card bg-[#080808] border border-white/5 rounded-[2rem] p-10 reveal hover:border-levant-gold/40 transition-all relative overflow-hidden group"
-                        style="transition-delay: 300ms">
-                        <div
-                            class="absolute -right-4 -top-4 text-9xl text-white/[0.02] font-black group-hover:text-levant-gold/[0.05] transition-colors">
-                            04</div>
-                        <i class='bx bx-broadcast text-5xl text-levant-gold mb-8 block'></i>
-                        <h4 class="text-xl font-black uppercase mb-4 tracking-tighter">Global Relay</h4>
-                        <p class="text-xs text-gray-500 uppercase leading-relaxed font-mono">High-speed node connection.
-                            Zero latency for all members.</p>
+                    <div
+                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
+                        <i class='bx bx-user-voice text-3xl text-levant-gold mb-6'></i>
+                        <h4 class="font-black uppercase mb-2">Open Mind</h4>
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Listen and Learn</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="py-20 border-t border-white/5 bg-[#030303] px-4">
-        <div class="max-w-6xl mx-auto flex flex-col items-center">
-            <div
-                class="w-full pt-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left items-center">
-                <div class="order-2 md:order-1 hover:translate-x-2 transition-transform interactable">
-                    <p class="text-[9px] text-gray-600 font-bold uppercase mb-2">Server Owner</p>
-                    <p class="text-xs text-white font-black uppercase tracking-widest">eric_cartman44</p>
-                </div>
-                <p class="text-[10px] text-gray-600 uppercase font-bold text-center order-1 md:order-2">© 2026 SYRIA
-                    SERVER</p>
-                <div class="md:text-right order-3 hover:-translate-x-2 transition-transform interactable">
-                    <p class="text-[9px] text-gray-600 font-bold uppercase mb-2">Digital Architect</p>
-                    <a href="https://instagram.com/lilzeng1"
-                        class="text-xs text-white font-black uppercase underline decoration-levant-gold underline-offset-4 hover:text-levant-gold transition-colors">GEORGE
-                        ARSHED</a>
-                </div>
+
+    <footer class="py-20 border-t border-white/5 bg-[#030303] px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Server Owner</p>
+                <p class="text-sm text-white font-black uppercase tracking-[0.2em]">SuperNova</p>
+            </div>
+            <p class="text-[10px] text-gray-600 uppercase font-bold tracking-[0.5em]">© 2026 SYRIA SERVER</p>
+            <div class="text-center md:text-right">
+                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Digital Architect</p>
+                <a href="https://instagram.com/lilzeng1"
+                    class="text-sm text-white font-black uppercase underline decoration-levant-gold decoration-2 underline-offset-8 hover:text-levant-gold transition-colors">Lil
+                    Zeng</a>
             </div>
         </div>
     </footer>
-    <audio id="bg-music" loop></audio>
+
     <script src="script.js"></script>
 </body>
 </html>
