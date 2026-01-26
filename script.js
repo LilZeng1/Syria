@@ -1,157 +1,195 @@
 const translations = {
     en: {
-        statText: "1,800+ Members — You're the missing one!",
-        navHome: "Home",
-        navSchedule: "Schedule",
-        navReviews: "Family",
-        navHeritage: "Heritage",
-        navDiscord: "Join Discord",
-        heroTitle: "The Heart <br> <span class='italic serif text-levant-gold'>Of The Levant.</span>",
-        heroSub: "Forget regular servers. This is where the real ones hang out. From deep talks to gaming chaos, it's just home.",
-        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> Jump In Discord",
+        statText: "1,800+ Members — Missing You!",
+        heroTitle: "The Heart <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>Of The Levant.</span>",
+        heroSub: "Forget regular servers. This is where the real ones hang out.",
+        enterBtn: "<i class='bx bxl-discord-alt text-2xl'></i> Jump In Discord",
         exploreBtn: "Check Events",
         schedTitle: "The Schedule",
         revTitle: "The Family",
-        revSupernova: "\"Started from 3 AM calls, now we're a whole tribe. It's more than just a server, it's a sanctuary.\"",
-        revAlex: "\"Witnessed every single glow-up. If you want a place with zero fake vibes, this is it. Welcome home.\"",
-        revGeorge: "\"I just keep the lights on with some code, but the people here are the real magic. 10/10 vibes only.\"",
         cultTitle: "The <br> Heritage",
-        cultSub: "Beats in the morning, vibes for the soul.",
-        cultDesc: "Syria, Lebanon, Jordan, Palestine. Many dialects, one spirit. A bridge between tradition and the digital age.",
-        boosterTitle: "Hall of <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>Legends</span>",
-        boosterDesc: "The real MVPs keeping our audio crisp and our streams HD. Respect the badge.",
         galleryTitle: "Moments",
         gallerySub: "The history we build together",
         faqTitle: "Quick Q<span class='text-levant-gold'>&</span>A",
         faqQ1: "How do I verify?",
-        faqA1: `<p class="mb-2">You need to send an application to our staff. You will be asked:</p>
-                <ol class="list-decimal list-inside space-y-1 ml-2">
-                    <li>What is your country of origin and how old are you?</li>
-                    <li>Why do you want to join this server? What do you expect from it?</li>
-                    <li>On a scale from 1 to 10, How tolerant are you of opinions that differ from your beliefs?</li>
-                </ol>
-                <p class="mt-2">If accepted by staff, you're in.</p>`,
+        faqA1: "You need to send an application to our staff...",
         faqQ2: "Are non-Syrians welcome?",
-        faqA2: "100%. If you vibe with the culture and respect the rules, you're family."
+        faqA2: "100%. If you vibe with the culture, you're family."
     },
     ar: {
-        statText: "أكثر من ١٨٠٠ عضو — أنت الشخص الناقص!",
-        navHome: "الرئيسية",
-        navSchedule: "الجدول",
-        navReviews: "العائلة",
-        navHeritage: "التراث",
-        navDiscord: "انضم إلينا",
-        heroTitle: "قلب <br> <span class='italic serif text-levant-gold'>بلاد الشام.</span>",
-        heroSub: "انسَ السيرفرات العادية. هنا المكان اللي بيجمعنا من جد. من النقاشات العميقة لجنون الألعاب، هنا بيتك.",
-        enterBtn: "<i class='bx bxl-discord-alt text-xl'></i> ادخل السيرفر",
-        exploreBtn: "جدول الفعاليات",
+        statText: "أكثر من ١٨٠٠ عضو — مكانك فاضي!",
+        heroTitle: "قلب <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>بلاد الشام.</span>",
+        heroSub: "انسَ السيرفرات العادية. هنا العائلة الحقيقية.",
+        enterBtn: "<i class='bx bxl-discord-alt text-2xl'></i> ادخل السيرفر",
+        exploreBtn: "الفعاليات",
         schedTitle: "جدولنا",
         revTitle: "العائلة",
-        revSupernova: "\"بدأنا من اتصالات الساعة ٣ الصبح، وهلا صرنا قبيلة كاملة. مو مجرد سيرفر، هاد ملجأنا.\"",
-        revAlex: "\"شفت السيرفر وهو بيكبر خطوة بخطوة. إذا بدك مكان حقيقي بدون تزييف، هاد هو المكان. أهلاً فيك.\"",
-        revGeorge: "\"أنا بس بهتم بالكود والإضاءة، بس الناس هون هنن السحر الحقيقي. أجواء خيالية ١٠/١٠.\"",
         cultTitle: "التراث <br> العريق",
-        cultSub: "أنغام الصباح، وراحة للروح.",
-        cultDesc: "سوريا، لبنان، الأردن، فلسطين. لهجات كتيرة، بس الروح وحدة. جسر بين الأصالة والعصر الرقمي.",
-        boosterTitle: "قاعة <span class='text-transparent bg-clip-text bg-gradient-to-r from-nitro-pink to-neon-purple'>الأساطير</span>",
-        boosterDesc: "الأعضاء الذهبيين اللي مخليين الصوت واضح والبث عالي الدقة. كل الاحترام.",
         galleryTitle: "لحظات",
         gallerySub: "تاريخنا سوا",
         faqTitle: "سؤال <span class='text-levant-gold'>و</span> جواب",
         faqQ1: "كيف بوثق حسابي؟",
-        faqA1: `<p class="mb-2">لازم تقدم طلب للادارة، رح تنسأل:</p>
-                <ol class="list-decimal list-inside space-y-1 ml-2">
-                    <li>ما هو بلدك الأصلي وكم عمرك؟</li>
-                    <li>لماذا تريد الانضمام إلى هذا الخادم؟ وماذا تتوقع منه؟</li>
-                    <li>على مقياس من 1 إلى 10، ما مدى تسامحك مع الآراء التي تختلف عن معتقداتك؟</li>
-                </ol>
-                <p class="mt-2">اذا وافقوا عليك، مبروك صرت منا.</p>`,
+        faqA1: "لازم تقدم طلب للادارة، رح تنسأل اسئلة بسيطة...",
         faqQ2: "هل مسموح لغير السوريين؟",
-        faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين والجو العام، أنت من العيلة."
+        faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين، أنت من العيلة."
     }
 };
 
 let currentLang = 'en';
 
-function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const isOpen = menu.style.transform === 'translateX(0%)';
-    menu.style.transform = isOpen ? 'translateX(100%)' : 'translateX(0%)';
+// Cursor Logic
+const cursorDot = document.getElementById("cursor-dot");
+const cursorOutline = document.getElementById("cursor-outline");
+
+window.addEventListener("mousemove", function (e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// Interactive Elements Hover
+const interactables = document.querySelectorAll('.interactable');
+interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hovering-interactable');
+    });
+    el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hovering-interactable');
+    });
+});
+
+// Particle Click System
+const particleCanvas = document.getElementById('particle-canvas');
+const pCtx = particleCanvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+        const color = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+        this.color = color;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if(this.size > 0.2) this.size -= 0.1;
+    }
+    draw() {
+        pCtx.fillStyle = this.color;
+        pCtx.beginPath();
+        pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        pCtx.fill();
+    }
 }
 
-document.getElementById('open-menu').addEventListener('click', toggleMenu);
-document.getElementById('close-menu').addEventListener('click', toggleMenu);
+function handleParticles() {
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        if (particles[i].size <= 0.3) {
+            particles.splice(i, 1);
+            i--;
+        }
+    }
+    requestAnimationFrame(handleParticles);
+}
+handleParticles();
 
+window.addEventListener('click', (e) => {
+    for (let i = 0; i < 10; i++) {
+        particles.push(new Particle(e.clientX, e.clientY));
+    }
+    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+    setTimeout(() => {
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+});
+
+// Typing Effect
+const phrases = [
+    "Not just another server—it's home.", 
+    "From heated debates to 3 AM gaming.", 
+    "Come as you are, stay for the family."
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typeTarget = document.getElementById('hero-sub');
+
+function typeEffect() {
+    const currentPhrase = phrases[phraseIndex];
+    if(isDeleting) {
+        typeTarget.innerText = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typeTarget.innerText = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    if(!isDeleting && charIndex === currentPhrase.length) {
+        setTimeout(() => isDeleting = true, 2000);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+    }
+
+    const speed = isDeleting ? 30 : 50;
+    setTimeout(typeEffect, speed);
+}
+
+// Core Loader & Initilaziton
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden-loader');
         reveal();
         initStarfield();
-        startLiveFeed();
         initTilt();
         initPortal();
-    }, 1000);
+        typeEffect();
+    }, 1500);
 });
 
-function updateLanguage() {
-    const t = translations[currentLang];
-    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-    document.body.style.opacity = '0';
-
-    setTimeout(() => {
-        document.getElementById('stat-text').innerText = t.statText;
-        document.getElementById('hero-title').innerHTML = t.heroTitle;
-        document.getElementById('hero-sub').innerText = t.heroSub;
-        document.getElementById('enter-btn').innerHTML = t.enterBtn;
-        document.getElementById('explore-btn').innerText = t.exploreBtn;
-        document.getElementById('sched-title').innerText = t.schedTitle;
-        document.getElementById('rev-title').innerText = t.revTitle;
-        document.getElementById('rev-supernova').innerText = t.revSupernova;
-        document.getElementById('rev-alex').innerText = t.revAlex;
-        document.getElementById('rev-george').innerText = t.revGeorge;
-        document.getElementById('cult-title').innerHTML = t.cultTitle;
-        document.getElementById('cult-sub').innerText = t.cultSub;
-        document.getElementById('cult-desc').innerText = t.cultDesc;
-        document.getElementById('booster-title').innerHTML = t.boosterTitle;
-        document.getElementById('booster-desc').innerText = t.boosterDesc;
-        document.getElementById('gallery-title').innerText = t.galleryTitle;
-        document.getElementById('gallery-sub').innerText = t.gallerySub;
-        document.getElementById('faq-title').innerHTML = t.faqTitle;
-        document.getElementById('faq-q1').innerText = t.faqQ1;
-        document.getElementById('faq-a1').innerHTML = t.faqA1;
-        document.getElementById('faq-q2').innerText = t.faqQ2;
-        document.getElementById('faq-a2').innerText = t.faqA2;
-
-        document.body.style.opacity = '1';
-        reveal();
-    }, 400);
+// Menu Logic
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const isOpen = menu.style.transform === 'translateX(0%)';
+    menu.style.transform = isOpen ? 'translateX(100%)' : 'translateX(0%)';
 }
+document.getElementById('open-menu').addEventListener('click', toggleMenu);
+document.getElementById('close-menu').addEventListener('click', toggleMenu);
 
-document.getElementById('lang-toggle').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    updateLanguage();
-});
-
-document.getElementById('lang-toggle-mob').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    updateLanguage();
-    setTimeout(toggleMenu, 600);
-});
-
+// Scroll Reveal
 function reveal() {
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(el => {
         const windowHeight = window.innerHeight;
         const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 80;
-        if (revealTop < windowHeight - revealPoint) {
+        if (revealTop < windowHeight - 50) {
             el.classList.add('active');
         }
     });
 }
-
 window.addEventListener('scroll', reveal);
 
+// Strict Upload Logic
 const modal = document.getElementById('upload-modal');
 const btn = document.getElementById('upload-btn');
 const close = document.getElementById('close-upload');
@@ -160,6 +198,8 @@ const fileInput = document.getElementById('file-input');
 const previewContainer = document.getElementById('preview-container');
 const imagePreview = document.getElementById('image-preview');
 const submitBtn = document.getElementById('submit-upload');
+const errorOverlay = document.getElementById('error-overlay');
+const dropVisuals = document.getElementById('drop-visuals');
 
 function openModal() {
     modal.classList.remove('hidden');
@@ -182,6 +222,8 @@ function resetForm() {
     fileInput.value = '';
     previewContainer.classList.add('hidden');
     imagePreview.src = '';
+    errorOverlay.classList.add('hidden');
+    dropVisuals.classList.remove('border-red-500', 'bg-red-500/10');
 }
 
 btn.addEventListener('click', openModal);
@@ -190,48 +232,83 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
+// Drag & Drop Visuals
+['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropVisuals.classList.add('border-levant-gold', 'bg-levant-gold/20');
+    });
+});
+['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropVisuals.classList.remove('border-levant-gold', 'bg-levant-gold/20');
+    });
+});
+
+function handleFile(file) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/x-icon'];
+    
+    if (!validTypes.includes(file.type)) {
+        errorOverlay.classList.remove('hidden');
+        dropVisuals.classList.add('border-red-500', 'bg-red-500/10');
+        setTimeout(() => {
+            errorOverlay.classList.add('hidden');
+            dropVisuals.classList.remove('border-red-500', 'bg-red-500/10');
+        }, 2000);
+        fileInput.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        imagePreview.src = e.target.result;
+        previewContainer.classList.remove('hidden');
+    }
+    reader.readAsDataURL(file);
+}
+
+dropZone.addEventListener('drop', (e) => {
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+});
+
 fileInput.addEventListener('change', function () {
     const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            previewContainer.classList.remove('hidden');
-        }
-        reader.readAsDataURL(file);
-    }
+    if (file) handleFile(file);
 });
 
 submitBtn.addEventListener('click', () => {
-    if (!fileInput.files[0]) return;
-
-    const newCard = document.createElement('div');
-    newCard.className = 'break-inside-avoid glass-card rounded-2xl p-2 group hover:rotate-2 transition-transform duration-300 reveal active';
-    newCard.innerHTML = `
-        <div class="bg-gray-800 rounded-xl overflow-hidden aspect-video relative">
-            <img src="${imagePreview.src}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                 <span class="text-[10px] font-black uppercase tracking-widest text-white">Just Now</span>
+    if (!fileInput.files[0] && !imagePreview.src) return;
+    
+    submitBtn.innerHTML = '<i class="bx bx-loader-alt animate-spin text-xl"></i> UPLOADING...';
+    
+    setTimeout(() => {
+        const newCard = document.createElement('div');
+        newCard.className = 'break-inside-avoid glass-card rounded-[2rem] p-2 group hover:rotate-2 transition-transform duration-300 reveal active interactable';
+        newCard.innerHTML = `
+            <div class="bg-gray-800 rounded-[1.8rem] overflow-hidden aspect-square relative">
+                <img src="${imagePreview.src}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                     <span class="text-[10px] font-black uppercase tracking-widest text-white">Just Now</span>
+                </div>
             </div>
-        </div>
-    `;
-
-    const grid = document.getElementById('gallery-grid');
-    grid.prepend(newCard);
-
-    const emptySlots = grid.querySelectorAll('.border-dashed');
-    if (emptySlots.length > 0) {
-    }
-
-    closeModal();
+        `;
+        
+        const grid = document.getElementById('gallery-grid');
+        grid.prepend(newCard);
+        
+        closeModal();
+        submitBtn.innerHTML = '<span class="relative z-10">Initialize Upload</span><div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>';
+    }, 1500);
 });
 
+// STARFIELD
 function initStarfield() {
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let stars = [];
-    const maxStars = 100;
+    let width, height, stars = [];
+    const maxStars = 150;
 
     function resize() {
         width = window.innerWidth;
@@ -243,9 +320,10 @@ function initStarfield() {
     function Star() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
         this.size = Math.random() * 2;
+        this.alpha = Math.random();
     }
 
     Star.prototype.update = function () {
@@ -255,12 +333,14 @@ function initStarfield() {
         if (this.x > width) this.x = 0;
         if (this.y < 0) this.y = height;
         if (this.y > height) this.y = 0;
+        this.alpha += (Math.random() - 0.5) * 0.05;
+        if (this.alpha < 0) this.alpha = 0;
+        if (this.alpha > 1) this.alpha = 1;
     }
 
     Star.prototype.draw = function () {
-        const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#d4af37';
-        ctx.fillStyle = accent;
-        ctx.globalAlpha = Math.random() * 0.5 + 0.3;
+        ctx.fillStyle = "white";
+        ctx.globalAlpha = this.alpha;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -269,134 +349,21 @@ function initStarfield() {
 
     for (let i = 0; i < maxStars; i++) stars.push(new Star());
 
-    let mouse = { x: 0, y: 0 };
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
     function animate() {
         ctx.clearRect(0, 0, width, height);
         stars.forEach(star => {
             star.update();
             star.draw();
-
-            let dx = mouse.x - star.x;
-            let dy = mouse.y - star.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 150) {
-                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#d4af37';
-                ctx.strokeStyle = accent;
-                ctx.lineWidth = 0.5;
-                ctx.globalAlpha = 1 - distance / 150;
-                ctx.beginPath();
-                ctx.moveTo(star.x, star.y);
-                ctx.lineTo(mouse.x, mouse.y);
-                ctx.stroke();
-                ctx.globalAlpha = 1;
-            }
         });
         requestAnimationFrame(animate);
     }
-
+    
     window.addEventListener('resize', resize);
     resize();
     animate();
 }
 
-const mockEvents = [
-    { type: 'join', text: 'Sarah just joined the server!' },
-    { type: 'boost', text: 'Ahmed boosted the server! 🚀' },
-    { type: 'vc', text: 'Gaming VC is active (12 users)' },
-    { type: 'music', text: 'Music Bot is playing tunes' },
-    { type: 'event', text: 'Movie Night starting in 15m' }
-];
-
-function startLiveFeed() {
-    const container = document.getElementById('live-activity');
-    if (!container) return;
-
-    setInterval(() => {
-        const event = mockEvents[Math.floor(Math.random() * mockEvents.length)];
-        const el = document.createElement('div');
-        el.className = 'glass-card px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 flex items-center gap-2 notification-enter shadow-xl bg-black/80';
-        let icon = '';
-        if (event.type === 'join') icon = '<i class="bx bxs-user-plus text-green-400"></i>';
-        if (event.type === 'boost') icon = '<i class="bx bxs-rocket text-pink-500"></i>';
-        if (event.type === 'vc') icon = '<i class="bx bxs-microphone text-blue-400"></i>';
-        if (event.type === 'music') icon = '<i class="bx bxs-music text-purple-400"></i>';
-        if (event.type === 'event') icon = '<i class="bx bxs-calendar text-yellow-500"></i>';
-
-        el.innerHTML = `${icon} <span>${event.text}</span>`;
-
-        container.appendChild(el);
-        if (container.children.length > 3) {
-            container.removeChild(container.firstChild);
-        }
-
-        setTimeout(() => {
-            el.classList.remove('notification-enter');
-            el.classList.add('notification-exit');
-            setTimeout(() => el.remove(), 500);
-        }, 4000);
-    }, 5000);
-}
-
-function initTilt() {
-    const cards = document.querySelectorAll('.tilt-card');
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = ((y - centerY) / centerY) * -5;
-            const rotateY = ((x - centerX) / centerX) * 5;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        });
-    });
-}
-
-const counters = document.querySelectorAll('.counter');
-const speed = 200;
-
-const animateCounters = () => {
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const inc = target / speed;
-
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 1);
-            } else {
-                counter.innerText = target + "+";
-            }
-        };
-        updateCount();
-    });
-}
-
-let counted = false;
-window.addEventListener('scroll', () => {
-    const statsSection = document.getElementById('stats');
-    if (statsSection && window.scrollY + window.innerHeight > statsSection.offsetTop && !counted) {
-        animateCounters();
-        counted = true;
-    }
-});
-
-// Portal Logic
+// PORTAL & THEME LOGIC
 function initPortal() {
     const trigger = document.getElementById('portal-trigger');
     const overlay = document.getElementById('portal-overlay');
@@ -427,34 +394,27 @@ function initPortal() {
     closeBtn.addEventListener('click', togglePortal);
     closeBg.addEventListener('click', togglePortal);
 
-    // Theme Switcher
     themeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const color = btn.getAttribute('data-color');
             document.documentElement.style.setProperty('--accent-color', color);
-            document.documentElement.style.setProperty('--levant-gold', color);
-
-            const canvas = document.getElementById('starfield');
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < 20; i++) {
+                particles.push(new Particle(window.innerWidth/2, window.innerHeight/2));
             }
         });
     });
 
-    // Matrix Logic
     let matrixInterval;
     let isMatrixOn = false;
     matrixToggle.addEventListener('click', () => {
         isMatrixOn = !isMatrixOn;
         document.getElementById('matrix-status').style.backgroundColor = isMatrixOn ? '#4ade80' : '#4b5563';
+        document.getElementById('matrix-status').style.boxShadow = isMatrixOn ? '0 0 10px #4ade80' : 'none';
         document.getElementById('matrix-canvas').style.opacity = isMatrixOn ? '0.1' : '0';
 
-        if (isMatrixOn) {
-            startMatrix();
-        } else {
-            clearInterval(matrixInterval);
-        }
+        if (isMatrixOn) startMatrix();
+        else clearInterval(matrixInterval);
     });
 
     function startMatrix() {
@@ -467,30 +427,23 @@ function initPortal() {
         const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const nums = '0123456789';
         const alphabet = katakana + latin + nums;
-
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = [];
 
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
+        for (let x = 0; x < columns; x++) drops[x] = 1;
 
         function draw() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() || '#0F0';
+            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
             ctx.fillStyle = accent;
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
                 const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             }
         }
@@ -498,15 +451,69 @@ function initPortal() {
         matrixInterval = setInterval(draw, 30);
     }
 
-    // Focus Logic
     let isFocusOn = false;
     focusToggle.addEventListener('click', () => {
         isFocusOn = !isFocusOn;
         document.getElementById('focus-status').style.backgroundColor = isFocusOn ? '#60a5fa' : '#4b5563';
-        if (isFocusOn) {
-            document.body.classList.add('focus-mode');
-        } else {
-            document.body.classList.remove('focus-mode');
-        }
+        document.getElementById('focus-status').style.boxShadow = isFocusOn ? '0 0 10px #60a5fa' : 'none';
+        if (isFocusOn) document.body.classList.add('focus-mode');
+        else document.body.classList.remove('focus-mode');
     });
+}
+
+// TILT 3D EFFECT
+function initTilt() {
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+    });
+}
+
+// --- LANGUAGE SWITCH ---
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    updateLanguage();
+});
+document.getElementById('lang-toggle-mob').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    updateLanguage();
+    setTimeout(toggleMenu, 600);
+});
+
+function updateLanguage() {
+    const t = translations[currentLang];
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('stat-text').innerText = t.statText;
+        document.getElementById('hero-title').innerHTML = t.heroTitle;
+        // Reset typewriter
+        phraseIndex = 0; charIndex = 0; isDeleting = false;
+        
+        document.getElementById('enter-btn').innerHTML = t.enterBtn;
+        document.getElementById('explore-btn').innerText = t.exploreBtn;
+        document.getElementById('sched-title').innerText = t.schedTitle;
+        document.getElementById('rev-title').innerText = t.revTitle;
+        document.getElementById('gallery-title').innerText = t.galleryTitle;
+        document.getElementById('gallery-sub').innerText = t.gallerySub;
+        document.getElementById('faq-title').innerHTML = t.faqTitle;
+        document.getElementById('faq-q1').innerText = t.faqQ1;
+        document.getElementById('faq-a1').innerHTML = t.faqA1;
+        document.getElementById('faq-q2').innerText = t.faqQ2;
+        document.getElementById('faq-a2').innerText = t.faqA2;
+        document.body.style.opacity = '1';
+        reveal();
+    }, 400);
 }
