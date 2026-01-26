@@ -37,23 +37,6 @@ const translations = {
 
 let currentLang = 'en';
 
-// Cursor Logic
-const cursorDot = document.getElementById("cursor-dot");
-const cursorOutline = document.getElementById("cursor-outline");
-
-window.addEventListener("mousemove", function (e) {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
-
-    cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-});
-
 // Interactive Elements Hover
 const interactables = document.querySelectorAll('.interactable');
 interactables.forEach(el => {
@@ -63,64 +46,6 @@ interactables.forEach(el => {
     el.addEventListener('mouseleave', () => {
         document.body.classList.remove('hovering-interactable');
     });
-});
-
-// Particle Click System
-const particleCanvas = document.getElementById('particle-canvas');
-const pCtx = particleCanvas.getContext('2d');
-let particles = [];
-
-function resizeCanvas() {
-    particleCanvas.width = window.innerWidth;
-    particleCanvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 5 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-        const color = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
-        this.color = color;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if(this.size > 0.2) this.size -= 0.1;
-    }
-    draw() {
-        pCtx.fillStyle = this.color;
-        pCtx.beginPath();
-        pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        pCtx.fill();
-    }
-}
-
-function handleParticles() {
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        if (particles[i].size <= 0.3) {
-            particles.splice(i, 1);
-            i--;
-        }
-    }
-    requestAnimationFrame(handleParticles);
-}
-handleParticles();
-
-window.addEventListener('click', (e) => {
-    for (let i = 0; i < 10; i++) {
-        particles.push(new Particle(e.clientX, e.clientY));
-    }
-    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    setTimeout(() => {
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-    }, 100);
 });
 
 // Typing Effect
