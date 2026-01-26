@@ -1,58 +1,146 @@
-/* variables */
 :root {
-    --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --arabic-font: 'Noto Sans Arabic', sans-serif;
-    --accent-color: #d4af37;
     --bg-color: #030303;
+    --bg-alt: #050505;
     --text-color: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.015);
-    --border-color: rgba(255, 255, 255, 0.05);
+    --accent-color: #d4af37;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --soft-bg: rgba(255, 255, 255, 0.05);
+    --inverse-text: #000000;
 }
 
-/* Light Theme */
 .theme-light {
-    --bg-color: #f5f5f7;
+    --bg-color: #ffffff;
+    --bg-alt: #f4f4f7;
     --text-color: #1d1d1f;
-    --accent-color: #b8860b;
-    --card-bg: rgba(0, 0, 0, 0.02);
+    --accent-color: #af8f2c;
+    --card-bg: rgba(0, 0, 0, 0.03);
     --border-color: rgba(0, 0, 0, 0.1);
+    --soft-bg: rgba(0, 0, 0, 0.05);
+    --inverse-text: #ffffff;
 }
 
 .theme-gold {
     --bg-color: #0f0a00;
-    --text-color: #fff9e6;
+    --bg-alt: #1a1200;
+    --text-color: #fff4d1;
     --accent-color: #ffd700;
-    --card-bg: rgba(212, 175, 55, 0.05);
-    --border-color: rgba(212, 175, 55, 0.2);
+    --card-bg: rgba(255, 215, 0, 0.05);
+    --border-color: rgba(255, 215, 0, 0.2);
+    --soft-bg: rgba(255, 215, 0, 0.08);
+    --inverse-text: #000000;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: all 0.5s ease;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Glass Navbar */
+.bg-main {
+    background-color: var(--bg-color);
+}
+
+.bg-main-alt {
+    background-color: var(--bg-alt);
+}
+
+.bg-main-soft {
+    background-color: var(--soft-bg);
+}
+
+.bg-card {
+    background-color: var(--card-bg);
+}
+
+.text-main {
+    color: var(--text-color);
+}
+
+.text-inverse {
+    color: var(--inverse-text);
+}
+
+.border-main {
+    border-color: var(--border-color);
+}
+
 .glass-nav {
     background: var(--bg-color);
-    opacity: 0.9;
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
 }
 
 .glass-card {
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
 }
 
-/* Mobile Resposniveness */
-@media (max-width: 768px) {
-    .hero-title-responsive {
-        font-size: clamp(2.5rem, 10vw, 4rem) !important;
-        line-height: 1.1;
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    transition: opacity 0.3s;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-color);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.font-arabic {
+    font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+@keyframes gradient-x {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
     }
 
-    .particles-container {
-        display: none;
+    50% {
+        background-position: 100% 50%;
     }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0px);
+    }
+
+    50% {
+        transform: translate(-50%, -20px);
+    }
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
 }
