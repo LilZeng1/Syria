@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SYRIA | Digital Levant Portal</title>
     <link rel="icon" type="image/png" href="./Assets/ServerIcon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -40,27 +42,41 @@
         <div class="max-w-[1440px] mx-auto px-4 md:px-10 h-16 md:h-24 flex items-center justify-between">
             <div class="flex items-center gap-3 group">
                 <div class="relative">
-                    <img src="./Assets/ServerIcon.png" class="w-8 h-8 md:w-12 md:h-12 rounded-xl shadow-lg group-hover:rotate-12 transition-transform" alt="Logo">
-                    <div class="absolute -top-1 -right-1 w-2 h-2 md:w-3 md:h-3 bg-green-500 border border-black rounded-full animate-pulse"></div>
+                    <img src="./Assets/ServerIcon.png"
+                        class="w-8 h-8 md:w-12 md:h-12 rounded-xl shadow-lg group-hover:rotate-12 transition-transform"
+                        alt="Logo">
+                    <div
+                        class="absolute -top-1 -right-1 w-2 h-2 md:w-3 md:h-3 bg-green-500 border border-black rounded-full animate-pulse">
+                    </div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-black tracking-tighter text-lg md:text-2xl uppercase italic leading-none">Syria</span>
-                    <span class="text-[7px] md:text-[9px] font-bold tracking-[0.3em] text-levant-gold uppercase">Digital Levant</span>
+                    <span
+                        class="font-black tracking-tighter text-lg md:text-2xl uppercase italic leading-none">Syria</span>
+                    <span class="text-[7px] md:text-[9px] font-bold tracking-[0.3em] text-levant-gold uppercase">Digital
+                        Levant</span>
                 </div>
             </div>
 
             <div class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] opacity-60">
-                <a href="#activities" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i class='bx bxs-zap'></i> Events</a>
-                <a href="#unity" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i class='bx bxs-heart'></i> Manifesto</a>
-                <a href="#rules" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i class='bx bxs-terminal'></i> Laws</a>
+                <a href="#activities" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-zap'></i> Events</a>
+                <a href="#unity" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-heart'></i> Manifesto</a>
+                <a href="#rules" class="hover:text-main transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-terminal'></i> Laws</a>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4">
                 <div class="flex bg-main-soft p-1 rounded-full border border-main">
-                    <button onclick="setTheme('dark')" class="p-1.5 md:p-2 rounded-full hover:bg-main-soft transition-colors"><i class='bx bxs-moon text-sm md:text-base'></i></button>
-                    <button onclick="setTheme('gold')" class="p-1.5 md:p-2 rounded-full hover:bg-main-soft transition-colors text-levant-gold"><i class='bx bxs-crown text-sm md:text-base'></i></button>
+                    <button onclick="setTheme('dark')"
+                        class="p-1.5 md:p-2 rounded-full hover:bg-main-soft transition-colors"><i
+                            class='bx bxs-moon text-sm md:text-base'></i></button>
+                    <button onclick="setTheme('gold')"
+                        class="p-1.5 md:p-2 rounded-full hover:bg-main-soft transition-colors text-levant-gold"><i
+                            class='bx bxs-crown text-sm md:text-base'></i></button>
                 </div>
-                <button id="lang-toggle" class="bg-main text-inverse px-3 md:px-5 py-1.5 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-widest active:scale-95">AR/EN</button>
+                <button id="lang-toggle"
+                    class="bg-main text-inverse px-3 md:px-5 py-1.5 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-widest active:scale-95">AR/EN</button>
             </div>
         </div>
     </nav>
@@ -68,33 +84,47 @@
     <main>
         <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-4">
             <div class="relative z-10 text-center w-full max-w-7xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-main-soft border border-main mb-6 md:mb-10 reveal">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-main-soft border border-main mb-6 md:mb-10 reveal">
                     <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <p id="stat-text" class="text-[8px] md:text-[11px] font-black uppercase tracking-[0.2em] opacity-70">1,800+ Members — Online Now</p>
+                    <p id="stat-text"
+                        class="text-[8px] md:text-[11px] font-black uppercase tracking-[0.2em] opacity-70">1,800+
+                        Members — Online Now</p>
                 </div>
 
-                <h1 id="hero-title" class="text-4xl xs:text-5xl md:text-7xl lg:text-8xl xl:text-[120px] font-black leading-[1] md:leading-[0.9] tracking-tighter mb-6 md:mb-10">
+                <h1 id="hero-title"
+                    class="text-4xl xs:text-5xl md:text-7xl lg:text-8xl xl:text-[120px] font-black leading-[1] md:leading-[0.9] tracking-tighter mb-6 md:mb-10">
                     THE HEART <br>
-                    <span class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x">OF THE LEVANT.</span>
+                    <span
+                        class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x">OF
+                        THE LEVANT.</span>
                 </h1>
 
-                <p id="hero-sub" class="opacity-60 text-sm md:text-xl lg:text-2xl max-w-2xl mx-auto mb-10 md:mb-16 font-medium leading-relaxed">
-                    Where Syrian culture meets digital innovation. A sanctuary for debates, gaming, and the bonds of a true family.
+                <p id="hero-sub"
+                    class="opacity-60 text-sm md:text-xl lg:text-2xl max-w-2xl mx-auto mb-10 md:mb-16 font-medium leading-relaxed">
+                    Where Syrian culture meets digital innovation. A sanctuary for debates, gaming, and the bonds of a
+                    true family.
                 </p>
 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 reveal">
-                    <a href="https://discord.gg/syria" class="w-full md:w-auto bg-main text-inverse px-8 md:px-12 py-4 md:py-6 rounded-2xl font-black uppercase tracking-widest text-xs md:text-sm flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl">
+                    <a href="https://discord.gg/syria"
+                        class="w-full md:w-auto bg-main text-inverse px-8 md:px-12 py-4 md:py-6 rounded-2xl font-black uppercase tracking-widest text-xs md:text-sm flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl">
                         <i class='bx bxl-discord-alt text-xl md:text-2xl'></i>
                         <span id="enter-btn">Jump In Discord</span>
                     </a>
-                    
-                    <div class="w-full md:w-auto flex items-center justify-center gap-4 px-6 md:px-8 py-4 md:py-5 rounded-2xl bg-main-soft border border-main backdrop-blur-md">
-                        <div class="w-8 h-8 rounded-full bg-levant-gold flex items-center justify-center text-[10px] font-black text-black">LV2</div>
+
+                    <div
+                        class="w-full md:w-auto flex items-center justify-center gap-4 px-6 md:px-8 py-4 md:py-5 rounded-2xl bg-main-soft border border-main backdrop-blur-md">
+                        <div
+                            class="w-8 h-8 rounded-full bg-levant-gold flex items-center justify-center text-[10px] font-black text-black">
+                            LV2</div>
                         <div class="text-left">
-                            <p class="text-[7px] font-black opacity-40 uppercase tracking-widest leading-none">Server Status</p>
+                            <p class="text-[7px] font-black opacity-40 uppercase tracking-widest leading-none">Server
+                                Status</p>
                             <p class="text-[10px] md:text-xs font-black uppercase text-levant-gold">Boost Level 2</p>
                         </div>
                     </div>
@@ -106,40 +136,51 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
                     <div class="reveal">
-                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-8" id="activity-title">
+                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-8"
+                            id="activity-title">
                             Non-Stop <br> <span class="opacity-20 italic">Vibrations.</span>
                         </h2>
                         <div class="space-y-4 md:space-y-6">
-                            <div class="flex gap-4 md:gap-6 p-5 md:p-8 rounded-3xl bg-main-soft border border-main hover:border-levant-gold/50 transition-all group">
-                                <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0">
+                            <div
+                                class="flex gap-4 md:gap-6 p-5 md:p-8 rounded-3xl bg-main-soft border border-main hover:border-levant-gold/50 transition-all group">
+                                <div
+                                    class="w-12 h-12 md:w-16 md:h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0">
                                     <i class='bx bxs-microphone text-2xl md:text-3xl text-blue-400'></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg md:text-xl font-black uppercase mb-1">Debate Nights</h4>
-                                    <p class="text-xs md:text-sm opacity-50">Identity, history, and deep culture discussions.</p>
+                                    <p class="text-xs md:text-sm opacity-50">Identity, history, and deep culture
+                                        discussions.</p>
                                 </div>
                             </div>
-                            <div class="flex gap-4 md:gap-6 p-5 md:p-8 rounded-3xl bg-main-soft border border-main hover:border-levant-gold/50 transition-all group">
-                                <div class="w-12 h-12 md:w-16 md:h-16 bg-red-500/10 rounded-2xl flex items-center justify-center shrink-0">
+                            <div
+                                class="flex gap-4 md:gap-6 p-5 md:p-8 rounded-3xl bg-main-soft border border-main hover:border-levant-gold/50 transition-all group">
+                                <div
+                                    class="w-12 h-12 md:w-16 md:h-16 bg-red-500/10 rounded-2xl flex items-center justify-center shrink-0">
                                     <i class='bx bxs-game text-2xl md:text-3xl text-red-400'></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg md:text-xl font-black uppercase mb-1">Gaming Arena</h4>
-                                    <p class="text-xs md:text-sm opacity-50">Competitive tournaments and casual play.</p>
+                                    <p class="text-xs md:text-sm opacity-50">Competitive tournaments and casual play.
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4 reveal">
-                        <div class="bg-card backdrop-blur-xl p-6 md:p-10 rounded-[30px] md:rounded-[40px] border border-main animate-float">
+                        <div
+                            class="bg-card backdrop-blur-xl p-6 md:p-10 rounded-[30px] md:rounded-[40px] border border-main animate-float">
                             <i class='bx bxs-star text-2xl md:text-4xl text-yellow-500 mb-4'></i>
                             <p class="text-2xl md:text-4xl font-black mb-1">100%</p>
-                            <p class="text-[8px] md:text-[10px] uppercase font-bold opacity-40 tracking-widest">Active Community</p>
+                            <p class="text-[8px] md:text-[10px] uppercase font-bold opacity-40 tracking-widest">Active
+                                Community</p>
                         </div>
-                        <div class="bg-card backdrop-blur-xl p-6 md:p-10 rounded-[30px] md:rounded-[40px] border border-main animate-float" style="animation-delay: 1s">
+                        <div class="bg-card backdrop-blur-xl p-6 md:p-10 rounded-[30px] md:rounded-[40px] border border-main animate-float"
+                            style="animation-delay: 1s">
                             <i class='bx bxs-bolt text-2xl md:text-4xl text-levant-gold mb-4'></i>
                             <p class="text-2xl md:text-4xl font-black mb-1">24/7</p>
-                            <p class="text-[8px] md:text-[10px] uppercase font-bold opacity-40 tracking-widest">Voice Chats</p>
+                            <p class="text-[8px] md:text-[10px] uppercase font-bold opacity-40 tracking-widest">Voice
+                                Chats</p>
                         </div>
                     </div>
                 </div>
@@ -147,8 +188,10 @@
         </section>
 
         <section id="unity" class="py-16 md:py-40 px-4">
-            <div class="max-w-5xl mx-auto glass-card p-6 md:p-20 rounded-[40px] md:rounded-[80px] border border-main relative">
-                <h2 class="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-10 md:mb-16 text-center" id="unity-title">The Dream of Unity</h2>
+            <div
+                class="max-w-5xl mx-auto glass-card p-6 md:p-20 rounded-[40px] md:rounded-[80px] border border-main relative">
+                <h2 class="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-10 md:mb-16 text-center"
+                    id="unity-title">The Dream of Unity</h2>
                 <div class="space-y-10 md:space-y-20">
                     <div class="reveal">
                         <div class="flex items-center gap-4 mb-4">
@@ -159,7 +202,8 @@
                     </div>
                     <div class="reveal" dir="rtl">
                         <div class="flex items-center gap-4 mb-4">
-                            <p class="text-[12px] font-black text-levant-gold uppercase tracking-[0.2em] font-arabic">البيان السوري</p>
+                            <p class="text-[12px] font-black text-levant-gold uppercase tracking-[0.2em] font-arabic">
+                                البيان السوري</p>
                             <div class="h-px grow bg-gradient-to-l from-levant-gold to-transparent"></div>
                         </div>
                         <p id="unity-ar" class="text-lg md:text-4xl font-black leading-snug font-arabic"></p>
@@ -171,8 +215,10 @@
         <section id="rules" class="py-16 md:py-32 px-6 bg-main-alt border-t border-main">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-12 md:mb-20">
-                    <span class="text-levant-gold font-black uppercase tracking-[0.4em] text-[10px] md:text-[12px]">The Protocol</span>
-                    <h2 id="protocol-title" class="text-4xl md:text-7xl font-black uppercase tracking-tighter italic">Server Laws</h2>
+                    <span class="text-levant-gold font-black uppercase tracking-[0.4em] text-[10px] md:text-[12px]">The
+                        Protocol</span>
+                    <h2 id="protocol-title" class="text-4xl md:text-7xl font-black uppercase tracking-tighter italic">
+                        Server Laws</h2>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="rules-grid"></div>
             </div>
@@ -182,13 +228,14 @@
     <footer class="py-16 md:py-24 border-t border-main bg-main px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex items-center gap-4">
-                <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128" class="w-12 h-12 rounded-full border-2 border-levant-gold">
+                <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
+                    class="w-12 h-12 rounded-full border-2 border-levant-gold">
                 <div class="text-left">
                     <p class="text-base md:text-lg font-black uppercase tracking-widest leading-none mb-1">SuperNova</p>
                     <p class="text-[10px] text-levant-gold font-bold uppercase">Server Owner</p>
                 </div>
             </div>
-            
+
             <div class="flex flex-col items-center">
                 <img src="./Assets/ServerIcon.png" class="w-8 h-8 opacity-20 grayscale mb-4">
                 <p class="text-[9px] opacity-30 uppercase font-black tracking-[0.5em]">© 2026 SYRIA</p>
@@ -200,7 +247,8 @@
                     <p class="text-[10px] text-blue-400 font-bold uppercase">Architect</p>
                 </div>
                 <a href="https://instagram.com/lilzeng1" class="hover:scale-110 transition-transform">
-                    <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128" class="w-12 h-12 rounded-full border-2 border-blue-500">
+                    <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128"
+                        class="w-12 h-12 rounded-full border-2 border-blue-500">
                 </a>
             </div>
         </div>
