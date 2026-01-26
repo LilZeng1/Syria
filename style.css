@@ -31,11 +31,23 @@
     --inverse-text: #000000;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: all 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .bg-main {
@@ -60,6 +72,7 @@ body {
 
 .text-inverse {
     color: var(--inverse-text);
+    background-color: var(--text-color);
 }
 
 .border-main {
@@ -69,22 +82,21 @@ body {
 .glass-nav {
     background: var(--bg-color);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .glass-card {
     background: var(--card-bg);
+    backdrop-filter: blur(10px);
 }
 
 .cursor-dot,
 .cursor-outline {
     pointer-events: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     z-index: 9999;
-    transition: opacity 0.3s;
+    opacity: 0;
 }
 
 .cursor-dot {
@@ -97,12 +109,13 @@ body {
     width: 40px;
     height: 40px;
     border: 2px solid var(--accent-color);
+    transition: transform 0.15s ease-out;
 }
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.active {
@@ -112,6 +125,7 @@ body {
 
 .font-arabic {
     font-family: 'Noto Sans Arabic', sans-serif;
+    line-height: 1.6;
 }
 
 @keyframes gradient-x {
@@ -130,11 +144,11 @@ body {
 
     0%,
     100% {
-        transform: translate(-50%, 0px);
+        transform: translateY(0px);
     }
 
     50% {
-        transform: translate(-50%, -20px);
+        transform: translateY(-15px);
     }
 }
 
@@ -143,4 +157,25 @@ body {
     background: var(--accent-color);
     border-radius: 50%;
     pointer-events: none;
+    z-index: 1;
+}
+
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .reveal {
+        transform: translateY(15px);
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
+    }
 }
