@@ -341,3 +341,35 @@ body.focus-mode #portal-trigger {
         transform: translateX(0);
     }
 }
+
+.protocol-card {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.protocol-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.protocol-card:hover::before {
+    transform: translateX(100%);
+    transition: transform 0.6s ease;
+}
+
+#levant-clock {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    transition: all 0.3s ease;
+}
+
+#levant-clock:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+    transform: scale(1.05);
+}
