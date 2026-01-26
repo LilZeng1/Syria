@@ -33,7 +33,6 @@ const serverRules = [
 ];
 
 let currentLang = 'en';
-
 const dot = document.querySelector('.cursor-dot');
 const outline = document.querySelector('.cursor-outline');
 
@@ -48,11 +47,6 @@ window.addEventListener('mousemove', (e) => {
     }, { duration: 400, fill: "forwards" });
 });
 
-document.addEventListener('mouseleave', () => {
-    dot.style.opacity = "0";
-    outline.style.opacity = "0";
-});
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
@@ -61,6 +55,7 @@ const observer = new IntersectionObserver((entries) => {
 
 function createParticles() {
     const container = document.getElementById('particles');
+    container.innerHTML = '';
     const particleCount = window.innerWidth < 768 ? 20 : 50;
     for (let i = 0; i < particleCount; i++) {
         const p = document.createElement('div');
@@ -84,56 +79,22 @@ function animateParticle(p) {
     ], { duration, iterations: Infinity, direction: 'alternate' });
 }
 
-// setTheme()
 function setTheme(theme) {
     const body = document.getElementById('body-main');
     body.classList.remove('theme-dark', 'theme-light', 'theme-gold');
-
     body.classList.add(`theme-${theme}`);
     localStorage.setItem('selectedTheme', theme);
-}
-
-window.onload = () => {
-    const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
-    setTheme(savedTheme);
-    createParticles();
-    injectRules();
-    updateContent();
-};
-
-// Advanced Scroll Effect()
-window.addEventListener('scroll', () => {
-    const banner = document.getElementById('movie-banner');
-    const scroll = window.scrollY;
-    if (banner) {
-        banner.style.transform = `translate(-50%, ${scroll * 0.1}px)`;
-    }
-});
-
-function updateCountdown() {
-    const now = new Date();
-    const target = new Date();
-    target.setHours(24, 0, 0, 0);
-    const diff = target - now;
-    if (diff <= 0) {
-        document.getElementById('countdown').innerText = "LIVE";
-        return;
-    }
-    const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
-    const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-    const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-    document.getElementById('countdown').innerText = `${h}:${m}:${s}`;
 }
 
 function injectRules() {
     const grid = document.getElementById('rules-grid');
     grid.innerHTML = serverRules.map(rule => `
-        <div class="bg-white/5 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-white/5 hover:bg-white/10 hover:border-levant-gold/30 transition-all reveal group">
+        <div class="bg-main-soft p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-main hover:bg-main-alt hover:border-levant-gold/30 transition-all reveal group">
             <div class="w-12 h-12 bg-levant-gold/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <i class='bx ${rule.icon} text-2xl text-levant-gold'></i>
             </div>
             <h4 class="text-lg sm:text-xl font-black uppercase mb-2 tracking-tight">${rule.title}</h4>
-            <p class="text-[10px] sm:text-xs text-gray-500 font-medium leading-relaxed uppercase tracking-wider">${rule.desc}</p>
+            <p class="text-[10px] sm:text-xs opacity-50 font-medium leading-relaxed uppercase tracking-wider">${rule.desc}</p>
         </div>
     `).join('');
     document.querySelectorAll('#rules-grid .reveal').forEach(el => observer.observe(el));
@@ -159,14 +120,12 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
     updateContent();
 });
 
-window.addEventListener('resize', () => {
-    document.getElementById('particles').innerHTML = '';
+window.onload = () => {
+    const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
+    setTheme(savedTheme);
     createParticles();
-});
+    injectRules();
+    updateContent();
+};
 
-// Initial setup
-createParticles();
-injectRules();
-updateContent();
-setInterval(updateCountdown, 1000);
-updateCountdown();
+window.addEventListener('resize', createParticles);
