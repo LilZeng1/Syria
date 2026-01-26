@@ -36,6 +36,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+    cursor: none !important;
 }
 
 html {
@@ -46,7 +47,7 @@ html {
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s;
+    transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1), color 0.6s;
     font-family: 'Inter', sans-serif;
     width: 100%;
     min-height: 100vh;
@@ -78,14 +79,14 @@ body {
 }
 
 .glass-nav {
-    background: color-mix(in srgb, var(--bg-color), transparent 15%);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: color-mix(in srgb, var(--bg-color), transparent 10%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
 }
 
 .glass-card {
     background: var(--card-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
 }
 
@@ -96,25 +97,52 @@ body {
     border-radius: 50%;
     z-index: 10000;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.15s ease;
+    transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), width 0.3s, height 0.3s, background-color 0.3s;
 }
 
 .cursor-dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background-color: var(--accent-color);
 }
 
 .cursor-outline {
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border: 1.5px solid var(--accent-color);
+}
+
+.cursor-active .cursor-outline {
+    width: 80px;
+    height: 80px;
+    background-color: var(--accent-color);
+    opacity: 0.15 !important;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--accent-color), #fff);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
 }
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px) scale(0.98);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(50px) scale(0.95);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
@@ -127,10 +155,48 @@ body {
     line-height: 1.8;
 }
 
+.hero-title {
+    font-size: clamp(3rem, 12vw, 10rem);
+    text-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+}
+
 #rules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.perspective-grid {
+    perspective: 1000px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.particles-container {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    filter: blur(1px);
 }
 
 @keyframes gradient-x {
@@ -149,30 +215,16 @@ body {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0);
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-30px) rotate(2deg);
     }
 }
 
-.particles-container {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.particle {
-    position: absolute;
-    background: var(--accent-color);
-    border-radius: 50%;
-}
-
-.hero-title {
-    font-size: clamp(2.5rem, 10vw, 8rem);
+.balance-text {
+    text-wrap: balance;
 }
 
 @media (max-width: 1024px) {
@@ -181,14 +233,12 @@ body {
     .cursor-outline {
         display: none;
     }
+
+    * {
+        cursor: auto !important;
+    }
 }
 
-@media (max-width: 768px) {
-    #rules-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .glass-card {
-        padding: 2rem !important;
-    }
+[dir="rtl"] {
+    text-align: right;
 }
