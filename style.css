@@ -50,6 +50,12 @@ body {
     width: 100%;
 }
 
+body.theme-dark {
+    --bg-color: #030303;
+    --bg-alt: #050505;
+    --text-color: #ffffff;
+}
+
 .bg-main {
     background-color: var(--bg-color);
 }
@@ -128,6 +134,20 @@ body {
     line-height: 1.6;
 }
 
+#rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.music-bar {
+    width: 3px;
+    height: 15px;
+    background: var(--accent-color);
+    margin: 0 1px;
+    animation: bounce 0.5s ease infinite alternate;
+}
+
 @keyframes gradient-x {
 
     0%,
@@ -149,6 +169,16 @@ body {
 
     50% {
         transform: translateY(-15px);
+    }
+}
+
+@keyframes bounce {
+    from {
+        height: 5px;
+    }
+
+    to {
+        height: 20px;
     }
 }
 
@@ -177,5 +207,20 @@ body {
 
     h1 {
         font-size: 2.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem !important;
+    }
+
+    .glass-card {
+        padding: 1.5rem !important;
+        border-radius: 20px !important;
+    }
+
+    #unity-ar {
+        font-size: 1.2rem !important;
     }
 }
