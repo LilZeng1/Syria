@@ -7,8 +7,8 @@ const translations = {
         activityTitle: "Non-Stop <br> <span class='text-levant-gold italic'>Vibrations.</span>",
         unityTitle: "The Dream of Unity",
         protocolTitle: "Server Laws",
-        unityEn: "We all have this dream that one day Syria will rise, grow great, and be a place where we feel we belong, no one can make this fantasy true except Syrians, Syrian people and no one else. The new generation have the potentials to do that. It would be awesome when you open Syrian chat and contact with people from your own land, your culture, people who understands the jokes and cultural references you make, for one second we might feel united again, less lonely, and we might have faith in our selves again. Long live Syria, land of civilisations.",
-        unityAr: "كلنا عنا هادا الحلم بأنو بيوم من الأيام سوريا رح تكبر وتضوي وتصير مكان نحس فيه بالانتماء. ماحدا فيه يعمل هالخيال حقيقة غير السوريين، الشعب السوري؛ ولا أيا حدا تاني. الجيل الجديد عندو القدرة ليعمل هيك شي، رح يكون شعور حلو لما تفتح الشات السوري وتتواصل مع عالم من أرضك، من ثقافتك، عالم بيفهمو النكت يلي رح تحكيها، المراجع الثقافية يلي رح تذكرا. للحظة ممكن نحس حالنا متحدين من جديد، شعورنا بالانعزال رح يخف، وبجوز يرجع أيماننا بأنفسنا وببلدنا من جديد. عاشت سوريا، مهد الحضارات."
+        unityEn: "We all have this dream that one day Syria will rise, grow great, and be a place where we feel we belong. No one can make this fantasy true except Syrians. The new generation has the potential to do that. It feels united again, less lonely, and we might have faith in ourselves again. Long live Syria, land of civilizations.",
+        unityAr: "كلنا عنا هادا الحلم بأنو بيوم من الأيام سوريا رح تكبر وتضوي وتصير مكان نحس فيه بالانتماء. ماحدا فيه يعمل هالخيال حقيقة غير السوريين، الشعب السوري. الجيل الجديد عندو القدرة ليعمل هيك شي. للحظة ممكن نحس حالنا متحدين من جديد، شعورنا بالانعزال رح يخف، وبجوز يرجع أيماننا بأنفسنا وببلدنا من جديد. عاشت سوريا، مهد الحضارات."
     },
     ar: {
         statText: "أكثر من 1800 عضو — متصلون الآن",
@@ -18,7 +18,7 @@ const translations = {
         activityTitle: "فعاليات <br> <span class='text-levant-gold italic'>لا تتوقف.</span>",
         unityTitle: "حلم الوحدة",
         protocolTitle: "دستور السيرفر",
-        unityEn: "We all have this dream that one day Syria will rise, grow great...",
+        unityEn: "We all have this dream that one day Syria will rise, grow great, and be a place where we feel we belong...",
         unityAr: "كلنا عنا هادا الحلم بأنو بيوم من الأيام سوريا رح تكبر وتضوي وتصير مكان نحس فيه بالانتماء..."
     }
 };
@@ -40,45 +40,41 @@ window.addEventListener('mousemove', (e) => {
     if (window.innerWidth > 1024) {
         dot.style.opacity = "1";
         outline.style.opacity = "0.5";
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
+        dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
         outline.animate({
-            left: e.clientX + 'px',
-            top: e.clientY + 'px'
-        }, { duration: 400, fill: "forwards" });
+            transform: `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`
+        }, { duration: 500, fill: "forwards" });
     }
 });
 
+const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
     });
-}, { threshold: 0.1 });
+}, observerOptions);
 
 function createParticles() {
     const container = document.getElementById('particles');
     container.innerHTML = '';
-    const particleCount = window.innerWidth < 768 ? 15 : 40;
-    for (let i = 0; i < particleCount; i++) {
+    const count = window.innerWidth < 768 ? 20 : 60;
+    for (let i = 0; i < count; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 2 + 1;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.top = Math.random() * 100 + 'vh';
-        p.style.opacity = Math.random() * 0.4;
+        const size = Math.random() * 3 + 1;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = `${Math.random() * 100}vh`;
+        p.style.opacity = Math.random() * 0.5;
         container.appendChild(p);
-        animateParticle(p);
+        p.animate([
+            { transform: 'translate(0, 0)', opacity: p.style.opacity },
+            { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`, opacity: 0.2 }
+        ], { duration: Math.random() * 3000 + 3000, iterations: Infinity, direction: 'alternate', ease: 'ease-in-out' });
     }
-}
-
-function animateParticle(p) {
-    const duration = Math.random() * 3000 + 4000;
-    p.animate([
-        { transform: 'translate(0, 0)', opacity: p.style.opacity },
-        { transform: `translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px)`, opacity: 0.1 }
-    ], { duration, iterations: Infinity, direction: 'alternate' });
 }
 
 function setTheme(theme) {
@@ -91,12 +87,12 @@ function setTheme(theme) {
 function injectRules() {
     const grid = document.getElementById('rules-grid');
     grid.innerHTML = serverRules.map(rule => `
-        <div class="bg-main-soft p-6 md:p-8 rounded-[24px] border border-main hover:border-levant-gold/30 transition-all reveal group">
-            <div class="w-10 h-10 md:w-12 md:h-12 bg-levant-gold/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i class='bx ${rule.icon} text-xl md:text-2xl text-levant-gold'></i>
+        <div class="bg-main-soft p-10 rounded-[32px] border border-main hover:border-levant-gold/40 transition-all duration-500 reveal group cursor-default">
+            <div class="w-14 h-14 bg-levant-gold/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                <i class='bx ${rule.icon} text-3xl text-levant-gold'></i>
             </div>
-            <h4 class="text-base md:text-lg font-black uppercase mb-2 tracking-tight">${rule.title}</h4>
-            <p class="text-[10px] md:text-xs opacity-50 font-medium leading-relaxed uppercase tracking-wider">${rule.desc}</p>
+            <h4 class="text-xl font-black uppercase mb-3 tracking-tight">${rule.title}</h4>
+            <p class="text-xs opacity-50 font-semibold leading-relaxed uppercase tracking-widest">${rule.desc}</p>
         </div>
     `).join('');
     document.querySelectorAll('#rules-grid .reveal').forEach(el => observer.observe(el));
@@ -104,15 +100,23 @@ function injectRules() {
 
 function updateContent() {
     const t = translations[currentLang];
-    document.getElementById('stat-text').innerText = t.statText;
-    document.getElementById('hero-title').innerHTML = t.heroTitle;
-    document.getElementById('hero-sub').innerText = t.heroSub;
-    document.getElementById('enter-btn').innerText = t.enterBtn;
-    document.getElementById('activity-title').innerHTML = t.activityTitle;
-    document.getElementById('unity-title').innerText = t.unityTitle;
-    document.getElementById('protocol-title').innerText = t.protocolTitle;
-    document.getElementById('unity-en').innerText = t.unityEn;
-    document.getElementById('unity-ar').innerText = t.unityAr;
+    const elements = {
+        'stat-text': 'innerText',
+        'hero-title': 'innerHTML',
+        'hero-sub': 'innerText',
+        'enter-btn': 'innerText',
+        'activity-title': 'innerHTML',
+        'unity-title': 'innerText',
+        'protocol-title': 'innerText',
+        'unity-en': 'innerText',
+        'unity-ar': 'innerText'
+    };
+    
+    Object.keys(elements).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el[elements[id]] = t[id.replace(/-([a-z])/g, g => g[1].toUpperCase())];
+    });
+
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
