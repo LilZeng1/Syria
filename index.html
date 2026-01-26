@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SYRIA | The Digital Levant</title>
+    <title>SYRIA | Digital Levant Portal</title>
     <link rel="icon" type="image/png" href="./Assets/ServerIcon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Noto+Sans+Arabic:wght@400;700;900&family=Space+Mono&display=swap"
@@ -18,185 +18,241 @@
                     colors: {
                         'apple-gray': '#1d1d1f',
                         'levant-gold': '#d4af37',
+                        'discord-blurple': '#5865F2'
                     },
                     animation: {
                         'gradient-x': 'gradient-x 15s ease infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-[#030303] text-white selection:bg-levant-gold/30">
+<body class="bg-[#030303] text-white selection:bg-levant-gold/30 transition-colors duration-500" id="body-main">
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
     <div class="noise-overlay"></div>
 
     <nav class="fixed top-0 w-full z-[100] glass-nav border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <img src="./Assets/ServerIcon.png" class="w-10 h-10 rounded-xl shadow-2xl shadow-levant-gold/20"
-                    alt="Logo">
-                <span class="font-black tracking-tighter text-xl uppercase italic">Syria</span>
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-4 group">
+                <div class="relative">
+                    <img src="./Assets/ServerIcon.png"
+                        class="w-12 h-12 rounded-2xl shadow-2xl shadow-levant-gold/20 group-hover:rotate-12 transition-transform duration-500"
+                        alt="Logo">
+                    <div
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-black rounded-full animate-pulse">
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-black tracking-tighter text-2xl uppercase italic leading-none">Syria</span>
+                    <span class="text-[9px] font-bold tracking-[0.3em] text-levant-gold uppercase">Digital Levant</span>
+                </div>
             </div>
+
             <div
-                class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                <a href="#schedule" class="hover:text-white transition-colors">Schedule</a>
-                <a href="#family" class="hover:text-white transition-colors">The Family</a>
-                <a href="#unity" class="hover:text-white transition-colors">Unity</a>
-                <a href="#rules" class="hover:text-white transition-colors">Rules</a>
+                class="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                <a href="#schedule" class="hover:text-white transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-calendar'></i> Schedule</a>
+                <a href="#activities" class="hover:text-white transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-zap'></i> Events</a>
+                <a href="#family" class="hover:text-white transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-heart'></i> Family</a>
+                <a href="#rules" class="hover:text-white transition-all hover:scale-110 flex items-center gap-2"><i
+                        class='bx bxs-terminal'></i> Protocol</a>
             </div>
-            <button id="lang-toggle"
-                class="bg-white text-black px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform active:scale-95">AR
-                / EN</button>
+
+            <div class="flex items-center gap-4">
+                <div class="flex bg-white/5 p-1 rounded-full border border-white/10" id="theme-panel">
+                    <button onclick="setTheme('dark')" class="p-2 rounded-full hover:bg-white/10 transition-colors"><i
+                            class='bx bxs-moon'></i></button>
+                    <button onclick="setTheme('gold')"
+                        class="p-2 rounded-full hover:bg-white/10 transition-colors text-levant-gold"><i
+                            class='bx bxs-crown'></i></button>
+                    <button onclick="setTheme('royal')"
+                        class="p-2 rounded-full hover:bg-white/10 transition-colors text-purple-500"><i
+                            class='bx bxs-star'></i></button>
+                </div>
+                <button id="lang-toggle"
+                    class="bg-white text-black px-6 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest hover:invert transition-all active:scale-95 shadow-xl shadow-white/5">AR
+                    / EN</button>
+            </div>
         </div>
     </nav>
 
     <main>
         <section class="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08),transparent_70%)]">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.12),transparent_70%)]">
             </div>
-            <div class="relative z-10 text-center max-w-5xl mx-auto">
+
+            <div id="movie-banner" class="absolute top-32 left-1/2 -translate-x-1/2 z-20 w-full max-w-xl animate-float">
                 <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-fade-in">
-                    <span class="relative flex h-2 w-2">
+                    class="bg-levant-gold/10 backdrop-blur-xl border border-levant-gold/30 p-6 rounded-[32px] flex items-center justify-between gap-6 shadow-2xl">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-levant-gold rounded-2xl flex items-center justify-center shadow-lg">
+                            <i class='bx bxs-movie-play text-4xl text-black'></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black uppercase tracking-[.2em] text-levant-gold mb-1">Coming Up
+                                Next</p>
+                            <h4 class="text-xl font-black uppercase italic tracking-tighter">White Chicks</h4>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase mb-1">Starting In</p>
+                        <p id="countdown" class="text-2xl font-mono font-black text-white tabular-nums">00:00:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 text-center max-w-6xl mx-auto mt-20">
+                <div
+                    class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 mb-10 reveal">
+                    <span class="relative flex h-3 w-3">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                     </span>
-                    <p id="stat-text" class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">1,800+
+                    <p id="stat-text" class="text-[11px] font-black uppercase tracking-[0.25em] text-gray-300">1,800+
                         Members — Missing You!</p>
                 </div>
+
                 <h1 id="hero-title"
-                    class="text-5xl md:text-8xl lg:text-[120px] font-black leading-[0.9] tracking-tighter mb-8">
+                    class="text-6xl md:text-8xl lg:text-[140px] font-black leading-[0.85] tracking-tighter mb-10">
                     THE HEART <br>
                     <span
-                        class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x">OF
+                        class="italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x drop-shadow-sm">OF
                         THE LEVANT.</span>
                 </h1>
-                <p id="hero-sub" class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium">Forget
-                    regular servers. This is where the real ones hang out.</p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+
+                <p id="hero-sub"
+                    class="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 font-medium leading-relaxed">
+                    Where Syrian culture meets digital innovation. A sanctuary for debates, gaming, and the bonds of a
+                    true family.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-8 reveal">
                     <a href="https://discord.gg/syria"
-                        class="w-full md:w-auto bg-white text-black px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-levant-gold transition-colors group">
-                        <i class='bx bxl-discord-alt text-2xl'></i>
+                        class="w-full sm:w-auto bg-white text-black px-12 py-6 rounded-[24px] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-4 hover:scale-105 hover:bg-levant-gold transition-all shadow-2xl shadow-white/10 group">
+                        <i
+                            class='bx bxl-discord-alt text-3xl group-hover:rotate-[360deg] transition-transform duration-700'></i>
                         <span id="enter-btn">Jump In Discord</span>
                     </a>
-                    <div class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10">
-                        <div class="flex -space-x-3">
+
+                    <div
+                        class="flex items-center gap-5 px-8 py-5 rounded-[24px] bg-white/5 border border-white/10 backdrop-blur-md">
+                        <div class="flex -space-x-4">
                             <div
-                                class="w-8 h-8 rounded-full border-2 border-[#030303] bg-levant-gold flex items-center justify-center text-[10px] font-bold">
+                                class="w-10 h-10 rounded-full border-4 border-[#030303] bg-levant-gold flex items-center justify-center text-xs font-black text-black">
                                 2</div>
                         </div>
-                        <span class="text-[11px] font-bold uppercase tracking-widest text-gray-400">Boost Level 2</span>
+                        <div class="text-left">
+                            <p class="text-[9px] font-black text-levant-gold uppercase tracking-widest">Discord Status
+                            </p>
+                            <p class="text-xs font-black uppercase tracking-widest">Boost Level 2</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="schedule" class="py-32 px-6 relative">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col items-center mb-20 text-center">
-                    <h2 id="sched-title"
-                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 relative">
-                        The Schedule
-                    </h2>
-                    <div class="h-1 w-20 bg-levant-gold rounded-full"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div
-                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
-                        <i
-                            class='bx bx-microphone text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
-                        <h3 class="text-2xl font-black mb-4 uppercase">Voice Debates</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Nightly deep dives into history, philosophy,
-                            and the future of the Levant.</p>
-                    </div>
-                    <div
-                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
-                        <i
-                            class='bx bx-joystick text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
-                        <h3 class="text-2xl font-black mb-4 uppercase">Gaming Hub</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Competitive sessions and casual hangouts for
-                            the community gamers.</p>
-                    </div>
-                    <div
-                        class="glass-card p-10 rounded-[40px] border border-white/5 hover:border-levant-gold/30 transition-all group reveal">
-                        <i
-                            class='bx bx-broadcast text-5xl text-levant-gold mb-6 group-hover:scale-110 transition-transform'></i>
-                        <h3 class="text-2xl font-black mb-4 uppercase">Live Events</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Special guest appearances and community-wide
-                            cultural celebrations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="family" class="py-32 bg-[#050505]">
+        <section id="activities" class="py-32 bg-[#050505] overflow-hidden">
             <div class="max-w-7xl mx-auto px-6">
-                <h2 id="rev-title" class="text-center text-4xl md:text-6xl font-black uppercase tracking-tighter mb-20">
-                    The Family</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="flex flex-col items-center text-center group reveal">
-                        <div class="relative mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none"
+                            id="activity-title">
+                            Non-Stop <br> <span class="text-levant-gold italic">Vibrations.</span>
+                        </h2>
+                        <div class="space-y-6">
                             <div
-                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                                class="flex gap-6 p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all cursor-default group">
+                                <div
+                                    class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class='bx bxs-microphone text-3xl text-blue-400'></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-black uppercase tracking-tight mb-1">Debate Nights</h4>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Politics, religion, and philosophy.
+                                        We dive deep into the roots of our identity.</p>
+                                </div>
                             </div>
-                            <img src="https://cdn.discordapp.com/avatars/680408469064515829/e4a14aa8637538af9ac8a371886e6f5f.webp?size=128"
-                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
-                                alt="Founder">
+                            <div
+                                class="flex gap-6 p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all cursor-default group">
+                                <div
+                                    class="w-14 h-14 bg-red-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class='bx bxs-game text-3xl text-red-400'></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-black uppercase tracking-tight mb-1">Gaming Warzone</h4>
+                                    <p class="text-sm text-gray-400 leading-relaxed">Among Us, Garry's Mod, and
+                                        competitive nights. The Levant's finest gamers.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex gap-6 p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all cursor-default group">
+                                <div
+                                    class="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                    <i class='bx bxs-coffee text-3xl text-green-400'></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-black uppercase tracking-tight mb-1">Chill Corner</h4>
+                                    <p class="text-sm text-gray-400 leading-relaxed">24/7 lo-fi, chill voices, and
+                                        Syrian coffee vibes. Just relax.</p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">Alex</h3>
-                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Founder</p>
                     </div>
-                    <div class="flex flex-col items-center text-center group reveal">
-                        <div class="relative mb-8">
+                    <div class="relative reveal">
+                        <div class="absolute inset-0 bg-levant-gold/20 blur-[120px] rounded-full"></div>
+                        <div class="grid grid-cols-2 gap-4 relative z-10">
                             <div
-                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                                class="bg-white/5 backdrop-blur-2xl p-8 rounded-[40px] border border-white/10 mt-12 animate-float">
+                                <i class='bx bxs-quote-alt-left text-4xl text-levant-gold mb-4'></i>
+                                <p class="font-bold italic text-lg leading-tight">"The only place that feels like
+                                    Damascus in the cloud."</p>
                             </div>
-                            <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
-                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
-                                alt="Owner">
-                        </div>
-                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">SuperNova</h3>
-                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Owner</p>
-                    </div>
-                    <div class="flex flex-col items-center text-center group reveal">
-                        <div class="relative mb-8">
-                            <div
-                                class="absolute inset-0 bg-levant-gold rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity">
+                            <div class="bg-white/5 backdrop-blur-2xl p-8 rounded-[40px] border border-white/10 animate-float"
+                                style="animation-delay: 2s;">
+                                <i class='bx bxs-star text-4xl text-yellow-400 mb-4'></i>
+                                <p class="text-3xl font-black italic">100%</p>
+                                <p class="text-[10px] uppercase font-bold tracking-widest text-gray-500">Levant DNA</p>
                             </div>
-                            <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128"
-                                class="w-40 h-40 rounded-full border-4 border-white/10 group-hover:border-levant-gold transition-colors relative z-10"
-                                alt="Dev">
                         </div>
-                        <h3 class="text-2xl font-black uppercase tracking-widest mb-2">George</h3>
-                        <p class="text-levant-gold text-[10px] font-bold uppercase tracking-[0.3em]">Developer</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="unity" class="py-32 px-6">
+        <section id="unity" class="py-40 px-6 relative overflow-hidden">
             <div
-                class="max-w-4xl mx-auto glass-card p-12 md:p-20 rounded-[60px] border border-white/5 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-10 opacity-10">
-                    <i class='bx bxs-quote-right text-9xl text-levant-gold'></i>
+                class="max-w-5xl mx-auto glass-card p-16 md:p-28 rounded-[80px] border border-white/10 relative shadow-2xl">
+                <div class="absolute top-0 right-0 p-16 opacity-10 rotate-12">
+                    <i class='bx bxs-heart text-[200px] text-levant-gold'></i>
                 </div>
-                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12" id="unity-title">The Dream
-                    of Unity</h2>
-                <div class="space-y-12">
+                <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-16 leading-none"
+                    id="unity-title">The Dream of Unity</h2>
+                <div class="space-y-20 relative z-10">
                     <div class="reveal">
-                        <p class="text-[10px] font-bold text-levant-gold uppercase tracking-[0.4em] mb-4">English</p>
-                        <p id="unity-en" class="text-xl md:text-2xl font-medium leading-relaxed text-gray-200 italic">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-px grow bg-gradient-to-r from-levant-gold to-transparent"></div>
+                            <p class="text-[12px] font-black text-levant-gold uppercase tracking-[0.5em]">English
+                                Manifesto</p>
+                        </div>
+                        <p id="unity-en"
+                            class="text-2xl md:text-3xl font-medium leading-relaxed text-gray-200 italic font-serif">
                         </p>
                     </div>
-                    <div class="h-px w-full bg-white/10"></div>
                     <div class="reveal" dir="rtl">
-                        <p class="text-[10px] font-bold text-levant-gold uppercase tracking-[0.4em] mb-4">العربية</p>
-                        <p id="unity-ar"
-                            class="text-2xl md:text-3xl font-bold leading-relaxed text-gray-200 font-arabic"></p>
+                        <div class="flex items-center gap-4 mb-6">
+                            <p class="text-[14px] font-black text-levant-gold uppercase tracking-[0.3em] font-arabic">
+                                البيان السوري</p>
+                            <div class="h-px grow bg-gradient-to-l from-levant-gold to-transparent"></div>
+                        </div>
+                        <p id="unity-ar" class="text-3xl md:text-5xl font-black leading-tight text-white font-arabic">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -204,50 +260,41 @@
 
         <section id="rules" class="py-32 px-6">
             <div class="max-w-7xl mx-auto">
-                <h2 id="protocol-title"
-                    class="text-center text-4xl md:text-6xl font-black uppercase tracking-tighter mb-20 italic">Core
-                    Rules</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div
-                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
-                        <i class='bx bx-shield-quarter text-3xl text-levant-gold mb-6'></i>
-                        <h4 class="font-black uppercase mb-2">Respect</h4>
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Foundation of all</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
-                        <i class='bx bx-error-circle text-3xl text-levant-gold mb-6'></i>
-                        <h4 class="font-black uppercase mb-2">No Spam</h4>
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Quality over quantity</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
-                        <i class='bx bx-block text-3xl text-levant-gold mb-6'></i>
-                        <h4 class="font-black uppercase mb-2">Safe Env</h4>
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">No hate speech</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:bg-white/10 transition-all reveal">
-                        <i class='bx bx-user-voice text-3xl text-levant-gold mb-6'></i>
-                        <h4 class="font-black uppercase mb-2">Open Mind</h4>
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Listen and Learn</p>
-                    </div>
+                <div class="flex flex-col items-center mb-24 text-center">
+                    <span class="text-levant-gold font-black uppercase tracking-[0.5em] text-[12px] mb-4">The
+                        Protocol</span>
+                    <h2 id="protocol-title" class="text-5xl md:text-8xl font-black uppercase tracking-tighter italic">
+                        Server Laws</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="rules-grid">
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 border-t border-white/5 bg-[#030303] px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+    <footer class="py-32 border-t border-white/5 bg-[#030303] px-6 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-20 items-center">
             <div class="text-center md:text-left">
-                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Server Owner</p>
-                <p class="text-sm text-white font-black uppercase tracking-[0.2em]">SuperNova</p>
+                <p class="text-[10px] text-gray-600 font-black uppercase tracking-[0.4em] mb-4">Command Center</p>
+                <div class="flex items-center justify-center md:justify-start gap-4">
+                    <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
+                        class="w-12 h-12 rounded-full border-2 border-levant-gold">
+                    <div>
+                        <p class="text-lg text-white font-black uppercase tracking-widest">SuperNova</p>
+                        <p class="text-[10px] text-levant-gold font-bold uppercase">Grand Master</p>
+                    </div>
+                </div>
             </div>
-            <p class="text-[10px] text-gray-600 uppercase font-bold tracking-[0.5em]">© 2026 SYRIA SERVER</p>
+            <div class="flex flex-col items-center">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mb-6">
+                    <img src="./Assets/ServerIcon.png" class="w-12 h-12 opacity-50 grayscale">
+                </div>
+                <p class="text-[11px] text-gray-600 uppercase font-black tracking-[0.8em]">© 2026 SYRIA</p>
+            </div>
             <div class="text-center md:text-right">
-                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Digital Architect</p>
+                <p class="text-[10px] text-gray-600 font-black uppercase tracking-[0.4em] mb-4">Digital Architect</p>
                 <a href="https://instagram.com/lilzeng1"
-                    class="text-sm text-white font-black uppercase underline decoration-levant-gold decoration-2 underline-offset-8 hover:text-levant-gold transition-colors">Lil
+                    class="text-2xl text-white font-black uppercase hover:text-levant-gold transition-colors underline decoration-levant-gold decoration-4 underline-offset-8">Lil
                     Zeng</a>
             </div>
         </div>
