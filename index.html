@@ -338,15 +338,20 @@
             </div>
 
             <div class="relative z-10 text-center px-4 w-full max-w-6xl mx-auto reveal flex flex-col items-center">
-                <div
-                    class="inline-flex items-center gap-3 px-6 py-3 mb-8 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] hover:border-levant-gold/30 transition-colors interactable">
-                    <span class="relative flex h-3 w-3">
-                        <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span id="stat-text" class="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase">1,800+
-                        Members — Missing You!</span>
+                <div class="flex flex-col md:flex-row items-center gap-4 mb-8">
+                     <div
+                        class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] hover:border-levant-gold/30 transition-colors interactable">
+                        <span class="relative flex h-3 w-3">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span id="stat-text" class="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase">1,800+
+                            Members — Missing You!</span>
+                    </div>
+                    <div id="levant-clock" class="text-[9px] md:text-[10px] font-mono tracking-widest text-levant-gold border border-levant-gold/20 bg-black/40 px-4 py-3 rounded-full uppercase">
+                        LEVANT TIME: <span id="clock-display">00:00:00</span>
+                    </div>
                 </div>
 
                 <h1 id="hero-title"
@@ -736,6 +741,39 @@
                     <div class="max-h-0 overflow-hidden transition-all duration-500 group-[.active]:max-h-40">
                         <p id="faq-a2" class="text-gray-400 text-sm mt-6 pt-6 border-t border-white/5 leading-relaxed">
                             100%. If you vibe with the culture and respect the rules, you're family.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="protocols" class="py-20 px-4 max-w-7xl mx-auto reveal">
+            <div class="mb-12 text-center">
+                <h2 id="protocol-title" class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white">System <span class="text-levant-gold">Protocols</span></h2>
+                <p id="protocol-sub" class="text-[10px] text-gray-500 font-mono tracking-widest uppercase">/// READ_BEFORE_ENTRY</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
+                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">01</div>
+                    <h3 id="rule-1-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">Respect</h3>
+                    <p id="rule-1-desc" class="text-sm text-gray-400 font-mono leading-relaxed">Zero tolerance for disrespect. We are a family, treat everyone as such.</p>
+                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
+                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700"></div>
+                    </div>
+                </div>
+                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
+                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">02</div>
+                    <h3 id="rule-2-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">No Politics</h3>
+                    <p id="rule-2-desc" class="text-sm text-gray-400 font-mono leading-relaxed">Leave the politics at the door. We are here to vibe, not to argue.</p>
+                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
+                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700 delay-100"></div>
+                    </div>
+                </div>
+                <div class="protocol-card p-8 border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl relative overflow-hidden group hover:border-levant-gold/50 transition-colors">
+                    <div class="absolute top-0 right-0 p-4 text-4xl text-white/5 group-hover:text-levant-gold/20 transition-colors font-black italic">03</div>
+                    <h3 id="rule-3-title" class="text-xl font-bold uppercase mb-4 text-white group-hover:text-levant-gold transition-colors">Privacy</h3>
+                    <p id="rule-3-desc" class="text-sm text-gray-400 font-mono leading-relaxed">What happens in the server, stays in the server. Do not leak.</p>
+                    <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
+                        <div class="h-full bg-levant-gold w-0 group-hover:w-full transition-all duration-700 delay-200"></div>
                     </div>
                 </div>
             </div>
