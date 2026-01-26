@@ -84,19 +84,31 @@ function animateParticle(p) {
     ], { duration, iterations: Infinity, direction: 'alternate' });
 }
 
+// setTheme()
 function setTheme(theme) {
     const body = document.getElementById('body-main');
     body.classList.remove('theme-dark', 'theme-light', 'theme-gold');
-    body.classList.add(`theme-${theme}`);
 
-    if (theme === 'gold') {
-        document.documentElement.style.setProperty('--accent-color', '#d4af37');
-    } else if (theme === 'light') {
-        document.documentElement.style.setProperty('--accent-color', '#d4af37');
-    } else {
-        document.documentElement.style.setProperty('--accent-color', '#d4af37');
-    }
+    body.classList.add(`theme-${theme}`);
+    localStorage.setItem('selectedTheme', theme);
 }
+
+window.onload = () => {
+    const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
+    setTheme(savedTheme);
+    createParticles();
+    injectRules();
+    updateContent();
+};
+
+// Advanced Scroll Effect()
+window.addEventListener('scroll', () => {
+    const banner = document.getElementById('movie-banner');
+    const scroll = window.scrollY;
+    if (banner) {
+        banner.style.transform = `translate(-50%, ${scroll * 0.1}px)`;
+    }
+});
 
 function updateCountdown() {
     const now = new Date();
