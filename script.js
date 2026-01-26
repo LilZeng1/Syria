@@ -3,55 +3,92 @@ const translations = {
         statText: "1,800+ Members — Missing You!",
         heroTitle: "The Heart <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>Of The Levant.</span>",
         heroSub: "Forget regular servers. This is where the real ones hang out.",
-        enterBtn: "<i class='bx bxl-discord-alt text-2xl'></i> Jump In Discord",
-        exploreBtn: "Check Events",
+        enterBtn: "<i class='bx bxl-discord-alt text-2xl group-hover:rotate-12 transition-transform'></i> Jump In Discord",
+        exploreBtn: "Explore Heritage",
         schedTitle: "The Schedule",
         revTitle: "The Family",
-        cultTitle: "The <br> Heritage",
         galleryTitle: "Moments",
         gallerySub: "The history we build together",
         faqTitle: "Quick Q<span class='text-levant-gold'>&</span>A",
         faqQ1: "How do I verify?",
-        faqA1: "You need to send an application to our staff...",
+        faqA1: "You need to send an application to our staff. You will be asked:<ol class='list-decimal list-inside space-y-2 ml-2 marker:text-levant-gold'><li>What is your country of origin and how old are you?</li><li>Why do you want to join this server? What do you expect from it?</li><li>On a scale from 1 to 10, how tolerant are you of opinions that differ from your beliefs?</li></ol>",
         faqQ2: "Are non-Syrians welcome?",
-        faqA2: "100%. If you vibe with the culture, you're family.",
+        faqA2: "100%. If you vibe with the culture and respect the rules, you're family.",
         protocolTitle: "System <span class='text-levant-gold'>Protocols</span>",
         protocolSub: "/// READ_BEFORE_ENTRY",
+        
         rule1Title: "Respect",
-        rule1Desc: "Zero tolerance for disrespect. We are a family, treat everyone as such.",
-        rule2Title: "No Politics",
-        rule2Desc: "Leave the politics at the door. We are here to vibe, not to argue.",
-        rule3Title: "Privacy",
-        rule3Desc: "What happens in the server, stays in the server. Do not leak."
+        rule1Desc: "Treat everyone as you wish to be treated. We are a family.",
+        rule2Title: "Privacy",
+        rule2Desc: "No leaking. Personal info stays private. Red line.",
+        rule3Title: "No Hate",
+        rule3Desc: "Racism and hate speech = Immediate ban. Zero tolerance.",
+        rule4Title: "Clean Content",
+        rule4Desc: "No NSFW, gore, or disturbing content. Keep it classy.",
+        rule5Title: "Safe Links",
+        rule5Desc: "Clarify before posting files or links to avoid auto-ban.",
+        rule6Title: "No Spam",
+        rule6Desc: "Don't abuse @everyone or ping staff without reason.",
+        rule7Title: "Debate Ideas",
+        rule7Desc: "Attack the argument, not the person. Be civilized.",
+        rule8Title: "Organize",
+        rule8Desc: "Use the correct channels for your content.",
+        rule9Title: "Real Identity",
+        rule9Desc: "No impersonation or fake accounts. Transparency is key.",
+        rule10Title: "No Drama",
+        rule10Desc: "Resolve issues privately with staff. Don't make a scene.",
+        rule11Title: "No Harassment",
+        rule11Desc: "We are civilized humans, not wild animals. Harassment is strictly prohibited.",
+
+        aboutTitle: "The Dream of <span class='text-levant-gold'>Unity</span>"
     },
     ar: {
         statText: "أكثر من ١٨٠٠ عضو — مكانك فاضي!",
         heroTitle: "قلب <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>بلاد الشام.</span>",
         heroSub: "انسَ السيرفرات العادية. هنا العائلة الحقيقية.",
-        enterBtn: "<i class='bx bxl-discord-alt text-2xl'></i> ادخل السيرفر",
-        exploreBtn: "الفعاليات",
+        enterBtn: "<i class='bx bxl-discord-alt text-2xl group-hover:rotate-12 transition-transform'></i> ادخل السيرفر",
+        exploreBtn: "اكتشف التراث",
         schedTitle: "جدولنا",
         revTitle: "العائلة",
-        cultTitle: "التراث <br> العريق",
         galleryTitle: "لحظات",
         gallerySub: "تاريخنا سوا",
         faqTitle: "سؤال <span class='text-levant-gold'>و</span> جواب",
         faqQ1: "كيف بوثق حسابي؟",
-        faqA1: "لازم تقدم طلب للادارة، رح تنسأل اسئلة بسيطة...",
+        faqA1: "لازم تقدم طلب للادارة، رح تنسأل اسئلة بسيطة:<ol class='list-decimal list-inside space-y-2 ml-2 marker:text-levant-gold'><li>من أي بلد أنت وكم عمرك؟</li><li>ليش حابب تنضم للسيرفر؟ وشو متوقع منو؟</li><li>من ١ لـ ١٠، قديش بتتقبل الآراء اللي بتخالفك؟</li></ol>",
         faqQ2: "هل مسموح لغير السوريين؟",
         faqA2: "أكيد ١٠٠٪. طالما بتحترم القوانين، أنت من العيلة.",
         protocolTitle: "قوانين <span class='text-levant-gold'>النظام</span>",
         protocolSub: "/// اقرأ_قبل_الدخول",
+
         rule1Title: "الاحترام",
-        rule1Desc: "الاحترام واجب على الجميع. نحنا عيلة، عامل الكل منيح.",
-        rule2Title: "بلا سياسة",
-        rule2Desc: "اترك السياسة برا. نحنا هون لنتسلى وننبسط، مو لنتخانق.",
-        rule3Title: "الخصوصية",
-        rule3Desc: "اللي بصير بالسيرفر بضل بالسيرفر. ممنوع التسريب."
+        rule1Desc: "عامل الناس كما تحب أن تُعامل. نحترم بعض، نناقش بأدب.",
+        rule2Title: "الخصوصية",
+        rule2Desc: "ممنوع مشاركة صور، أصوات، أو أي معلومة شخصية بدون إذن.",
+        rule3Title: "لا للكراهية",
+        rule3Desc: "خطاب الكراهية، العنصرية، التمييز بكل أنواعه = طرد مباشر.",
+        rule4Title: "محتوى نظيف",
+        rule4Desc: "المحتوى الجنسي، الدموي، أو التحريضي ممنوع كلياً.",
+        rule5Title: "روابط آمنة",
+        rule5Desc: "ما تنشر أي روابط أو ملفات مش واضحة. وضّح قبل ما تنشر.",
+        rule6Title: "بدون إزعاج",
+        rule6Desc: "لا تستخدم @ للجميع أو للإدارة بدون سبب ضروري.",
+        rule7Title: "نقاش راقي",
+        rule7Desc: "ناقش الفكرة مش الشخص. نحن هون لسماع كل وجهات النظر.",
+        rule8Title: "التنظيم",
+        rule8Desc: "شارك المحتوى بالقنوات المناسبة. ما تخرب التنظيم.",
+        rule9Title: "هوية حقيقية",
+        rule9Desc: "لا تتقمص شخصيات غيرك ولا تصنع حسابات وهمية. كن نفسك.",
+        rule10Title: "بلا دراما",
+        rule10Desc: "السيرفر مو ساحة دراما أو مشاكل شخصية. حل مشاكلك بهدوء.",
+        rule11Title: "ممنوع التحرش",
+        rule11Desc: "كون نحنا مو عايشين بغابة ونحن بشر راقين، التحرش ممنوع.",
+
+        aboutTitle: "حلم <span class='text-levant-gold'>الوحدة</span>"
     }
 };
 
 let currentLang = 'en';
+let particleInstance;
 
 const interactables = document.querySelectorAll('.interactable');
 interactables.forEach(el => {
@@ -100,9 +137,10 @@ window.addEventListener('load', () => {
         reveal();
         initStarfield();
         initTilt();
-        initPortal();
+        initSettingsPanel();
         typeEffect();
         updateTime();
+        initAudioPlayer();
         setInterval(updateTime, 1000);
     }, 1500);
 });
@@ -159,7 +197,6 @@ function resetForm() {
     fileInput.value = '';
     previewContainer.classList.add('hidden');
     imagePreview.src = '';
-    errorOverlay.classList.add('hidden');
     dropVisuals.classList.remove('border-red-500', 'bg-red-500/10');
 }
 
@@ -183,19 +220,10 @@ modal.addEventListener('click', (e) => {
 });
 
 function handleFile(file) {
-    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/x-icon'];
-    
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!validTypes.includes(file.type)) {
-        errorOverlay.classList.remove('hidden');
-        dropVisuals.classList.add('border-red-500', 'bg-red-500/10');
-        setTimeout(() => {
-            errorOverlay.classList.add('hidden');
-            dropVisuals.classList.remove('border-red-500', 'bg-red-500/10');
-        }, 2000);
-        fileInput.value = '';
         return;
     }
-
     const reader = new FileReader();
     reader.onload = function (e) {
         imagePreview.src = e.target.result;
@@ -216,24 +244,20 @@ fileInput.addEventListener('change', function () {
 
 submitBtn.addEventListener('click', () => {
     if (!fileInput.files[0] && !imagePreview.src) return;
-    
     submitBtn.innerHTML = '<i class="bx bx-loader-alt animate-spin text-xl"></i> UPLOADING...';
-    
     setTimeout(() => {
         const newCard = document.createElement('div');
         newCard.className = 'break-inside-avoid glass-card rounded-[2rem] p-2 group hover:rotate-2 transition-transform duration-300 reveal active interactable';
         newCard.innerHTML = `
-            <div class="bg-gray-800 rounded-[1.8rem] overflow-hidden aspect-square relative">
-                <img src="${imagePreview.src}" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="bg-gray-800 rounded-[1.8rem] overflow-hidden relative">
+                <img src="${imagePreview.src}" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                      <span class="text-[10px] font-black uppercase tracking-widest text-white">Just Now</span>
                 </div>
             </div>
         `;
-        
         const grid = document.getElementById('gallery-grid');
         grid.prepend(newCard);
-        
         closeModal();
         submitBtn.innerHTML = '<span class="relative z-10">Initialize Upload</span><div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>';
     }, 1500);
@@ -298,44 +322,40 @@ function initStarfield() {
     animate();
 }
 
-function initPortal() {
+function initSettingsPanel() {
     const trigger = document.getElementById('portal-trigger');
-    const overlay = document.getElementById('portal-overlay');
-    const closeBtn = document.getElementById('close-portal');
-    const closeBg = document.getElementById('close-portal-bg');
+    const panel = document.getElementById('settings-panel');
+    const overlay = document.getElementById('settings-overlay');
+    const closeBtn = document.getElementById('close-settings');
     const themeBtns = document.querySelectorAll('.theme-btn');
     const matrixToggle = document.getElementById('toggle-matrix');
-    const focusToggle = document.getElementById('toggle-focus');
+    const particleToggle = document.getElementById('toggle-particles');
+    const volumeSlider = document.getElementById('volume-slider');
 
-    function togglePortal() {
-        const isHidden = overlay.classList.contains('hidden');
-        if (isHidden) {
+    function togglePanel() {
+        const isClosed = panel.style.transform === 'translateX(100%)' || panel.style.transform === '';
+        
+        if (isClosed) {
+            panel.style.transform = 'translateX(0)';
             overlay.classList.remove('hidden');
-            setTimeout(() => {
-                overlay.classList.remove('opacity-0');
-                document.getElementById('portal-content').classList.remove('scale-95');
-            }, 10);
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
         } else {
+            panel.style.transform = 'translateX(100%)';
             overlay.classList.add('opacity-0');
-            document.getElementById('portal-content').classList.add('scale-95');
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-            }, 300);
+            setTimeout(() => overlay.classList.add('hidden'), 500);
         }
     }
 
-    trigger.addEventListener('click', togglePortal);
-    closeBtn.addEventListener('click', togglePortal);
-    closeBg.addEventListener('click', togglePortal);
+    trigger.addEventListener('click', togglePanel);
+    closeBtn.addEventListener('click', togglePanel);
+    overlay.addEventListener('click', togglePanel);
 
     themeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const color = btn.getAttribute('data-color');
             document.documentElement.style.setProperty('--accent-color', color);
-            
-            for (let i = 0; i < 20; i++) {
-                particles.push(new Particle(window.innerWidth/2, window.innerHeight/2));
-            }
+            themeBtns.forEach(b => b.classList.remove('scale-110'));
+            btn.classList.add('scale-110');
         });
     });
 
@@ -343,12 +363,34 @@ function initPortal() {
     let isMatrixOn = false;
     matrixToggle.addEventListener('click', () => {
         isMatrixOn = !isMatrixOn;
-        document.getElementById('matrix-status').style.backgroundColor = isMatrixOn ? '#4ade80' : '#4b5563';
-        document.getElementById('matrix-status').style.boxShadow = isMatrixOn ? '0 0 10px #4ade80' : 'none';
+        const sw = document.getElementById('matrix-switch');
+        const knob = sw.querySelector('div');
+        
+        sw.className = isMatrixOn ? 'w-10 h-5 bg-green-500 rounded-full relative transition-colors duration-300' : 'w-10 h-5 bg-gray-700 rounded-full relative transition-colors duration-300';
+        knob.style.transform = isMatrixOn ? 'translateX(20px)' : 'translateX(0)';
+        
         document.getElementById('matrix-canvas').style.opacity = isMatrixOn ? '0.1' : '0';
 
         if (isMatrixOn) startMatrix();
         else clearInterval(matrixInterval);
+    });
+
+    let isParticlesOn = true;
+    particleToggle.addEventListener('click', () => {
+        isParticlesOn = !isParticlesOn;
+        const sw = document.getElementById('particle-switch');
+        const knob = sw.querySelector('div');
+        
+        sw.className = isParticlesOn ? 'w-10 h-5 bg-green-500 rounded-full relative transition-colors duration-300' : 'w-10 h-5 bg-gray-700 rounded-full relative transition-colors duration-300';
+        knob.style.transform = isParticlesOn ? 'translateX(20px)' : 'translateX(0)';
+        
+        const canvas = document.getElementById('starfield');
+        canvas.style.opacity = isParticlesOn ? '0.6' : '0';
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+        const audio = document.getElementById('bg-music');
+        audio.volume = e.target.value / 100;
     });
 
     function startMatrix() {
@@ -384,15 +426,29 @@ function initPortal() {
         clearInterval(matrixInterval);
         matrixInterval = setInterval(draw, 30);
     }
+}
 
-    let isFocusOn = false;
-    focusToggle.addEventListener('click', () => {
-        isFocusOn = !isFocusOn;
-        document.getElementById('focus-status').style.backgroundColor = isFocusOn ? '#60a5fa' : '#4b5563';
-        document.getElementById('focus-status').style.boxShadow = isFocusOn ? '0 0 10px #60a5fa' : 'none';
-        if (isFocusOn) document.body.classList.add('focus-mode');
-        else document.body.classList.remove('focus-mode');
+function initAudioPlayer() {
+    const audio = document.getElementById('bg-music');
+    const toggle = document.getElementById('toggle-music');
+    const visualizer = document.getElementById('audio-visualizer');
+    let isPlaying = false;
+
+    toggle.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.pause();
+            toggle.innerHTML = "<i class='bx bx-play'></i>";
+            Array.from(visualizer.children).forEach(bar => bar.style.animationPlayState = 'paused');
+        } else {
+            audio.play();
+            toggle.innerHTML = "<i class='bx bx-pause'></i>";
+            Array.from(visualizer.children).forEach(bar => bar.style.animationPlayState = 'running');
+        }
+        isPlaying = !isPlaying;
     });
+    
+    Array.from(visualizer.children).forEach(bar => bar.style.animationPlayState = 'paused');
+    audio.volume = 0.5;
 }
 
 function initTilt() {
@@ -448,8 +504,10 @@ function updateLanguage() {
         
         document.getElementById('enter-btn').innerHTML = t.enterBtn;
         document.getElementById('explore-btn').innerText = t.exploreBtn;
-        document.getElementById('sched-title').innerText = t.schedTitle;
+        document.getElementById('sched-title').innerHTML = t.schedTitle + " <i class='bx bxs-zap text-4xl text-yellow-400 absolute -top-4 -right-8 animate-pulse'></i>";
         document.getElementById('rev-title').innerText = t.revTitle;
+        document.getElementById('about-title').innerHTML = t.aboutTitle;
+        
         document.getElementById('gallery-title').innerText = t.galleryTitle;
         document.getElementById('gallery-sub').innerText = t.gallerySub;
         document.getElementById('faq-title').innerHTML = t.faqTitle;
@@ -460,12 +518,15 @@ function updateLanguage() {
         
         document.getElementById('protocol-title').innerHTML = t.protocolTitle;
         document.getElementById('protocol-sub').innerText = t.protocolSub;
-        document.getElementById('rule-1-title').innerText = t.rule1Title;
-        document.getElementById('rule-1-desc').innerText = t.rule1Desc;
-        document.getElementById('rule-2-title').innerText = t.rule2Title;
-        document.getElementById('rule-2-desc').innerText = t.rule2Desc;
-        document.getElementById('rule-3-title').innerText = t.rule3Title;
-        document.getElementById('rule-3-desc').innerText = t.rule3Desc;
+
+        for (let i = 1; i <= 11; i++) {
+            const titleEl = document.getElementById(`rule-${i}-title`);
+            const descEl = document.getElementById(`rule-${i}-desc`);
+            if (titleEl && descEl) {
+                titleEl.innerText = t[`rule${i}Title`];
+                descEl.innerText = t[`rule${i}Desc`];
+            }
+        }
 
         document.body.style.opacity = '1';
         reveal();
