@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        statText: "1,800+ Members — Missing You!",
+        statText: "1,800+ Members — Online Now",
         heroTitle: "THE HEART <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>OF THE LEVANT.</span>",
         heroSub: "Where Syrian culture meets digital innovation. A sanctuary for debates, gaming, and the bonds of a true family.",
         enterBtn: "Jump In Discord",
@@ -11,7 +11,7 @@ const translations = {
         unityAr: "كلنا عنا هادا الحلم بأنو بيوم من الأيام سوريا رح تكبر وتضوي وتصير مكان نحس فيه بالانتماء. ماحدا فيه يعمل هالخيال حقيقة غير السوريين، الشعب السوري؛ ولا أيا حدا تاني. الجيل الجديد عندو القدرة ليعمل هيك شي، رح يكون شعور حلو لما تفتح الشات السوري وتتواصل مع عالم من أرضك، من ثقافتك، عالم بيفهمو النكت يلي رح تحكيها، المراجع الثقافية يلي رح تذكرا. للحظة ممكن نحس حالنا متحدين من جديد، شعورنا بالانعزال رح يخف، وبجوز يرجع أيماننا بأنفسنا وببلدنا من جديد. عاشت سوريا، مهد الحضارات."
     },
     ar: {
-        statText: "أكثر من 1800 عضو — بانتظارك!",
+        statText: "أكثر من 1800 عضو — متصلون الآن",
         heroTitle: "قلب <br> <span class='italic serif text-transparent bg-clip-text bg-gradient-to-r from-levant-gold via-yellow-200 to-levant-gold animate-gradient-x'>بلاد الشام</span>",
         heroSub: "حيث تلتقي الثقافة السورية بالابتكار الرقمي. ملاذ للنقاشات، الألعاب، وروابط العائلة الحقيقية.",
         enterBtn: "انضم إلى ديـسكورد",
@@ -37,14 +37,16 @@ const dot = document.querySelector('.cursor-dot');
 const outline = document.querySelector('.cursor-outline');
 
 window.addEventListener('mousemove', (e) => {
-    dot.style.opacity = "1";
-    outline.style.opacity = "0.5";
-    dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    outline.animate({
-        left: e.clientX + 'px',
-        top: e.clientY + 'px'
-    }, { duration: 400, fill: "forwards" });
+    if (window.innerWidth > 1024) {
+        dot.style.opacity = "1";
+        outline.style.opacity = "0.5";
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+        outline.animate({
+            left: e.clientX + 'px',
+            top: e.clientY + 'px'
+        }, { duration: 400, fill: "forwards" });
+    }
 });
 
 const observer = new IntersectionObserver((entries) => {
@@ -56,26 +58,26 @@ const observer = new IntersectionObserver((entries) => {
 function createParticles() {
     const container = document.getElementById('particles');
     container.innerHTML = '';
-    const particleCount = window.innerWidth < 768 ? 20 : 50;
+    const particleCount = window.innerWidth < 768 ? 15 : 40;
     for (let i = 0; i < particleCount; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 3 + 1;
+        const size = Math.random() * 2 + 1;
         p.style.width = size + 'px';
         p.style.height = size + 'px';
         p.style.left = Math.random() * 100 + 'vw';
         p.style.top = Math.random() * 100 + 'vh';
-        p.style.opacity = Math.random() * 0.5;
+        p.style.opacity = Math.random() * 0.4;
         container.appendChild(p);
         animateParticle(p);
     }
 }
 
 function animateParticle(p) {
-    const duration = Math.random() * 3000 + 3000;
+    const duration = Math.random() * 3000 + 4000;
     p.animate([
         { transform: 'translate(0, 0)', opacity: p.style.opacity },
-        { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`, opacity: Math.random() * 0.5 }
+        { transform: `translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px)`, opacity: 0.1 }
     ], { duration, iterations: Infinity, direction: 'alternate' });
 }
 
@@ -89,12 +91,12 @@ function setTheme(theme) {
 function injectRules() {
     const grid = document.getElementById('rules-grid');
     grid.innerHTML = serverRules.map(rule => `
-        <div class="bg-main-soft p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-main hover:bg-main-alt hover:border-levant-gold/30 transition-all reveal group">
-            <div class="w-12 h-12 bg-levant-gold/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i class='bx ${rule.icon} text-2xl text-levant-gold'></i>
+        <div class="bg-main-soft p-6 md:p-8 rounded-[24px] border border-main hover:border-levant-gold/30 transition-all reveal group">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-levant-gold/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class='bx ${rule.icon} text-xl md:text-2xl text-levant-gold'></i>
             </div>
-            <h4 class="text-lg sm:text-xl font-black uppercase mb-2 tracking-tight">${rule.title}</h4>
-            <p class="text-[10px] sm:text-xs opacity-50 font-medium leading-relaxed uppercase tracking-wider">${rule.desc}</p>
+            <h4 class="text-base md:text-lg font-black uppercase mb-2 tracking-tight">${rule.title}</h4>
+            <p class="text-[10px] md:text-xs opacity-50 font-medium leading-relaxed uppercase tracking-wider">${rule.desc}</p>
         </div>
     `).join('');
     document.querySelectorAll('#rules-grid .reveal').forEach(el => observer.observe(el));
