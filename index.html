@@ -16,23 +16,31 @@
             theme: {
                 extend: {
                     colors: { 'levant-gold': 'var(--accent-color)', 'discord-blurple': '#5865F2' },
-                    animation: { 'gradient-x': 'gradient-x 8s ease infinite', 'float': 'float 6s ease-in-out infinite' }
+                    animation: {
+                        'gradient-x': 'gradient-x 8s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-main text-main transition-colors duration-700 theme-dark" id="body-main">
+<body class="bg-main text-main transition-colors duration-700 theme-dark selection:bg-levant-gold selection:text-black"
+    id="body-main">
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+    <div class="progress-bar"></div>
+    <div class="noise-overlay"></div>
     <div class="particles-container" id="particles"></div>
 
-    <nav class="fixed top-0 w-full z-[100] glass-nav border-b border-main">
+    <nav class="fixed top-0 w-full z-[100] glass-nav border-b border-main translate-y-0 transition-transform duration-500"
+        id="navbar">
         <div class="max-w-[1440px] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
-            <div class="flex items-center gap-4 group cursor-pointer">
+            <div class="flex items-center gap-4 group cursor-pointer magnetic" data-strength="20">
                 <div class="relative">
                     <img src="./Assets/ServerIcon.png"
-                        class="w-10 h-10 md:w-14 md:h-14 rounded-2xl shadow-2xl transition-transform duration-500 group-hover:rotate-[360deg]"
+                        class="w-10 h-10 md:w-14 md:h-14 rounded-2xl shadow-2xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-[15deg]"
                         alt="Logo">
                     <div
                         class="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-500 border-4 border-[var(--bg-color)] rounded-full animate-pulse">
@@ -49,177 +57,262 @@
 
             <div
                 class="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.25em] opacity-60">
-                <a href="#activities" class="hover:text-levant-gold transition-all hover:-translate-y-1">Events</a>
-                <a href="#unity" class="hover:text-levant-gold transition-all hover:-translate-y-1">Manifesto</a>
-                <a href="#rules" class="hover:text-levant-gold transition-all hover:-translate-y-1">Laws</a>
+                <a href="#activities" class="nav-link hover:text-levant-gold transition-all relative py-2">Events</a>
+                <a href="#unity" class="nav-link hover:text-levant-gold transition-all relative py-2">Manifesto</a>
+                <a href="#rules" class="nav-link hover:text-levant-gold transition-all relative py-2">Laws</a>
             </div>
 
             <div class="flex items-center gap-3 md:gap-6">
-                <div class="flex bg-main-soft p-1.5 rounded-full border border-main">
-                    <button onclick="setTheme('dark')" class="p-2 rounded-full hover:bg-white/10 transition-colors"><i
+                <div class="flex bg-main-soft p-1.5 rounded-full border border-main backdrop-blur-md">
+                    <button onclick="setTheme('dark')"
+                        class="p-2 rounded-full hover:bg-white/10 transition-all magnetic" data-strength="15"><i
                             class='bx bxs-moon'></i></button>
-                    <button onclick="setTheme('light')" class="p-2 rounded-full hover:bg-black/10 transition-colors"><i
+                    <button onclick="setTheme('light')"
+                        class="p-2 rounded-full hover:bg-black/10 transition-all magnetic" data-strength="15"><i
                             class='bx bxs-sun'></i></button>
                     <button onclick="setTheme('gold')"
-                        class="p-2 rounded-full hover:bg-levant-gold/20 transition-colors text-levant-gold"><i
-                            class='bx bxs-crown'></i></button>
+                        class="p-2 rounded-full hover:bg-levant-gold/20 transition-all text-levant-gold magnetic"
+                        data-strength="15"><i class='bx bxs-crown'></i></button>
                 </div>
                 <button id="lang-toggle"
-                    class="bg-main text-inverse px-4 md:px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl">AR/EN</button>
+                    class="bg-main text-inverse px-4 md:px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:invert transition-all shadow-xl active:scale-90 magnetic"
+                    data-strength="25">AR/EN</button>
             </div>
         </div>
     </nav>
 
     <main class="relative z-10">
-        <section class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 text-center">
+        <section
+            class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 text-center relative overflow-hidden">
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-levant-gold/10 blur-[150px] animate-pulse-slow">
+                </div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 blur-[150px] animate-pulse-slow"
+                    style="animation-delay: 2s"></div>
+            </div>
+
             <div
-                class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-main-soft border border-main mb-8 reveal">
-                <span class="flex h-2.5 w-2.5 relative">
+                class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-main-soft border border-main mb-12 reveal backdrop-blur-xl group hover:border-levant-gold/50 transition-colors cursor-help">
+                <span class="flex h-3 w-3 relative">
                     <span class="animate-ping absolute h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </span>
-                <p id="stat-text" class="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] opacity-80">
+                <p id="stat-text"
+                    class="text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] opacity-80 group-hover:tracking-[0.5em] transition-all">
                 </p>
             </div>
 
-            <h1 id="hero-title" class="hero-title font-black leading-[0.9] tracking-tighter mb-10 reveal"></h1>
+            <h1 id="hero-title"
+                class="hero-title font-black leading-[0.85] tracking-tighter mb-10 reveal perspective-text"></h1>
 
             <p id="hero-sub"
-                class="opacity-70 text-lg md:text-2xl max-w-3xl mx-auto mb-12 md:mb-20 font-medium leading-relaxed reveal">
+                class="opacity-70 text-lg md:text-2xl max-w-3xl mx-auto mb-16 md:mb-24 font-medium leading-relaxed reveal balance-text">
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 reveal">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 reveal relative z-20">
                 <a href="https://discord.gg/syria"
-                    class="w-full sm:w-auto bg-main text-inverse px-10 md:px-16 py-5 md:py-7 rounded-2xl font-black uppercase tracking-[0.2em] text-xs md:text-sm flex items-center justify-center gap-4 hover:scale-105 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/10">
-                    <i class='bx bxl-discord-alt text-2xl'></i>
-                    <span id="enter-btn"></span>
-                </a>
-                <div
-                    class="w-full sm:w-auto flex items-center gap-5 px-8 py-5 rounded-2xl bg-main-soft border border-main backdrop-blur-xl">
+                    class="magnetic w-full sm:w-auto bg-main text-inverse px-12 md:px-20 py-6 md:py-8 rounded-2xl font-black uppercase tracking-[0.25em] text-xs md:text-sm flex items-center justify-center gap-5 hover:scale-105 transition-all shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 group overflow-hidden"
+                    data-strength="30">
                     <div
-                        class="w-10 h-10 rounded-full bg-levant-gold flex items-center justify-center text-[12px] font-black text-black shadow-lg">
+                        class="absolute inset-0 bg-levant-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    </div>
+                    <i class='bx bxl-discord-alt text-3xl relative z-10 group-hover:text-black'></i>
+                    <span id="enter-btn" class="relative z-10 group-hover:text-black"></span>
+                </a>
+
+                <div
+                    class="w-full sm:w-auto flex items-center gap-6 px-10 py-6 rounded-2xl bg-main-soft border border-main backdrop-blur-2xl hover:bg-main-alt transition-all group cursor-default">
+                    <div
+                        class="w-12 h-12 rounded-full bg-levant-gold flex items-center justify-center text-[14px] font-black text-black shadow-lg group-hover:rotate-[360deg] transition-transform duration-700">
                         LV2</div>
                     <div class="text-left">
-                        <p class="text-[8px] font-black opacity-40 uppercase tracking-widest">Server Status</p>
-                        <p class="text-xs md:text-sm font-black uppercase text-levant-gold">Boost Level 2</p>
+                        <p class="text-[9px] font-black opacity-40 uppercase tracking-widest">Global Status</p>
+                        <p class="text-sm md:text-base font-black uppercase text-levant-gold tracking-tight">Level 2
+                            Boosted</p>
                     </div>
                 </div>
             </div>
+
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+                <i class='bx bx-chevron-down text-3xl'></i>
+            </div>
         </section>
 
-        <section id="activities" class="py-24 md:py-48 bg-main-alt">
-            <div class="max-w-7xl mx-auto px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <section id="activities" class="py-32 md:py-64 bg-main-alt relative">
+            <div class="max-w-7xl mx-auto px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
                     <div class="reveal">
-                        <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12"
-                            id="activity-title"></h2>
-                        <div class="space-y-6">
-                            <div
-                                class="flex gap-6 p-8 rounded-[32px] bg-main-soft border border-main hover:border-levant-gold/50 transition-all group cursor-pointer">
-                                <div
-                                    class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                                    <i class='bx bxs-microphone text-3xl text-blue-400'></i></div>
-                                <div>
-                                    <h4 class="text-xl font-black uppercase mb-1">Debate Nights</h4>
-                                    <p class="text-sm opacity-50">Identity, history, and deep culture discussions.</p>
-                                </div>
-                            </div>
-                            <div
-                                class="flex gap-6 p-8 rounded-[32px] bg-main-soft border border-main hover:border-levant-gold/50 transition-all group cursor-pointer">
-                                <div
-                                    class="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                                    <i class='bx bxs-game text-3xl text-red-400'></i></div>
-                                <div>
-                                    <h4 class="text-xl font-black uppercase mb-1">Gaming Arena</h4>
-                                    <p class="text-sm opacity-50">Competitive tournaments and casual play.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-6 reveal">
                         <div
-                            class="bg-card backdrop-blur-2xl p-10 rounded-[48px] border border-main animate-float flex flex-col items-center text-center">
-                            <i class='bx bxs-star text-4xl text-yellow-500 mb-6'></i>
-                            <p class="text-4xl md:text-6xl font-black mb-2">100%</p>
-                            <p class="text-[10px] uppercase font-black opacity-40 tracking-[0.2em]">Active Community</p>
+                            class="inline-block px-4 py-1 bg-levant-gold/10 text-levant-gold text-[10px] font-black uppercase tracking-[0.4em] mb-8 rounded-lg border border-levant-gold/20">
+                            Active Dynamics</div>
+                        <h2 class="text-6xl md:text-9xl font-black uppercase tracking-tighter mb-12 leading-[0.9]"
+                            id="activity-title"></h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-8 p-10 rounded-[40px] bg-main-soft border border-main hover:border-levant-gold transition-all group cursor-pointer magnetic"
+                                data-strength="15">
+                                <div
+                                    class="w-20 h-20 bg-blue-500/10 rounded-3xl flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform">
+                                    <i class='bx bxs-microphone text-4xl text-blue-400'></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-2xl font-black uppercase mb-2 tracking-tight">Debate Nights</h4>
+                                    <p class="text-base opacity-50 leading-relaxed font-medium">Intellectual collisions
+                                        regarding identity, history, and the future of the Levant.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-8 p-10 rounded-[40px] bg-main-soft border border-main hover:border-levant-gold transition-all group cursor-pointer magnetic"
+                                data-strength="15">
+                                <div
+                                    class="w-20 h-20 bg-red-500/10 rounded-3xl flex items-center justify-center shrink-0 group-hover:-rotate-12 transition-transform">
+                                    <i class='bx bxs-game text-4xl text-red-400'></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-2xl font-black uppercase mb-2 tracking-tight">Gaming Arena</h4>
+                                    <p class="text-base opacity-50 leading-relaxed font-medium">High-octane tournaments
+                                        and strategic cooperative play in our dedicated zones.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-card backdrop-blur-2xl p-10 rounded-[48px] border border-main animate-float flex flex-col items-center text-center"
-                            style="animation-delay: 1s">
-                            <i class='bx bxs-bolt text-4xl text-levant-gold mb-6'></i>
-                            <p class="text-4xl md:text-6xl font-black mb-2">24/7</p>
-                            <p class="text-[10px] uppercase font-black opacity-40 tracking-[0.2em]">Voice Chats</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 reveal">
+                        <div
+                            class="bg-card backdrop-blur-3xl p-12 rounded-[60px] border border-main hover:border-levant-gold/30 transition-all group text-center flex flex-col items-center justify-center h-[350px]">
+                            <div class="mb-8 relative">
+                                <i
+                                    class='bx bxs-star text-6xl text-yellow-500 group-hover:scale-125 transition-transform duration-500'></i>
+                                <div class="absolute inset-0 blur-2xl bg-yellow-500/20 group-hover:bg-yellow-500/40">
+                                </div>
+                            </div>
+                            <p class="text-6xl md:text-7xl font-black mb-4 tracking-tighter">100%</p>
+                            <p class="text-[12px] uppercase font-black opacity-40 tracking-[0.3em]">Pure Engagement</p>
+                        </div>
+                        <div
+                            class="bg-card backdrop-blur-3xl p-12 rounded-[60px] border border-main hover:border-levant-gold/30 transition-all group text-center flex flex-col items-center justify-center h-[350px] lg:translate-y-16">
+                            <div class="mb-8 relative">
+                                <i
+                                    class='bx bxs-bolt text-6xl text-levant-gold group-hover:scale-125 transition-transform duration-500'></i>
+                                <div class="absolute inset-0 blur-2xl bg-levant-gold/20 group-hover:bg-levant-gold/40">
+                                </div>
+                            </div>
+                            <p class="text-6xl md:text-7xl font-black mb-4 tracking-tighter">24/7</p>
+                            <p class="text-[12px] uppercase font-black opacity-40 tracking-[0.3em]">Live Interaction</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="unity" class="py-24 md:py-48 px-6">
+        <section id="unity" class="py-32 md:py-64 px-6 relative overflow-hidden">
             <div
-                class="max-w-6xl mx-auto glass-card p-10 md:p-24 rounded-[60px] md:rounded-[100px] relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-levant-gold/5 blur-[120px] rounded-full"></div>
-                <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-16 md:mb-24 text-center"
+                class="max-w-6xl mx-auto glass-card p-12 md:p-32 rounded-[80px] md:rounded-[120px] relative z-10 overflow-hidden shadow-2xl">
+                <div class="absolute -top-20 -right-20 w-96 h-96 bg-levant-gold/10 blur-[150px] rounded-full"></div>
+                <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/5 blur-[150px] rounded-full"></div>
+
+                <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-20 md:mb-32 text-center reveal"
                     id="unity-title"></h2>
-                <div class="space-y-16 md:space-y-28">
-                    <div class="reveal">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="h-px grow bg-gradient-to-r from-levant-gold to-transparent"></div>
-                            <p class="text-[12px] font-black text-levant-gold uppercase tracking-[0.4em]">Manifesto</p>
+
+                <div class="space-y-24 md:space-y-40">
+                    <div class="reveal group">
+                        <div class="flex items-center gap-8 mb-12">
+                            <div
+                                class="h-[2px] grow bg-gradient-to-r from-levant-gold via-levant-gold/50 to-transparent">
+                            </div>
+                            <p
+                                class="text-[14px] font-black text-levant-gold uppercase tracking-[0.5em] group-hover:tracking-[0.7em] transition-all">
+                                Manifesto</p>
                         </div>
-                        <p id="unity-en" class="text-xl md:text-3xl leading-relaxed opacity-80 italic font-serif"></p>
+                        <p id="unity-en"
+                            class="text-2xl md:text-4xl leading-relaxed opacity-80 italic font-serif transition-opacity hover:opacity-100">
+                        </p>
                     </div>
-                    <div class="reveal" dir="rtl">
-                        <div class="flex items-center gap-6 mb-8">
-                            <p class="text-[16px] font-black text-levant-gold uppercase tracking-[0.3em] font-arabic">
+
+                    <div class="reveal group" dir="rtl">
+                        <div class="flex items-center gap-8 mb-12">
+                            <p
+                                class="text-[20px] font-black text-levant-gold uppercase tracking-[0.4em] font-arabic group-hover:tracking-[0.5em] transition-all">
                                 البيان السوري</p>
-                            <div class="h-px grow bg-gradient-to-l from-levant-gold to-transparent"></div>
+                            <div
+                                class="h-[2px] grow bg-gradient-to-l from-levant-gold via-levant-gold/50 to-transparent">
+                            </div>
                         </div>
-                        <p id="unity-ar" class="text-2xl md:text-5xl font-black leading-[1.4] font-arabic"></p>
+                        <p id="unity-ar"
+                            class="text-3xl md:text-6xl font-black leading-[1.6] font-arabic transition-all hover:text-levant-gold/90">
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="rules" class="py-24 md:py-48 px-8 bg-main-alt border-t border-main">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-20 md:mb-32">
-                    <span class="text-levant-gold font-black uppercase tracking-[0.5em] text-[12px] md:text-[14px]">The
-                        Protocol</span>
+        <section id="rules" class="py-32 md:py-64 px-8 bg-main-alt border-t border-main relative overflow-hidden">
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-24 md:mb-40">
+                    <div
+                        class="inline-block px-6 py-2 bg-main rounded-full border border-main text-levant-gold font-black uppercase tracking-[0.6em] text-[12px] mb-8">
+                        System Architecture</div>
                     <h2 id="protocol-title"
-                        class="text-5xl md:text-9xl font-black uppercase tracking-tighter italic mt-4"></h2>
+                        class="text-6xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-none reveal">
+                    </h2>
                 </div>
-                <div id="rules-grid"></div>
+                <div id="rules-grid" class="perspective-grid"></div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 md:py-32 border-t border-main bg-main px-8 relative z-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-16">
-            <div class="flex items-center gap-6 justify-center md:justify-start">
-                <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
-                    class="w-16 h-16 rounded-full border-2 border-levant-gold shadow-2xl">
+    <footer class="py-24 md:py-40 border-t border-main bg-main px-8 relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-20">
+            <div class="flex items-center gap-8 justify-center md:justify-start group magnetic" data-strength="20">
+                <div class="relative">
+                    <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=128"
+                        class="w-20 h-20 rounded-full border-2 border-levant-gold shadow-2xl transition-transform group-hover:scale-110 group-hover:rotate-6">
+                    <div
+                        class="absolute inset-0 rounded-full bg-levant-gold/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
                 <div>
-                    <p class="text-xl font-black uppercase tracking-widest mb-1">SuperNova</p>
-                    <p class="text-[10px] text-levant-gold font-bold uppercase tracking-tighter">Server Owner</p>
+                    <p class="text-2xl font-black uppercase tracking-widest mb-1">SuperNova</p>
+                    <p class="text-[11px] text-levant-gold font-bold uppercase tracking-[0.2em]">Sovereign Director</p>
                 </div>
             </div>
+
             <div class="text-center">
-                <img src="./Assets/ServerIcon.png" class="w-10 h-10 mx-auto opacity-30 grayscale mb-6">
-                <p class="text-[10px] opacity-40 uppercase font-black tracking-[0.6em]">© 2026 SYRIA. DIGITALLY UNITED.
-                </p>
-            </div>
-            <div class="flex items-center gap-6 justify-center md:justify-end">
-                <div class="text-right">
-                    <p class="text-xl font-black uppercase tracking-widest mb-1">George</p>
-                    <p class="text-[10px] text-blue-400 font-bold uppercase tracking-tighter">Architect</p>
+                <div class="relative inline-block mb-10 group magnetic" data-strength="15">
+                    <img src="./Assets/ServerIcon.png"
+                        class="w-14 h-14 mx-auto opacity-30 grayscale transition-all group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110">
                 </div>
-                <a href="https://instagram.com/lilzeng1" class="hover:scale-110 transition-transform active:scale-90">
+                <p class="text-[11px] opacity-40 uppercase font-black tracking-[0.8em]">© 2026 SYRIA. DIGITALLY UNITED.
+                </p>
+                <div class="mt-8 flex justify-center gap-4 text-[10px] font-bold opacity-30 uppercase tracking-widest">
+                    <span>Precision</span>
+                    <span class="text-levant-gold">•</span>
+                    <span>Tradition</span>
+                    <span class="text-levant-gold">•</span>
+                    <span>Unity</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-8 justify-center md:justify-end group magnetic" data-strength="20">
+                <div class="text-right">
+                    <p class="text-2xl font-black uppercase tracking-widest mb-1">George</p>
+                    <p class="text-[11px] text-blue-400 font-bold uppercase tracking-[0.2em]">Lead Architect</p>
+                </div>
+                <a href="https://instagram.com/lilzeng1" class="relative">
                     <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=128"
-                        class="w-16 h-16 rounded-full border-2 border-blue-500 shadow-2xl">
+                        class="w-20 h-20 rounded-full border-2 border-blue-500 shadow-2xl transition-transform group-hover:scale-110 group-hover:-rotate-6">
+                    <div
+                        class="absolute inset-0 rounded-full bg-blue-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
                 </a>
             </div>
         </div>
     </footer>
+
+    <div id="quick-focus" class="fixed bottom-10 right-10 z-[200] opacity-0 translate-y-10 transition-all duration-500">
+        <div
+            class="bg-levant-gold text-black p-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-2xl flex items-center gap-4">
+            <span class="bg-black text-white px-2 py-1 rounded">SPACE</span>
+            <span>Focus Mode Active</span>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
