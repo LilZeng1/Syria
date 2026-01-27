@@ -1,105 +1,83 @@
 const translations = {
     en: {
         statText: "1,800+ Members — Collective Pulse",
-        heroTitle: "THE HEART <br> <span>OF THE LEVANT.</span>",
-        heroSub: "A digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network of the modern Levant.",
+        heroTitle: "THE HEART <span>OF THE LEVANT.</span>",
+        heroSub: "A digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network.",
         enterBtn: "Secure Entry",
-        activityTitle: "Dynamic <br> <span class='text-levant-gold italic'>Frequencies.</span>",
-        unityTitle: "The Sovereignty of Unity",
+        activityTitle: "Dynamic <span>Frequencies.</span>",
+        unityTitle: "Sovereignty of Unity",
         protocolTitle: "Core Laws",
-        unityEn: "We carry the dream of a Syria that ascends beyond borders—a land of intellectual giants and cultural titans. This vision belongs to the new generation. Together, we are no longer isolated; we are a force of civilizational rebirth. Long live the Levant.",
-        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود - أرض العمالقة الفكريين وجبابرة الثقافة. هذا الطموح ملك للجيل الجديد. معاً، لم نعد معزولين؛ نحن قوة ولادة حضارية جديدة. عاشت سوريا، مهد الحضارات."
+        unityEn: "We carry the dream of a Syria that ascends beyond borders—a land of intellectual giants. Together, we are a force of civilizational rebirth.",
+        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود. معاً، نحن قوة ولادة حضارية جديدة."
     },
     ar: {
         statText: "أكثر من 1800 عضو — النبض الجماعي",
-        heroTitle: "قلب <br> <span>بلاد الشام</span>",
-        heroSub: "ملاذ رقمي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل. انضم إلى الشبكة النخبوية للشام الحديث.",
+        heroTitle: "قلب <span>بلاد الشام</span>",
+        heroSub: "ملاذ رقمي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل.",
         enterBtn: "دخول آمن",
-        activityTitle: "ترددات <br> <span class='text-levant-gold italic'>ديناميكية.</span>",
+        activityTitle: "ترددات <span>ديناميكية.</span>",
         unityTitle: "سيادة الوحدة",
         protocolTitle: "القوانين الجوهرية",
         unityEn: "We carry the dream of a Syria that ascends beyond borders...",
-        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود - أرض العمالقة الفكريين وجبابرة الثقافة. هذا الطموح ملك للجيل الجديد. معاً، لم نعد معزولين؛ نحن قوة ولادة حضارية جديدة. عاشت سوريا، مهد الحضارات."
+        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود. معاً، نحن قوة ولادة حضارية جديدة."
     }
 };
 
 const serverRules = [
-    { icon: 'bx-heart', title: 'Intellect', desc: 'Focus on ideas, not personalities. We prioritize intellectual growth.' },
-    { icon: 'bx-lock-alt', title: 'Encryption', desc: 'Privacy is absolute. What happens in the Levant, stays in the Levant.' },
-    { icon: 'bx-shield-x', title: 'Sovereignty', desc: 'Zero tolerance for toxicity. We maintain a high-vibration environment.' },
-    { icon: 'bx-block', title: 'Safety', desc: 'Strict prohibition of gore or harmful content. A safe haven for all.' },
-    { icon: 'bx-link-external', title: 'Integrity', desc: 'Verify before you share. No misinformation or suspicious links.' },
-    { icon: 'bx-bell-off', title: 'Focus', desc: 'Respect the flow. No spamming or unnecessary interruptions.' }
+    { icon: 'bx-brain', title: 'Intellect', desc: 'Focus on ideas, not personalities.' },
+    { icon: 'bx-fingerprint', title: 'Identity', desc: 'Your heritage is your credential.' },
+    { icon: 'bx-shield-quarter', title: 'Elite', desc: 'Zero tolerance for low-vibration toxicity.' },
+    { icon: 'bx-command', title: 'Order', desc: 'Respect the chain of command and flow.' },
+    { icon: 'bx-cube-alt', title: 'Vision', desc: 'Building the digital future of Levant.' },
+    { icon: 'bx-pulse', title: 'Vitality', desc: 'Stay active, stay relevant, stay Syrian.' }
 ];
 
 let currentLang = 'en';
-const progressBar = document.querySelector('.progress-bar');
-const nav = document.getElementById('navbar');
+
+const cursor = document.getElementById('custom-cursor');
+const cursorBlur = document.getElementById('cursor-blur');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+        cursorBlur.style.left = e.clientX - 16 + 'px';
+        cursorBlur.style.top = e.clientY - 16 + 'px';
+    }, 50);
+});
 
 window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    progressBar.style.width = scrolled + "%";
-
-    if (winScroll > 50) {
-        nav.classList.add('py-2', 'shadow-2xl');
-        nav.classList.remove('h-24');
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    document.querySelector('.progress-bar').style.width = scrolled + "%";
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.style.background = 'rgba(0,0,0,0.8)';
+        nav.style.backdropFilter = 'blur(10px)';
     } else {
-        nav.classList.remove('py-2', 'shadow-2xl');
-        nav.classList.add('h-24');
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
     }
 });
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
     });
 }, { threshold: 0.1 });
 
-function createParticles() {
-    const container = document.getElementById('particles');
-    container.innerHTML = '';
-    const count = window.innerWidth < 768 ? 40 : 120;
-    for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 3 + 1;
-        p.style.width = `${size}px`;
-        p.style.height = `${size}px`;
-        p.style.left = `${Math.random() * 100}vw`;
-        p.style.top = `${Math.random() * 100}vh`;
-        p.style.opacity = Math.random() * 0.4;
-        container.appendChild(p);
-        
-        p.animate([
-            { transform: 'translate(0, 0)', opacity: p.style.opacity },
-            { transform: `translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px)`, opacity: 0.1 }
-        ], { duration: Math.random() * 8000 + 4000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
-    }
-}
-
 function setTheme(theme) {
     const body = document.getElementById('body-main');
-    body.classList.remove('theme-dark', 'theme-light', 'theme-gold');
-    body.classList.add(`theme-${theme}`);
+    body.className = `bg-main text-main selection:bg-levant-gold selection:text-black theme-${theme} overflow-x-hidden`;
     localStorage.setItem('selectedTheme', theme);
-    const accent = theme === 'gold' ? '#ffcc00' : (theme === 'light' ? '#947a25' : '#d4af37');
-    document.documentElement.style.setProperty('--accent-color', accent);
 }
 
 function injectRules() {
     const grid = document.getElementById('rules-grid');
-    grid.innerHTML = serverRules.map((rule, index) => `
-        <div class="bg-main-soft p-8 md:p-12 rounded-[40px] border border-main hover:border-levant-gold transition-all duration-700 reveal group relative overflow-hidden">
-            <div class="absolute inset-0 bg-levant-gold/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-            <div class="w-16 h-16 bg-levant-gold/10 rounded-2xl flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
-                <i class='bx ${rule.icon} text-3xl text-levant-gold'></i>
-            </div>
-            <h4 class="text-xl font-black uppercase mb-3 relative z-10">${rule.title}</h4>
-            <p class="text-xs opacity-50 font-bold uppercase tracking-widest relative z-10 group-hover:opacity-100 transition-opacity">${rule.desc}</p>
+    grid.innerHTML = serverRules.map(rule => `
+        <div class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-levant-gold transition-all duration-500 reveal group">
+            <i class='bx ${rule.icon} text-4xl text-levant-gold mb-6 block group-hover:scale-110 transition-transform'></i>
+            <h4 class="text-lg font-black uppercase mb-2">${rule.title}</h4>
+            <p class="text-xs opacity-40 uppercase tracking-wider">${rule.desc}</p>
         </div>
     `).join('');
     document.querySelectorAll('#rules-grid .reveal').forEach(el => observer.observe(el));
@@ -107,28 +85,15 @@ function injectRules() {
 
 function updateContent() {
     const t = translations[currentLang];
-    const elements = {
-        'stat-text': 'innerText',
-        'hero-title': 'innerHTML',
-        'hero-sub': 'innerText',
-        'enter-btn': 'innerText',
-        'activity-title': 'innerHTML',
-        'unity-title': 'innerText',
-        'protocol-title': 'innerText',
-        'unity-en': 'innerText',
-        'unity-ar': 'innerText'
-    };
-    
-    Object.keys(elements).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.classList.remove('active');
-            setTimeout(() => {
-                el[elements[id]] = t[id.replace(/-([a-z])/g, g => g[1].toUpperCase())];
-                el.classList.add('active');
-            }, 300);
-        }
-    });
+    document.getElementById('stat-text').innerText = t.statText;
+    document.getElementById('hero-title').innerHTML = t.heroTitle;
+    document.getElementById('hero-sub').innerText = t.heroSub;
+    document.getElementById('enter-btn').innerText = t.enterBtn;
+    document.getElementById('activity-title').innerHTML = t.activityTitle;
+    document.getElementById('unity-title').innerText = t.unityTitle;
+    document.getElementById('protocol-title').innerText = t.protocolTitle;
+    document.getElementById('unity-en').innerText = t.unityEn;
+    document.getElementById('unity-ar').innerText = t.unityAr;
 }
 
 document.getElementById('lang-toggle').addEventListener('click', () => {
@@ -139,29 +104,22 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-        e.preventDefault();
         const tip = document.getElementById('quick-focus');
         tip.style.opacity = '1';
         tip.style.transform = 'translateY(0)';
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        setTimeout(() => {
-            tip.style.opacity = '0';
-            tip.style.transform = 'translateY(10px)';
-        }, 2000);
+        setTimeout(() => { tip.style.opacity = '0'; }, 2000);
     }
 });
 
 document.getElementById('easter-egg').addEventListener('click', () => {
-    document.body.style.filter = 'invert(1) hue-rotate(180deg)';
-    setTimeout(() => document.body.style.filter = 'none', 1000);
+    document.body.style.filter = 'hue-rotate(90deg) contrast(1.5)';
+    setTimeout(() => document.body.style.filter = 'none', 2000);
 });
 
 window.onload = () => {
     setTheme(localStorage.getItem('selectedTheme') || 'dark');
-    createParticles();
     injectRules();
     updateContent();
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 };
-
-window.addEventListener('resize', createParticles);
