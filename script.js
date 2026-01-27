@@ -2,8 +2,8 @@ const translations = {
     en: {
         statText: "1,800+ Members — Collective Pulse",
         heroTitle: "THE HEART <span>OF THE LEVANT.</span>",
-        heroSub: "A digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network.",
-        enterBtn: "Secure Entry",
+        heroSub: "A sovereign digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network.",
+        enterBtn: "Establish Connection",
         activityTitle: "Dynamic <span>Frequencies.</span>",
         unityTitle: "Sovereignty of Unity",
         protocolTitle: "Core Laws",
@@ -13,23 +13,23 @@ const translations = {
     ar: {
         statText: "أكثر من 1800 عضو — النبض الجماعي",
         heroTitle: "قلب <span>بلاد الشام</span>",
-        heroSub: "ملاذ رقمي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل.",
-        enterBtn: "دخول آمن",
+        heroSub: "ملاذ رقمي سيادي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل. انضم إلى النخبة.",
+        enterBtn: "إنشاء اتصال",
         activityTitle: "ترددات <span>ديناميكية.</span>",
         unityTitle: "سيادة الوحدة",
         protocolTitle: "القوانين الجوهرية",
-        unityEn: "We carry the dream of a Syria that ascends beyond borders...",
+        unityEn: "We carry the dream of a Syria that ascends beyond borders—a land of intellectual giants.",
         unityAr: "نحمل حلم سوريا التي تتجاوز الحدود. معاً، نحن قوة ولادة حضارية جديدة."
     }
 };
 
 const serverRules = [
-    { icon: 'bx-brain', title: 'Intellect', desc: 'Focus on ideas, not personalities.' },
-    { icon: 'bx-fingerprint', title: 'Identity', desc: 'Your heritage is your credential.' },
-    { icon: 'bx-shield-quarter', title: 'Elite', desc: 'Zero tolerance for low-vibration toxicity.' },
-    { icon: 'bx-command', title: 'Order', desc: 'Respect the chain of command and flow.' },
-    { icon: 'bx-cube-alt', title: 'Vision', desc: 'Building the digital future of Levant.' },
-    { icon: 'bx-pulse', title: 'Vitality', desc: 'Stay active, stay relevant, stay Syrian.' }
+    { icon: 'bx-brain', title: 'Intellect', desc: 'Prioritize abstract ideas over hollow personalities.' },
+    { icon: 'bx-fingerprint', title: 'Identity', desc: 'Your bloodline is your digital signature.' },
+    { icon: 'bx-shield-quarter', title: 'Security', desc: 'Zero tolerance for low-vibration subversion.' },
+    { icon: 'bx-command', title: 'Protocol', desc: 'Uphold the hierarchy and flow of information.' },
+    { icon: 'bx-cube-alt', title: 'Metaverse', desc: 'Constructing the digital Levant architecture.' },
+    { icon: 'bx-pulse', title: 'Vitality', desc: 'Constant presence. Eternal contribution.' }
 ];
 
 let currentLang = 'en';
@@ -38,62 +38,95 @@ const cursor = document.getElementById('custom-cursor');
 const cursorBlur = document.getElementById('cursor-blur');
 
 document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-        cursorBlur.style.left = e.clientX - 16 + 'px';
-        cursorBlur.style.top = e.clientY - 16 + 'px';
-    }, 50);
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    gsap.to(cursorBlur, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.3 });
 });
 
 window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     document.querySelector('.progress-bar').style.width = scrolled + "%";
+    
     const nav = document.getElementById('navbar');
     if (window.scrollY > 50) {
-        nav.style.background = 'rgba(0,0,0,0.8)';
-        nav.style.backdropFilter = 'blur(10px)';
+        nav.classList.add('bg-black/80', 'backdrop-blur-2xl', 'py-2');
     } else {
-        nav.style.background = 'transparent';
-        nav.style.backdropFilter = 'none';
+        nav.classList.remove('bg-black/80', 'backdrop-blur-2xl', 'py-2');
     }
 });
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
-    });
-}, { threshold: 0.1 });
 
 function setTheme(theme) {
     const body = document.getElementById('body-main');
     body.className = `bg-main text-main selection:bg-levant-gold selection:text-black theme-${theme} overflow-x-hidden`;
     localStorage.setItem('selectedTheme', theme);
+    
+    gsap.fromTo("body", { opacity: 0.8 }, { opacity: 1, duration: 1 });
 }
 
 function injectRules() {
     const grid = document.getElementById('rules-grid');
-    grid.innerHTML = serverRules.map(rule => `
-        <div class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-levant-gold transition-all duration-500 reveal group">
-            <i class='bx ${rule.icon} text-4xl text-levant-gold mb-6 block group-hover:scale-110 transition-transform'></i>
-            <h4 class="text-lg font-black uppercase mb-2">${rule.title}</h4>
-            <p class="text-xs opacity-40 uppercase tracking-wider">${rule.desc}</p>
+    grid.innerHTML = serverRules.map((rule, index) => `
+        <div class="bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-levant-gold/50 transition-all duration-700 reveal group hover:bg-white/[0.08]" data-index="${index}">
+            <div class="w-16 h-16 rounded-2xl bg-levant-gold/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-levant-gold transition-all duration-500">
+                <i class='bx ${rule.icon} text-4xl text-levant-gold group-hover:text-black'></i>
+            </div>
+            <h4 class="text-xl font-black uppercase mb-3 tracking-tighter">${rule.title}</h4>
+            <p class="text-xs opacity-40 uppercase tracking-[0.1em] font-bold leading-relaxed">${rule.desc}</p>
         </div>
     `).join('');
-    document.querySelectorAll('#rules-grid .reveal').forEach(el => observer.observe(el));
+    
+    initScrollAnimations();
 }
 
 function updateContent() {
     const t = translations[currentLang];
-    document.getElementById('stat-text').innerText = t.statText;
-    document.getElementById('hero-title').innerHTML = t.heroTitle;
-    document.getElementById('hero-sub').innerText = t.heroSub;
-    document.getElementById('enter-btn').innerText = t.enterBtn;
-    document.getElementById('activity-title').innerHTML = t.activityTitle;
-    document.getElementById('unity-title').innerText = t.unityTitle;
-    document.getElementById('protocol-title').innerText = t.protocolTitle;
-    document.getElementById('unity-en').innerText = t.unityEn;
-    document.getElementById('unity-ar').innerText = t.unityAr;
+    const elements = [
+        ['stat-text', t.statText],
+        ['hero-sub', t.heroSub],
+        ['enter-btn', t.enterBtn],
+        ['unity-title', t.unityTitle],
+        ['protocol-title', t.protocolTitle],
+        ['unity-en', t.unityEn],
+        ['unity-ar', t.unityAr]
+    ];
+    
+    elements.forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        gsap.to(el, { opacity: 0, y: 10, duration: 0.3, onComplete: () => {
+            el.innerText = text;
+            gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
+        }});
+    });
+    
+    const htmlTitles = [
+        ['hero-title', t.heroTitle],
+        ['activity-title', t.activityTitle]
+    ];
+    
+    htmlTitles.forEach(([id, html]) => {
+        const el = document.getElementById(id);
+        gsap.to(el, { opacity: 0, duration: 0.3, onComplete: () => {
+            el.innerHTML = html;
+            gsap.to(el, { opacity: 1, duration: 0.5 });
+        }});
+    });
+}
+
+function initScrollAnimations() {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.to(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "expo.out"
+        });
+    });
 }
 
 document.getElementById('lang-toggle').addEventListener('click', () => {
@@ -105,21 +138,28 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
         const tip = document.getElementById('quick-focus');
-        tip.style.opacity = '1';
-        tip.style.transform = 'translateY(0)';
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        setTimeout(() => { tip.style.opacity = '0'; }, 2000);
+        gsap.to(tip, { opacity: 1, y: 0, duration: 0.5 });
+        gsap.to(".reveal", { opacity: 1, y: 0, duration: 1, stagger: 0.1 });
+        setTimeout(() => gsap.to(tip, { opacity: 0, y: 20, duration: 0.5 }), 3000);
     }
 });
 
 document.getElementById('easter-egg').addEventListener('click', () => {
-    document.body.style.filter = 'hue-rotate(90deg) contrast(1.5)';
-    setTimeout(() => document.body.style.filter = 'none', 2000);
+    const tl = gsap.timeline();
+    tl.to("body", { filter: "hue-rotate(180deg) invert(1)", duration: 0.5 })
+      .to("body", { filter: "hue-rotate(0deg) invert(0)", duration: 1, delay: 1 });
 });
 
 window.onload = () => {
     setTheme(localStorage.getItem('selectedTheme') || 'dark');
     injectRules();
     updateContent();
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    gsap.from(".hero-content > *", {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "power4.out"
+    });
 };
