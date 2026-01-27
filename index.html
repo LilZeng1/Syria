@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SYRIA | Digital Levant Portal</title>
     <link rel="icon" type="image/png" href="./Assets/ServerIcon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Bormioli:ital,wght@1,900&family=Outfit:wght@100;400;900&family=Noto+Sans+Arabic:wght@400;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Bormioli:ital,wght@1,900&family=Outfit:wght@100;400;900&family=Noto+Sans+Arabic:wght@400;900&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -22,7 +24,8 @@
         }
     </script>
 </head>
-<body class="bg-main text-main selection:bg-levant-gold selection:text-black theme-dark overflow-x-hidden" id="body-main">
+<body class="bg-main text-main selection:bg-levant-gold selection:text-black theme-dark overflow-x-hidden"
+    id="body-main">
     <div id="custom-cursor"></div>
     <div id="cursor-blur"></div>
     <div class="progress-bar"></div>
@@ -30,16 +33,23 @@
     <div class="scanline"></div>
 
     <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-levant-gold/20 blur-[150px] rounded-full animate-pulse"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[150px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-levant-gold/20 blur-[150px] rounded-full animate-pulse">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[150px] rounded-full animate-pulse"
+            style="animation-delay: 2s"></div>
     </div>
 
     <nav class="fixed top-0 w-full z-[100] transition-all duration-500 border-b border-white/5" id="navbar">
         <div class="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4 group cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            <div class="flex items-center gap-4 group cursor-pointer"
+                onclick="window.scrollTo({top:0, behavior:'smooth'})">
                 <div class="relative">
-                    <img src="./Assets/ServerIcon.png" class="w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-2xl transition-all duration-500 group-hover:rotate-[360deg]">
-                    <div class="absolute -inset-1 bg-levant-gold/20 blur-md rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <img src="./Assets/ServerIcon.png"
+                        class="w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-2xl transition-all duration-500 group-hover:rotate-[360deg]">
+                    <div
+                        class="absolute -inset-1 bg-levant-gold/20 blur-md rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-black tracking-tighter text-xl uppercase italic leading-none">Syria</span>
@@ -56,12 +66,19 @@
 
             <div class="flex items-center gap-4">
                 <div class="flex bg-white/5 backdrop-blur-xl p-1 rounded-full border border-white/10 shadow-2xl">
-                    <button onclick="setTheme('dark')" class="p-2.5 rounded-full hover:bg-white/10 transition-all active:scale-90"><i class='bx bxs-moon'></i></button>
-                    <button onclick="setTheme('gold')" class="p-2.5 rounded-full hover:bg-levant-gold/20 hover:text-levant-gold transition-all active:scale-90"><i class='bx bxs-crown'></i></button>
+                    <button onclick="setTheme('dark')"
+                        class="p-2.5 rounded-full hover:bg-white/10 transition-all active:scale-90"><i
+                            class='bx bxs-moon'></i></button>
+                    <button onclick="setTheme('gold')"
+                        class="p-2.5 rounded-full hover:bg-levant-gold/20 hover:text-levant-gold transition-all active:scale-90"><i
+                            class='bx bxs-crown'></i></button>
                 </div>
-                <button id="lang-toggle" class="relative overflow-hidden group bg-levant-gold text-black px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">
+                <button id="lang-toggle"
+                    class="relative overflow-hidden group bg-levant-gold text-black px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all">
                     <span class="relative z-10">AR/EN</span>
-                    <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    <div
+                        class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    </div>
                 </button>
             </div>
         </div>
@@ -70,31 +87,46 @@
     <main class="relative z-10">
         <section class="min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center relative">
             <div class="hero-content max-w-5xl">
-                <div class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 mb-8 reveal backdrop-blur-md hover:bg-white/10 transition-colors cursor-help group">
+                <div
+                    class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 mb-8 reveal backdrop-blur-md hover:bg-white/10 transition-colors cursor-help group">
                     <span class="flex h-2.5 w-2.5 relative">
                         <span class="animate-ping absolute h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                     </span>
-                    <p id="stat-text" class="text-[10px] font-black uppercase tracking-[0.4em] opacity-80 group-hover:opacity-100 transition-opacity"></p>
+                    <p id="stat-text"
+                        class="text-[10px] font-black uppercase tracking-[0.4em] opacity-80 group-hover:opacity-100 transition-opacity">
+                    </p>
                 </div>
 
                 <h1 id="hero-title" class="hero-title reveal mb-8 perspective-text"></h1>
-                <p id="hero-sub" class="opacity-60 text-base md:text-xl max-w-3xl mx-auto mb-12 font-medium leading-relaxed reveal balance-text px-4"></p>
+                <p id="hero-sub"
+                    class="opacity-60 text-base md:text-xl max-w-3xl mx-auto mb-12 font-medium leading-relaxed reveal balance-text px-4">
+                </p>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 reveal w-full max-w-2xl mx-auto">
-                    <a href="https://discord.gg/syria" class="group relative w-full sm:w-auto bg-white text-black px-12 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-4 overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(255,255,255,0.1)]">
-                        <div class="absolute inset-0 bg-levant-gold translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center gap-6 reveal w-full max-w-2xl mx-auto">
+                    <a href="https://discord.gg/syria"
+                        class="group relative w-full sm:w-auto bg-white text-black px-12 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-4 overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(255,255,255,0.1)]">
+                        <div
+                            class="absolute inset-0 bg-levant-gold translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500">
+                        </div>
                         <i class='bx bxl-discord-alt text-2xl relative z-10'></i>
                         <span id="enter-btn" class="relative z-10"></span>
                     </a>
-                    
-                    <div class="w-full sm:w-auto flex items-center gap-5 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-levant-gold/50 transition-all group">
+
+                    <div
+                        class="w-full sm:w-auto flex items-center gap-5 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-levant-gold/50 transition-all group">
                         <div class="relative">
-                            <div class="w-10 h-10 rounded-xl bg-levant-gold flex items-center justify-center text-xs font-black text-black shadow-lg group-hover:rotate-12 transition-transform">LV3</div>
-                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-black animate-bounce"></div>
+                            <div
+                                class="w-10 h-10 rounded-xl bg-levant-gold flex items-center justify-center text-xs font-black text-black shadow-lg group-hover:rotate-12 transition-transform">
+                                LV3</div>
+                            <div
+                                class="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full border-2 border-black animate-bounce">
+                            </div>
                         </div>
                         <div class="text-left">
-                            <p class="text-[10px] font-black uppercase text-levant-gold tracking-widest mb-0.5">Premier Status</p>
+                            <p class="text-[10px] font-black uppercase text-levant-gold tracking-widest mb-0.5">Premier
+                                Status</p>
                             <p class="text-[9px] opacity-40 font-bold uppercase tracking-tighter">Verified Citadel</p>
                         </div>
                     </div>
@@ -109,36 +141,49 @@
         <section id="activities" class="py-32 px-6 bg-main-alt relative overflow-hidden">
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <div class="lg:col-span-8 bg-white/[0.02] p-8 md:p-16 rounded-[3rem] border border-white/10 reveal backdrop-blur-3xl relative group overflow-hidden">
-                        <div class="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 group-hover:scale-110 group-hover:-rotate-12">
+                    <div
+                        class="lg:col-span-8 bg-white/[0.02] p-8 md:p-16 rounded-[3rem] border border-white/10 reveal backdrop-blur-3xl relative group overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 group-hover:scale-110 group-hover:-rotate-12">
                             <i class='bx bx-pyramid text-[300px]'></i>
                         </div>
-                        <h2 class="text-5xl md:text-7xl font-black uppercase mb-12 leading-[0.9] tracking-tighter" id="activity-title"></h2>
+                        <h2 class="text-5xl md:text-7xl font-black uppercase mb-12 leading-[0.9] tracking-tighter"
+                            id="activity-title"></h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="activity-card p-8 rounded-[2rem] bg-black/40 border border-white/5 hover:border-blue-500/50 transition-all hover:translate-y-[-8px]">
+                            <div
+                                class="activity-card p-8 rounded-[2rem] bg-black/40 border border-white/5 hover:border-blue-500/50 transition-all hover:translate-y-[-8px]">
                                 <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
                                     <i class='bx bxs-microphone text-3xl text-blue-400'></i>
                                 </div>
                                 <h4 class="text-2xl font-black uppercase mb-3">Grand Debates</h4>
-                                <p class="text-sm opacity-50 leading-relaxed uppercase tracking-tight font-medium">Intellectual sieges and philosophical breakthroughs within the digital walls.</p>
+                                <p class="text-sm opacity-50 leading-relaxed uppercase tracking-tight font-medium">
+                                    Intellectual sieges and philosophical breakthroughs within the digital walls.</p>
                             </div>
-                            <div class="activity-card p-8 rounded-[2rem] bg-black/40 border border-white/5 hover:border-red-500/50 transition-all hover:translate-y-[-8px]">
+                            <div
+                                class="activity-card p-8 rounded-[2rem] bg-black/40 border border-white/5 hover:border-red-500/50 transition-all hover:translate-y-[-8px]">
                                 <div class="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mb-6">
                                     <i class='bx bxs-bolt text-3xl text-red-400'></i>
                                 </div>
                                 <h4 class="text-2xl font-black uppercase mb-3">Cyber Tactics</h4>
-                                <p class="text-sm opacity-50 leading-relaxed uppercase tracking-tight font-medium">Coordinated digital warfare and high-tier competitive simulation environments.</p>
+                                <p class="text-sm opacity-50 leading-relaxed uppercase tracking-tight font-medium">
+                                    Coordinated digital warfare and high-tier competitive simulation environments.</p>
                             </div>
                         </div>
                     </div>
                     <div class="lg:col-span-4 flex flex-col gap-8">
-                        <div class="h-full bg-levant-gold p-10 rounded-[3rem] text-black flex flex-col justify-center items-center reveal shadow-[0_30px_60px_rgba(212,175,55,0.2)] group hover:scale-[1.02] transition-transform">
-                            <span class="text-8xl font-black italic mb-2 group-hover:scale-110 transition-transform">100</span>
-                            <span class="text-[12px] font-black uppercase tracking-[0.5em] opacity-80">Authenticity</span>
+                        <div id="authenticity-card"
+                            class="h-full bg-levant-gold p-10 rounded-[3rem] text-black flex flex-col justify-center items-center reveal shadow-[0_30px_60px_rgba(212,175,55,0.2)] group hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden relative">
+                            <div class="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity"></div>
+                            <span
+                                class="text-8xl font-black italic mb-2 group-hover:scale-110 transition-transform relative z-10">100</span>
+                            <span
+                                class="text-[12px] font-black uppercase tracking-[0.5em] opacity-80 relative z-10">Authenticity</span>
                         </div>
-                        <div class="h-full bg-white/5 p-10 rounded-[3rem] border border-white/10 flex flex-col justify-center items-center reveal backdrop-blur-xl group hover:bg-white/10 transition-colors">
+                        <div
+                            class="h-full bg-white/5 p-10 rounded-[3rem] border border-white/10 flex flex-col justify-center items-center reveal backdrop-blur-xl group hover:bg-white/10 transition-colors">
                             <span class="text-6xl font-black mb-2">24<span class="text-levant-gold">/</span>7</span>
-                            <span class="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Uptime Protocol</span>
+                            <span class="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Uptime
+                                Protocol</span>
                         </div>
                     </div>
                 </div>
@@ -146,7 +191,9 @@
         </section>
 
         <section id="unity" class="py-40 px-6 relative">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-color)_0%,transparent_70%)] opacity-[0.03] pointer-events-none"></div>
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-color)_0%,transparent_70%)] opacity-[0.03] pointer-events-none">
+            </div>
             <div class="max-w-6xl mx-auto reveal">
                 <div class="text-center mb-20">
                     <h2 class="text-5xl md:text-8xl font-black uppercase mb-6 tracking-tighter" id="unity-title"></h2>
@@ -154,11 +201,16 @@
                 </div>
                 <div class="grid grid-cols-1 gap-16 md:gap-24">
                     <div class="relative">
-                        <i class='bx bxs-quote-alt-left absolute -top-10 -left-6 text-6xl opacity-10 text-levant-gold'></i>
-                        <p id="unity-en" class="text-xl md:text-3xl leading-[1.6] opacity-80 font-light text-center italic max-w-4xl mx-auto"></p>
+                        <i
+                            class='bx bxs-quote-alt-left absolute -top-10 -left-6 text-6xl opacity-10 text-levant-gold'></i>
+                        <p id="unity-en"
+                            class="text-xl md:text-3xl leading-[1.6] opacity-80 font-light text-center italic max-w-4xl mx-auto">
+                        </p>
                     </div>
                     <div class="relative bg-white/[0.02] p-12 md:p-20 rounded-[4rem] border border-white/5">
-                        <p id="unity-ar" dir="rtl" class="text-3xl md:text-6xl font-black text-center leading-[1.4] font-arabic text-levant-gold drop-shadow-2xl"></p>
+                        <p id="unity-ar" dir="rtl"
+                            class="text-3xl md:text-6xl font-black text-center leading-[1.4] font-arabic text-levant-gold drop-shadow-2xl">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -168,10 +220,15 @@
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-20 px-4">
                     <div class="text-left">
-                        <span class="text-levant-gold font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">Regulatory Framework</span>
-                        <h2 id="protocol-title" class="text-6xl md:text-9xl font-black uppercase tracking-tighter italic leading-none opacity-20"></h2>
+                        <span
+                            class="text-levant-gold font-black uppercase tracking-[0.5em] text-[10px] mb-4 block">Regulatory
+                            Framework</span>
+                        <h2 id="protocol-title"
+                            class="text-6xl md:text-9xl font-black uppercase tracking-tighter italic leading-none opacity-20">
+                        </h2>
                     </div>
-                    <div class="hidden md:block text-right opacity-30 font-bold uppercase text-[10px] tracking-widest pb-4">
+                    <div
+                        class="hidden md:block text-right opacity-30 font-bold uppercase text-[10px] tracking-widest pb-4">
                         Established 2020 <br> Authorized Access Only
                     </div>
                 </div>
@@ -181,49 +238,63 @@
     </main>
 
     <footer class="py-24 border-t border-white/5 bg-[#030303] px-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-levant-gold/20 to-transparent"></div>
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-levant-gold/20 to-transparent">
+        </div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 items-center">
             <div class="flex items-center gap-6 group">
                 <div class="relative">
                     <img src="https://cdn.discordapp.com/guilds/698199452871163955/users/1335340293838602281/avatars/a_98d078cab61764bbbc755a38c3f832eb.webp?size=256"
                         class="w-20 h-20 rounded-2xl border border-levant-gold/30 p-1 grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110 object-cover">
-                    <div class="absolute -bottom-2 -right-2 bg-levant-gold text-black px-2 py-1 rounded text-[8px] font-black uppercase">DIRECTOR</div>
+                    <div
+                        class="absolute -bottom-2 -right-2 bg-levant-gold text-black px-2 py-1 rounded text-[8px] font-black uppercase">
+                        DIRECTOR</div>
                 </div>
                 <div>
                     <p class="font-black text-xl tracking-tight uppercase">SuperNova</p>
-                    <p class="text-[10px] text-levant-gold font-bold uppercase tracking-[0.3em] opacity-60">Sovereign Authority</p>
+                    <p class="text-[10px] text-levant-gold font-bold uppercase tracking-[0.3em] opacity-60">Sovereign
+                        Authority</p>
                 </div>
             </div>
 
             <div class="flex flex-col items-center justify-center order-3 md:order-2">
-                <img src="./Assets/ServerIcon.png" id="easter-egg" class="w-12 h-12 mb-6 opacity-20 hover:opacity-100 hover:scale-125 transition-all cursor-pointer">
+                <img src="./Assets/ServerIcon.png" id="easter-egg"
+                    class="w-12 h-12 mb-6 opacity-20 hover:opacity-100 hover:scale-125 transition-all cursor-pointer">
                 <div class="text-center">
                     <p class="text-[10px] opacity-30 uppercase font-black tracking-[0.6em] mb-2">Digitally United</p>
-                    <p class="text-[9px] opacity-20 font-bold uppercase">© 2026 Syria Digital Levant Portal. All Rights Reserved.</p>
+                    <p class="text-[9px] opacity-20 font-bold uppercase">© 2026 Syria Digital Levant Portal. All Rights
+                        Reserved.</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-6 md:justify-end group">
                 <div class="text-right">
                     <p class="font-black text-xl tracking-tight uppercase">George</p>
-                    <p class="text-[10px] text-blue-500 font-bold uppercase tracking-[0.3em] opacity-60">Lead Architect</p>
+                    <p class="text-[10px] text-blue-500 font-bold uppercase tracking-[0.3em] opacity-60">Lead Architect
+                    </p>
                 </div>
                 <div class="relative">
                     <a href="https://instagram.com/lilzeng1" class="block">
                         <img src="https://cdn.discordapp.com/avatars/1447924209677373480/86f848adfbd03db42dbda08e2e15bbc2.webp?size=256"
                             class="w-20 h-20 rounded-2xl border border-blue-500/30 p-1 grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110 object-cover">
                     </a>
-                    <div class="absolute -bottom-2 -left-2 bg-blue-500 text-white px-2 py-1 rounded text-[8px] font-black uppercase">SYSTEM</div>
+                    <div
+                        class="absolute -bottom-2 -left-2 bg-blue-500 text-white px-2 py-1 rounded text-[8px] font-black uppercase">
+                        SYSTEM</div>
                 </div>
             </div>
         </div>
     </footer>
 
     <div id="quick-focus" class="fixed bottom-8 right-8 z-[200] opacity-0 translate-y-8 transition-all duration-700">
-        <div class="bg-levant-gold text-black px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(212,175,55,0.4)] flex items-center gap-3">
+        <div
+            class="bg-levant-gold text-black px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(212,175,55,0.4)] flex items-center gap-3">
             <span class="w-2 h-2 bg-black rounded-full animate-ping"></span>
             System Overdrive Active
         </div>
+    </div>
+    <div id="matrix-overlay"
+        class="fixed inset-0 pointer-events-none z-[99999] hidden mix-blend-overlay opacity-50 bg-[url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif')] bg-cover">
     </div>
 
     <script src="script.js"></script>
