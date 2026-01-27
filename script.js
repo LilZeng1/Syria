@@ -33,19 +33,21 @@ const serverRules = [
 ];
 
 let currentLang = 'en';
+let konamiCode = [];
+const secretCode = "matrix";
 
 const cursor = document.getElementById('custom-cursor');
 const cursorBlur = document.getElementById('cursor-blur');
 
 document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-    gsap.to(cursorBlur, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.3 });
+    gsap.set(cursor, { x: e.clientX, y: e.clientY });
+    gsap.to(cursorBlur, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15, ease: "power2.out" });
 });
 
 window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     document.querySelector('.progress-bar').style.width = scrolled + "%";
-    
+
     const nav = document.getElementById('navbar');
     if (window.scrollY > 50) {
         nav.classList.add('bg-black/80', 'backdrop-blur-2xl', 'py-2');
@@ -58,8 +60,13 @@ function setTheme(theme) {
     const body = document.getElementById('body-main');
     body.className = `bg-main text-main selection:bg-levant-gold selection:text-black theme-${theme} overflow-x-hidden`;
     localStorage.setItem('selectedTheme', theme);
-    
     gsap.fromTo("body", { opacity: 0.8 }, { opacity: 1, duration: 1 });
+
+    if (theme === 'matrix') {
+        document.getElementById('matrix-overlay').classList.remove('hidden');
+    } else {
+        document.getElementById('matrix-overlay').classList.add('hidden');
+    }
 }
 
 function injectRules() {
@@ -73,7 +80,6 @@ function injectRules() {
             <p class="text-xs opacity-40 uppercase tracking-[0.1em] font-bold leading-relaxed">${rule.desc}</p>
         </div>
     `).join('');
-    
     initScrollAnimations();
 }
 
@@ -88,32 +94,35 @@ function updateContent() {
         ['unity-en', t.unityEn],
         ['unity-ar', t.unityAr]
     ];
-    
+
     elements.forEach(([id, text]) => {
         const el = document.getElementById(id);
-        gsap.to(el, { opacity: 0, y: 10, duration: 0.3, onComplete: () => {
-            el.innerText = text;
-            gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
-        }});
+        gsap.to(el, {
+            opacity: 0, y: 10, duration: 0.3, onComplete: () => {
+                el.innerText = text;
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
+            }
+        });
     });
-    
+
     const htmlTitles = [
         ['hero-title', t.heroTitle],
         ['activity-title', t.activityTitle]
     ];
-    
+
     htmlTitles.forEach(([id, html]) => {
         const el = document.getElementById(id);
-        gsap.to(el, { opacity: 0, duration: 0.3, onComplete: () => {
-            el.innerHTML = html;
-            gsap.to(el, { opacity: 1, duration: 0.5 });
-        }});
+        gsap.to(el, {
+            opacity: 0, duration: 0.3, onComplete: () => {
+                el.innerHTML = html;
+                gsap.to(el, { opacity: 1, duration: 0.5 });
+            }
+        });
     });
 }
 
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
-    
     document.querySelectorAll('.reveal').forEach((el) => {
         gsap.to(el, {
             scrollTrigger: {
@@ -142,19 +151,51 @@ document.addEventListener('keydown', (e) => {
         gsap.to(".reveal", { opacity: 1, y: 0, duration: 1, stagger: 0.1 });
         setTimeout(() => gsap.to(tip, { opacity: 0, y: 20, duration: 0.5 }), 3000);
     }
+
+    konamiCode.push(e.key.toLowerCase());
+    if (konamiCode.length > secretCode.length) konamiCode.shift();
+    if (konamiCode.join('') === secretCode) {
+        setTheme('matrix');
+        const tip = document.getElementById('quick-focus');
+        tip.innerHTML = '<span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span> MATRIX LOADED';
+        gsap.to(tip, { opacity: 1, y: 0, duration: 0.5 });
+    }
+});
+
+document.getElementById('authenticity-card').addEventListener('click', () => {
+    gsap.to('#authenticity-card', {
+        rotation: 360,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        onComplete: () => { gsap.set('#authenticity-card', { rotation: 0 }); }
+    });
+
+    for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        p.className = 'fixed w-2 h-2 bg-levant-gold rounded-full z-[9999] pointer-events-none';
+        p.style.left = event.clientX + 'px';
+        p.style.top = event.clientY + 'px';
+        document.body.appendChild(p);
+        gsap.to(p, {
+            x: (Math.random() - 0.5) * 200,
+            y: (Math.random() - 0.5) * 200,
+            opacity: 0,
+            duration: 1,
+            onComplete: () => p.remove()
+        });
+    }
 });
 
 document.getElementById('easter-egg').addEventListener('click', () => {
     const tl = gsap.timeline();
     tl.to("body", { filter: "hue-rotate(180deg) invert(1)", duration: 0.5 })
-      .to("body", { filter: "hue-rotate(0deg) invert(0)", duration: 1, delay: 1 });
+        .to("body", { filter: "hue-rotate(0deg) invert(0)", duration: 1, delay: 1 });
 });
 
 window.onload = () => {
     setTheme(localStorage.getItem('selectedTheme') || 'dark');
     injectRules();
     updateContent();
-    
     gsap.from(".hero-content > *", {
         opacity: 0,
         y: 50,
