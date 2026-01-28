@@ -212,9 +212,9 @@ window.onload = () => {
     injectRules();
     updateContent(false);
     
-    gsap.from(".hero-content > *", {
-        opacity: 0,
-        y: 50,
+    gsap.to(".hero-content > *", {
+        opacity: 1,
+        y: 0,
         stagger: 0.2,
         duration: 1.5,
         ease: "power4.out",
