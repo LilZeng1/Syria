@@ -1,42 +1,55 @@
-// Translation()
 const translations = {
     en: {
-        statText: "1,800+ Members — Collective Pulse",
+        statText: "1,800+ Members — Just Vibes",
         heroTitle: "THE HEART <span>OF THE LEVANT.</span>",
-        heroSub: "A sovereign digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network.",
+        heroSub: "Where ancient Syrian soul meets future chaos. No suits, no stiffness. Just us, the heritage, and the digital grind. Come hang out.",
         enterBtn: "HOP IN DISCORD",
         activityTitle: "Dynamic <span>Frequencies.</span>",
         unityTitle: "Sovereignty of Unity",
-        protocolTitle: "Core Laws",
-        unityEn: "We carry the dream of a Syria that ascends beyond borders—a land of intellectual giants. Together, we are a force of civilizational rebirth.",
-        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود. معاً، نحن قوة ولادة حضارية جديدة."
+        protocolTitle: "House Rules",
+        unityEn: "We are the digital extension of a land that never dies. Dreamers, creators, and rebels building a new legacy.",
+        unityAr: "نحمل حلم سوريا اللي ما بتوقف عند حدود. نحنا جيل بيصنع مستقبل جديد، بروح قديمة وأصيلة."
     },
     ar: {
-        statText: "أكثر من 1800 عضو — النبض الجماعي",
+        statText: "أكثر من 1800 عضو — النبض شغال",
         heroTitle: "قلب <span>بلاد الشام</span>",
-        heroSub: "ملاذ رقمي سيادي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل. انضم إلى النخبة.",
-        enterBtn: "إنشاء اتصال",
-        activityTitle: "ترددات <span>ديناميكية.</span>",
-        unityTitle: "سيادة الوحدة",
-        protocolTitle: "القوانين الجوهرية",
-        unityEn: "We carry the dream of a Syria that ascends beyond borders—a land of intellectual giants.",
-        unityAr: "نحمل حلم سوريا التي تتجاوز الحدود. معاً، نحن قوة ولادة حضارية جديدة."
+        heroSub: "المكان اللي بتلتقي فيه روح الشام القديمة مع جنون التكنولوجيا. بلا رسميات وبلا تعقيد.. مكانك محجوز بيناتنا.",
+        enterBtn: "يلا ع الديسكورد",
+        activityTitle: "ترددات <span>حية.</span>",
+        unityTitle: "وحدة الحال",
+        protocolTitle: "قوانين البيت",
+        unityEn: "We are the digital extension of a land that never dies. Dreamers, creators, and rebels building a new legacy.",
+        unityAr: "نحمل حلم سوريا اللي ما بتوقف عند حدود. نحنا جيل بيصنع مستقبل جديد، بروح قديمة وأصيلة."
     }
 };
 
-// serverRules()
 const serverRules = [
-    { icon: 'bx-brain', title: 'Intellect', desc: 'Prioritize abstract ideas over hollow personalities.' },
-    { icon: 'bx-fingerprint', title: 'Identity', desc: 'Your bloodline is your digital signature.' },
-    { icon: 'bx-shield-quarter', title: 'Security', desc: 'Zero tolerance for low-vibration subversion.' },
-    { icon: 'bx-command', title: 'Protocol', desc: 'Uphold the hierarchy and flow of information.' },
-    { icon: 'bx-cube-alt', title: 'Metaverse', desc: 'Constructing the digital Levant architecture.' },
-    { icon: 'bx-pulse', title: 'Vitality', desc: 'Constant presence. Eternal contribution.' }
+    { icon: 'bx-brain', title: 'Intellect', desc: 'Ideas over ego. Keep it sharp.' },
+    { icon: 'bx-fingerprint', title: 'Identity', desc: 'Be real. Fake vibes get checked.' },
+    { icon: 'bx-shield-quarter', title: 'Security', desc: 'We protect our own. Zero drama.' },
+    { icon: 'bx-command', title: 'Protocol', desc: 'Respect the flow. Don\'t break the loop.' },
+    { icon: 'bx-cube-alt', title: 'Metaverse', desc: 'Building the virtual Levant block by block.' },
+    { icon: 'bx-pulse', title: 'Vitality', desc: 'Stay active. Lurkers don\'t make history.' }
 ];
 
 let currentLang = 'en';
 let konamiCode = [];
 const secretCode = "matrix";
+
+const cursor = document.getElementById('custom-cursor');
+const cursorBlur = document.getElementById('cursor-blur');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    gsap.to(cursorBlur, {
+        x: e.clientX - 20,
+        y: e.clientY - 20,
+        duration: 0.5,
+        ease: "power2.out"
+    });
+});
 
 window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -77,7 +90,7 @@ function injectRules() {
     initScrollAnimations();
 }
 
-function updateContent() {
+function updateContent(animate = true) {
     const t = translations[currentLang];
     const elements = [
         ['stat-text', t.statText],
@@ -91,12 +104,16 @@ function updateContent() {
 
     elements.forEach(([id, text]) => {
         const el = document.getElementById(id);
-        gsap.to(el, {
-            opacity: 0, y: 10, duration: 0.3, onComplete: () => {
-                el.innerText = text;
-                gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
-            }
-        });
+        if(animate) {
+            gsap.to(el, {
+                opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                    el.innerText = text;
+                    gsap.to(el, { opacity: 1, y: 0, duration: 0.3 });
+                }
+            });
+        } else {
+            el.innerText = text;
+        }
     });
 
     const htmlTitles = [
@@ -106,16 +123,19 @@ function updateContent() {
 
     htmlTitles.forEach(([id, html]) => {
         const el = document.getElementById(id);
-        gsap.to(el, {
-            opacity: 0, duration: 0.3, onComplete: () => {
-                el.innerHTML = html;
-                gsap.to(el, { opacity: 1, duration: 0.5 });
-            }
-        });
+        if(animate) {
+            gsap.to(el, {
+                opacity: 0, duration: 0.2, onComplete: () => {
+                    el.innerHTML = html;
+                    gsap.to(el, { opacity: 1, duration: 0.3 });
+                }
+            });
+        } else {
+            el.innerHTML = html;
+        }
     });
 }
 
-// initScrollAnimations()
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
     document.querySelectorAll('.reveal').forEach((el) => {
@@ -133,11 +153,10 @@ function initScrollAnimations() {
     });
 }
 
-// Language Toggle System()
 document.getElementById('lang-toggle').addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-    updateContent();
+    updateContent(true);
 });
 
 document.addEventListener('keydown', (e) => {
@@ -158,7 +177,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.getElementById('authenticity-card').addEventListener('click', () => {
+document.getElementById('authenticity-card').addEventListener('click', (event) => {
     gsap.to('#authenticity-card', {
         rotation: 360,
         duration: 0.8,
@@ -191,12 +210,14 @@ document.getElementById('easter-egg').addEventListener('click', () => {
 window.onload = () => {
     setTheme(localStorage.getItem('selectedTheme') || 'dark');
     injectRules();
-    updateContent();
+    updateContent(false);
+    
     gsap.from(".hero-content > *", {
         opacity: 0,
         y: 50,
         stagger: 0.2,
         duration: 1.5,
-        ease: "power4.out"
+        ease: "power4.out",
+        delay: 0.1
     });
 };
