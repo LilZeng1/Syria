@@ -61,7 +61,6 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    direction: ltr;
     pointer-events: none;
     z-index: 100000;
     mix-blend-mode: difference;
@@ -75,7 +74,6 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    direction: ltr;
     pointer-events: none;
     z-index: 99999;
     opacity: 0.2;
