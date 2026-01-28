@@ -15,7 +15,7 @@ const translations = {
         statText: "أكثر من 1800 عضو — النبض الجماعي",
         heroTitle: "قلب <span>بلاد الشام</span>",
         heroSub: "ملاذ رقمي سيادي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل. انضم إلى النخبة.",
-        enterBtn: "انضم إلى ديسكورد",
+        enterBtn: "إنشاء اتصال",
         activityTitle: "ترددات <span>ديناميكية.</span>",
         unityTitle: "سيادة الوحدة",
         protocolTitle: "القوانين الجوهرية",
