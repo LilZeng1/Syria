@@ -1,9 +1,10 @@
+// Translation()
 const translations = {
     en: {
         statText: "1,800+ Members — Collective Pulse",
         heroTitle: "THE HEART <span>OF THE LEVANT.</span>",
         heroSub: "A sovereign digital sanctuary where millenia-old Syrian heritage synchronizes with future-state innovation. Join the elite network.",
-        enterBtn: "Establish Connection",
+        enterBtn: "HOP IN DISCORD",
         activityTitle: "Dynamic <span>Frequencies.</span>",
         unityTitle: "Sovereignty of Unity",
         protocolTitle: "Core Laws",
@@ -14,7 +15,7 @@ const translations = {
         statText: "أكثر من 1800 عضو — النبض الجماعي",
         heroTitle: "قلب <span>بلاد الشام</span>",
         heroSub: "ملاذ رقمي سيادي حيث يتزامن التراث السوري الممتد لآلاف السنين مع ابتكارات المستقبل. انضم إلى النخبة.",
-        enterBtn: "إنشاء اتصال",
+        enterBtn: "تعال عالديسكورد",
         activityTitle: "ترددات <span>ديناميكية.</span>",
         unityTitle: "سيادة الوحدة",
         protocolTitle: "القوانين الجوهرية",
@@ -23,6 +24,7 @@ const translations = {
     }
 };
 
+// serverRules()
 const serverRules = [
     { icon: 'bx-brain', title: 'Intellect', desc: 'Prioritize abstract ideas over hollow personalities.' },
     { icon: 'bx-fingerprint', title: 'Identity', desc: 'Your bloodline is your digital signature.' },
@@ -35,14 +37,6 @@ const serverRules = [
 let currentLang = 'en';
 let konamiCode = [];
 const secretCode = "matrix";
-
-const cursor = document.getElementById('custom-cursor');
-const cursorBlur = document.getElementById('cursor-blur');
-
-document.addEventListener('mousemove', (e) => {
-    gsap.set(cursor, { x: e.clientX, y: e.clientY });
-    gsap.to(cursorBlur, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15, ease: "power2.out" });
-});
 
 window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -121,6 +115,7 @@ function updateContent() {
     });
 }
 
+// initScrollAnimations()
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
     document.querySelectorAll('.reveal').forEach((el) => {
@@ -138,6 +133,7 @@ function initScrollAnimations() {
     });
 }
 
+// Language Toggle System()
 document.getElementById('lang-toggle').addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
